@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">My Application</string>
+
+    <string-array name="activities_list">
+        <item>Artist1</item>
+        <item>Artist1</item>
+        <item>Artist1</item>
+        <item>Artist1</item>
+        <item>Artist1</item>
+        <item>Artist1</item>
+        <item>Artist1</item>
+        <item>Artist1</item>
+    </string-array>
+
+    <string-array name="activities_description">
+        <item>performance description</item>
+        <item>performance description</item>
+        <item>performance description</item>
+        <item>performance description</item>
+        <item>performance description</item>
+        <item>performance description</item>
+        <item>performance description</item>
+        <item>performance description</item>
+    </string-array>
+
 </resources>

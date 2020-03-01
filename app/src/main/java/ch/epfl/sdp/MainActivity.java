@@ -1,28 +1,39 @@
 package ch.epfl.sdp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String EXTRA_MESSAGE = "ch.epfl.sdp.EXTRA_MESSAGE";
+    RecyclerView recyclerView;
+
+    String activities_name[], description[];
+    int images[] = {R.drawable.ac_dc,R.drawable.green_day, R.drawable.guns_and_roses, R.drawable.kiss, R.drawable.metallica,
+    R.drawable.ministry, R.drawable.rh, R.drawable.sex_pistoles};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
-    public void sendMessage(View view) {
-        // Do something in response to button
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
-        EditText editText = (EditText) findViewById(R.id.mainName);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
+        recyclerView = findViewById(R.id.recyclerView);
+
+        activities_name = getResources().getStringArray(R.array.activities_list);
+        description = getResources().getStringArray(R.array.activities_description);
+
+        // initialize the class inside the activity
+        MyAdapter myAdapter = new MyAdapter(this, activities_name, description, images);
+        //set adapter in ownCreate method
+        recyclerView.setAdapter(myAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }
+
+
