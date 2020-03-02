@@ -1,6 +1,9 @@
 package ch.epfl.sdp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -12,27 +15,20 @@ import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-
-    String activities_name[], description[];
-    int images[] = {R.drawable.ac_dc,R.drawable.green_day, R.drawable.guns_and_roses, R.drawable.kiss, R.drawable.metallica,
-    R.drawable.ministry, R.drawable.rh, R.drawable.sex_pistoles};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = findViewById(R.id.recyclerView);
-
-        activities_name = getResources().getStringArray(R.array.activities_list);
-        description = getResources().getStringArray(R.array.activities_description);
-
-        // initialize the class inside the activity
-        MyAdapter myAdapter = new MyAdapter(this, activities_name, description, images);
-        //set adapter in ownCreate method
-        recyclerView.setAdapter(myAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        // timetable button
+        Button timetableBtn = (Button)findViewById(R.id.timetableBtn);
+        timetableBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startIntent = new Intent(getApplicationContext(), Timetable.class);
+                startActivity(startIntent);
+            }
+        });
     }
 }
 
