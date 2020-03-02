@@ -25,13 +25,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
          imageSet = artistImage;
     }
 
-    // Create new views (invoked by the layout manager)
+    // create ViewHolder object whenever the RecyclerView needs a new one
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        //Instantiates a layout XML file into its corresponding View objects.
-        LayoutInflater inflater = LayoutInflater.from(context);
-        //Inflate a new view hierarchy from the specified XML node.
-        View view = inflater.inflate(R.layout.card_item, parent, false);
+        //Inflate a new view
+        View view =  LayoutInflater.from(context).inflate(R.layout.card_item, parent, false);
         return new MyViewHolder(view);
     }
 

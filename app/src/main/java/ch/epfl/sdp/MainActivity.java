@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         MyAdapter myAdapter = new MyAdapter(this, activities_name, description, images);
         //set adapter in ownCreate method
         recyclerView.setAdapter(myAdapter);
+        //list of repeating views in the recycler view
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }
