@@ -1,5 +1,6 @@
 package ch.epfl.sdp;
 
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 
@@ -21,7 +22,8 @@ public class MainActivityTest {
     @Test
     public void testCanGreetUsers() {
         // onView(withId(R.id.mainName)).perform(typeText("from my unit test")).perform(closeSoftKeyboard());
-        // onView(withId(R.id.mainGoButton)).perform(click());
+        onView(withId(R.id.timetableBtn)).perform(click());
+        SwipeController.convertToRelativeDirection(1, ItemTouchHelper.LEFT);
         // onView(withId(R.id.greetingMessage)).check(matches(withText("Hello from my unit test!")));
     }
 }
