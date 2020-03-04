@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "530570361375",
+    "firebase_url": "https://baleclectic-1582896300929.firebaseio.com",
+    "project_id": "baleclectic-1582896300929",
+    "storage_bucket": "baleclectic-1582896300929.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:530570361375:android:896d0afe94b51e0a0eb32a",
+        "android_client_info": {
+          "package_name": "ch.epfl.sdp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "530570361375-s7u38hi1aol3lmkba95ho2bmfghg8q8g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ch.epfl.sdp",
+            "certificate_hash": "c69e359544e00a827b2c3ef1832331270d95377b"
+          }
+        },
+        {
+          "client_id": "530570361375-ohulidkq59kp7l92cj78qb2q5vho8akb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeDaexFei4xkGFuofZkgrlke8tqrd7w9U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "530570361375-ohulidkq59kp7l92cj78qb2q5vho8akb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
