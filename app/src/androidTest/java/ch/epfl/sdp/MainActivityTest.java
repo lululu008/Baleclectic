@@ -33,11 +33,23 @@ public class MainActivityTest {
                 GeneralLocation.CENTER_LEFT, Press.FINGER);
     }
 
+    private static ViewAction swipeFromBottomToTop() {
+        return new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.BOTTOM_CENTER,
+                GeneralLocation.TOP_CENTER, Press.FINGER);
+    }
+
+    private static ViewAction swipeFromLeftToRight() {
+        return new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER_LEFT,
+                GeneralLocation.CENTER_RIGHT, Press.FINGER);
+    }
+
     @Test
     public void testCanGreetUsers() {
         // onView(withId(R.id.mainName)).perform(typeText("from my unit test")).perform(closeSoftKeyboard());
         onView(withId(R.id.timetableBtn)).perform(click());
         Espresso.onView(ViewMatchers.withId(R.id.recyclerView)).perform(swipeFromRightToLeft());
+        Espresso.onView(ViewMatchers.withId(R.id.recyclerView)).perform(swipeFromBottomToTop());
+        Espresso.onView(ViewMatchers.withId(R.id.recyclerView)).perform(swipeFromLeftToRight());
         // onView(withId(R.id.greetingMessage)).check(matches(withText("Hello from my unit test!")));
     }
 }

@@ -43,7 +43,7 @@ class SwipeController extends Callback {
         return makeMovementFlags(0,ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT);
     }
 
-    //prevent swiping out
+    //swipe back
     public int convertToAbsoluteDirection(int flags, int layoutDirection) {
         if (swipeBack) {
             swipeBack = false;
