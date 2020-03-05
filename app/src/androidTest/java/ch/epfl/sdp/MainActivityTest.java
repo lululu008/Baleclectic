@@ -1,6 +1,14 @@
 package ch.epfl.sdp;
 
 import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.action.GeneralLocation;
+import androidx.test.espresso.action.GeneralSwipeAction;
+import androidx.test.espresso.action.Press;
+import androidx.test.espresso.action.Swipe;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 
@@ -19,11 +27,17 @@ public class MainActivityTest {
     @Rule
     public final ActivityTestRule<MainActivity> mActivityRule =
             new ActivityTestRule<>(MainActivity.class);
+
+    private static ViewAction swipeFromRightToLeft() {
+        return new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER_RIGHT,
+                GeneralLocation.CENTER_LEFT, Press.FINGER);
+    }
+
     @Test
     public void testCanGreetUsers() {
         // onView(withId(R.id.mainName)).perform(typeText("from my unit test")).perform(closeSoftKeyboard());
         onView(withId(R.id.timetableBtn)).perform(click());
-        SwipeController.convertToRelativeDirection(1, ItemTouchHelper.LEFT);
+        Espresso.onView(ViewMatchers.withId(R.id.recyclerView)).perform(swipeFromRightToLeft());
         // onView(withId(R.id.greetingMessage)).check(matches(withText("Hello from my unit test!")));
     }
 }
