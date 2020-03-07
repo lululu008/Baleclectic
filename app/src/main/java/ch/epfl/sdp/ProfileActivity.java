@@ -8,13 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -51,24 +48,13 @@ public class ProfileActivity extends AppCompatActivity {
         btnSignout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signOut();
+                mAuth.getInstance().signOut();
+                Toast.makeText(ProfileActivity.this, "Logged Out", Toast.LENGTH_SHORT).show();
+
+                onStart();
                 }
             }
         );
-    }
-
-    private void signOut() {
-        // Firebase sign out
-        mAuth.signOut();
-        // Google sign out
-        mGoogleSignInClient.signOut().addOnCompleteListener(this,
-                new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        onStart();
-                    }
-                });
-        Toast.makeText(ProfileActivity.this, "Logged Out", Toast.LENGTH_SHORT).show();;
     }
 
     @Override
