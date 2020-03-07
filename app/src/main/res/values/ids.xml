@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="mainName" type="id" />
+    <item name="mainGoButton" type="id" />
+    <item name="recyclerView" type="id" />
+    <item name="timetableBtn" type="id" />
+</resources>
