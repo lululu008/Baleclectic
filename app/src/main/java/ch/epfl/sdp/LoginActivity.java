@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
                 new AuthUI.IdpConfig.GoogleBuilder().build(),
                 new AuthUI.IdpConfig.EmailBuilder().build());
         startActivityForResult(AuthUI.getInstance()
-                .createSignInIntentBuilder().setIsSmartLockEnabled(false)
+                .createSignInIntentBuilder().setIsSmartLockEnabled(true)
                 .setAvailableProviders(providers)
                 .build(),RC_SIGN_IN);
     }
