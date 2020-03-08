@@ -1,0 +1,95 @@
+{
+  "project_info": {
+    "project_number": "530570361375",
+    "firebase_url": "https://baleclectic-1582896300929.firebaseio.com",
+    "project_id": "baleclectic-1582896300929",
+    "storage_bucket": "baleclectic-1582896300929.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:530570361375:android:896d0afe94b51e0a0eb32a",
+        "android_client_info": {
+          "package_name": "ch.epfl.sdp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "530570361375-cfa79m2htetkln24g3ptt131r666vovb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ch.epfl.sdp",
+            "certificate_hash": "e2b723faabcf91eecc76c1121db2472d695284f8"
+          }
+        },
+        {
+          "client_id": "530570361375-m0l1vb7am67k2thnmttpfdg43cn550da.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ch.epfl.sdp",
+            "certificate_hash": "74e3353f020b6b4397a5843e539cd9659731fa49"
+          }
+        },
+        {
+          "client_id": "530570361375-kvrjvsdfkh04trmudj25m2q84skcv1p2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ch.epfl.sdp",
+            "certificate_hash": "555e6cc1d1bcb7a31dcbe84d2c01f4cb9ebb9557"
+          }
+        },
+        {
+          "client_id": "530570361375-uopo7sac9hjfhfdjqcrdpdi5dsj8sjr0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ch.epfl.sdp",
+            "certificate_hash": "be732d33ae09ba66454256966e8de1c27ae01f28"
+          }
+        },
+        {
+          "client_id": "530570361375-o21crpe4bgnig5ofnlagg1sb6psre9u2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ch.epfl.sdp",
+            "certificate_hash": "2eab1f5345a0b328dbf3877361857a8fd8f63096"
+          }
+        },
+        {
+          "client_id": "530570361375-fk9433ekldvo1srje7o5fqpouk7jmlol.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ch.epfl.sdp",
+            "certificate_hash": "c69e359544e00a827b2c3ef1832331270d95377b"
+          }
+        },
+        {
+          "client_id": "530570361375-4dv0m8d6407d254th5ooi7qqrqb2sgii.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ch.epfl.sdp",
+            "certificate_hash": "327de920532fd9521f9e58f5dbff67615f3df988"
+          }
+        },
+        {
+          "client_id": "530570361375-o9mcrams1ndj0dee73m1nk7sn1qt72on.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ch.epfl.sdp",
+            "certificate_hash": "053bae05bb1ab47c6b938e2a0fff69c6e39f241f"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8c7U4IUno9lxR6EPYF2ya3WlDfy5C2hs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
