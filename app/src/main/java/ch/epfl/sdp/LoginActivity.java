@@ -57,16 +57,4 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
     // [END auth_fui_result]
-
-    public void signOut() {
-        // [START auth_fui_signout]
-        AuthUI.getInstance()
-                .signOut(this)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // ...
-                    }
-                });
-        // [END auth_fui_signout]
-    }
 }
