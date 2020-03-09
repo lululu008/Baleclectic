@@ -1,5 +1,10 @@
 package ch.epfl.sdp;
 
+import android.app.Activity;
+import android.app.Instrumentation;
+import android.util.Log;
+import android.view.View;
+
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.UiController;
@@ -12,6 +17,8 @@ import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,12 +28,17 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
     @Rule
     public final ActivityTestRule<MainActivity> mActivityRule =
             new ActivityTestRule<>(MainActivity.class);
+    private MainActivity MainActivity = null;
+
+    Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(LoginActivity.class.getName(),null,false);
 
     private static ViewAction swipeFromRightToLeft() {
         return new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER_RIGHT,
@@ -43,6 +55,11 @@ public class MainActivityTest {
                 GeneralLocation.CENTER_RIGHT, Press.FINGER);
     }
 
+    @Before
+    public void setUp() throws Exception{
+        MainActivity = mActivityRule.getActivity();
+    }
+
     @Test
     public void testCanGreetUsers() {
         // onView(withId(R.id.mainName)).perform(typeText("from my unit test")).perform(closeSoftKeyboard());
@@ -51,5 +68,18 @@ public class MainActivityTest {
         Espresso.onView(ViewMatchers.withId(R.id.recyclerView)).perform(swipeFromBottomToTop());
         Espresso.onView(ViewMatchers.withId(R.id.recyclerView)).perform(swipeFromLeftToRight());
         // onView(withId(R.id.greetingMessage)).check(matches(withText("Hello from my unit test!")));
+    }
+    public void testLoginButton(){
+        View view = MainActivity.findViewById(R.id.signin_main);
+        assertNotNull(view);
+        onView(withId(R.id.signin_main)).perform(click());
+        Activity LoginActivity = getInstrumentation().waitForMonitorWithTimeout(monitor,5000);
+        assertNotNull(LoginActivity);
+        LoginActivity.finish();
+    }
+
+    @After
+    public void teardown() throws Exception{
+        MainActivity = null;
     }
 }
