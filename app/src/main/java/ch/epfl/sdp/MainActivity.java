@@ -25,15 +25,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button mapBtn = (Button)findViewById(R.id.mapBtn);
-        mapBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(),MapsActivity.class);
-                startActivity(startIntent);
-            }
-        });
-
         Button signin_main = (Button)findViewById(R.id.signin_main);
         signin_main.setOnClickListener(new View.OnClickListener() {
             @Override
