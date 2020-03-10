@@ -26,5 +26,6 @@
         <item>performance description</item>
     </string-array>
     <string name="title_activity_maps">Map</string>
+    <string name="button_map_1">Map 1</string>
 
 </resources>
