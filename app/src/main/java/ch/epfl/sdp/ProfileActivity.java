@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseUser;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -18,6 +19,14 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        textName = findViewById(R.id.textViewName);
+        textEmail = findViewById(R.id.textViewEmail);
+
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        textName.setText(user.getDisplayName());
+        textEmail.setText(user.getEmail());
 
         Button sign_out = (Button)findViewById(R.id.sign_out_button);
         sign_out.setOnClickListener(new View.OnClickListener() {
