@@ -33,21 +33,6 @@ public class LoginActivityTest {
 
     private LoginActivity LoginActivity = null;
 
-//    private static ViewAction swipeFromRightToLeft() {
-//        return new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER_RIGHT,
-//                GeneralLocation.CENTER_LEFT, Press.FINGER);
-//    }
-//
-//    private static ViewAction swipeFromBottomToTop() {
-//        return new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.BOTTOM_CENTER,
-//                GeneralLocation.TOP_CENTER, Press.FINGER);
-//    }
-//
-//    private static ViewAction swipeFromLeftToRight() {
-//        return new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER_LEFT,
-//                GeneralLocation.CENTER_RIGHT, Press.FINGER);
-//    }
-
     @Before
     public void setUp() throws Exception{
         LoginActivity = LoginTestRule.getActivity();
@@ -57,12 +42,7 @@ public class LoginActivityTest {
     public void testLogin() {
         View view = LoginActivity.findViewById(R.id.button_sign_in);
         assertNotNull(view);
-        // onView(withId(R.id.mainName)).perform(typeText("from my unit test")).perform(closeSoftKeyboard());
 //        onView(withId(R.id.sign_in_)).perform(click());
-//        Espresso.onView(ViewMatchers.withId(R.id.recyclerView)).perform(swipeFromRightToLeft());
-//        Espresso.onView(ViewMatchers.withId(R.id.recyclerView)).perform(swipeFromBottomToTop());
-//        Espresso.onView(ViewMatchers.withId(R.id.recyclerView)).perform(swipeFromLeftToRight());
-        // onView(withId(R.id.greetingMessage)).check(matches(withText("Hello from my unit test!")));
     }
 
     @After
