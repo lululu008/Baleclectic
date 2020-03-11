@@ -29,31 +29,11 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        Button delete_account = (Button)findViewById(R.id.delete_account_button);
-        delete_account.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(startIntent);
-                deleteAccount();
-            }
-        });
+
 
     }
 
     public void signOut() {
-        // [START auth_fui_signout]
-        AuthUI.getInstance()
-                .signOut(this)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // ...
-                    }
-                });
-        // [END auth_fui_signout]
-    }
-
-    public void deleteAccount() {
         // [START auth_fui_delete]
         AuthUI.getInstance()
                 .delete(this)
@@ -64,6 +44,8 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                 });
         // [END auth_fui_delete]
+
     }
+
 
 }
