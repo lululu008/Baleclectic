@@ -46,8 +46,13 @@ public class MapTest {
     @Test
     public void testCanOpenMap() {
         onView(withId(R.id.mapBtn)).perform(click());
+        onView(withId(R.id.mapSelect1Btn)).perform(click());
         Espresso.onView(ViewMatchers.withId(R.id.map)).perform(swipeFromRightToLeft());
         Espresso.onView(ViewMatchers.withId(R.id.map)).perform(swipeFromBottomToTop());
         Espresso.onView(ViewMatchers.withId(R.id.map)).perform(swipeFromLeftToRight());
+
+        Espresso.pressBack();
+        onView(withId(R.id.mapSelect2Btn)).perform(click());
+
     }
 }

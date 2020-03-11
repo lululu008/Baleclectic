@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.android.gms.maps.model.LatLng;
-
 public class MapSelectionActivity extends AppCompatActivity {
 
     @Override
@@ -21,7 +19,7 @@ public class MapSelectionActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setTitle("Map Selection");
 
-        Button map1Btn = (Button)findViewById(R.id.btn_map_selection_1);
+        Button map1Btn = (Button)findViewById(R.id.mapSelect1Btn);
 
 
         map1Btn.setOnClickListener(new View.OnClickListener() {
@@ -31,9 +29,24 @@ public class MapSelectionActivity extends AppCompatActivity {
                 MeetingPoints map1MeetingPoints = map1MeetingPoints();
                 Intent startIntent = new Intent(getApplicationContext(), MapsActivity.class);
                 startIntent.putExtra("points", map1MeetingPoints);
+                startIntent.putExtra("title", "Map 1");
                 startActivity(startIntent);
             }
         });
+
+        Button map2Btn = (Button)findViewById(R.id.mapSelect2Btn);
+        map2Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                MeetingPoints map2MeetingPoints = new MeetingPoints();
+                Intent startIntent = new Intent(getApplicationContext(), MapsActivity.class);
+                startIntent.putExtra("points", map2MeetingPoints);
+                startIntent.putExtra("title", "Map 2");
+                startActivity(startIntent);
+            }
+        });
+
     }
 
     private MeetingPoints map1MeetingPoints() {

@@ -17,12 +17,22 @@
         app:titleTextColor="#FFFFFF" />
 
     <Button
-        android:id="@+id/btn_map_selection_1"
+        android:id="@+id/mapSelect1Btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/holo_red_light"
+        android:backgroundTint="@android:color/holo_blue_dark"
         android:text="@string/button_map_1"
         android:textColor="#FFFFFF"
         android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/mapSelect2Btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:text="@string/button_map_2"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
+
 </LinearLayout>
 

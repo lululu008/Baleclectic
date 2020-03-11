@@ -2,6 +2,8 @@ package ch.epfl.sdp;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -11,8 +13,25 @@ import static org.junit.Assert.assertEquals;
  */
 public class MeetingPointTest {
     @Test
-    //TODO
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+    public void emptyMeetingsPointsIsEmpty() {
+        MeetingPoints emptyPoints = new MeetingPoints();
+        assertEquals(emptyPoints.getSize(), 0);
+    }
+
+    @Test
+    public void meetingPointsConstructorFromList() {
+
+        ArrayList<MeetingPoint> l = new ArrayList<>();
+
+        MeetingPoint p1 = new MeetingPoint(1, 1, "test 1");
+        MeetingPoint p2 = new MeetingPoint(-1, -2, "test 2");
+        l.add(p1);
+        l.add(p2);
+
+        MeetingPoints meetingPoints = new MeetingPoints(l);
+
+        assertEquals(p1, meetingPoints.get(0));
+        assertEquals(l.size(), meetingPoints.getSize());
+        assertEquals(l, meetingPoints.getAll());
     }
 }

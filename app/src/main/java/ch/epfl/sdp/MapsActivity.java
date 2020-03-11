@@ -20,15 +20,18 @@ import java.util.List;
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+        intent = getIntent();
+
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setTitle("Map 1");
+        getSupportActionBar().setTitle(intent.getStringExtra("title"));
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -51,8 +54,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         // Add a marker in Sydney and move the camera
 
-        Intent i = getIntent();
-        MeetingPoints meetingPoints = (MeetingPoints) i.getSerializableExtra("points");
+        MeetingPoints meetingPoints = (MeetingPoints) intent.getSerializableExtra("points");
         List<MeetingPoint> points = meetingPoints.getAll();
 
         if (!points.isEmpty()) {

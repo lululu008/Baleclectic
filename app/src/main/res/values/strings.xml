@@ -27,5 +27,6 @@
     </string-array>
     <string name="title_activity_maps">Map</string>
     <string name="button_map_1">Map 1</string>
+    <string name="button_map_2">Map 2</string>
 
 </resources>
