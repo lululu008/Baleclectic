@@ -26,8 +26,8 @@ public class ProfileActivity extends AppCompatActivity {
         TextView textName, textEmail;
         textName = findViewById(R.id.textViewName);
         textEmail = findViewById(R.id.textViewEmail);
-
-        FirebaseUser user = FirebaseAuth.getCurrentUser();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
 
         textName.setText(user.getDisplayName());
         textEmail.setText(user.getEmail());
