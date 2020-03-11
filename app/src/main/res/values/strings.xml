@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="timetable">Timetable</string>
-    <string name="map">Map</string>
-    <string name="map_title">Demo Map</string>
+
 
     <string-array name="activities_list">
         <item>Artist1</item>
@@ -25,7 +24,6 @@
         <item>performance description</item>
         <item>performance description</item>
     </string-array>
-    <string name="title_activity_maps">Map</string>
 
 
 </resources>
