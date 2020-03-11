@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.Objects;
+
 public class MapSelectionActivity extends AppCompatActivity {
 
     @Override
@@ -15,22 +17,15 @@ public class MapSelectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_selection);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setTitle("Map Selection");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Map Selection");
 
-        Button map1Btn = (Button)findViewById(R.id.mapSelect1Btn);
-
-
+        Button map1Btn = findViewById(R.id.mapSelect1Btn);
         map1Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                MeetingPoints map1MeetingPoints = map1MeetingPoints();
-                Intent startIntent = new Intent(getApplicationContext(), MapsActivity.class);
-                startIntent.putExtra("points", map1MeetingPoints);
-                startIntent.putExtra("title", "Map 1");
-                startActivity(startIntent);
+                mapIntent(map1MeetingPoints(), "Map 1");
             }
         });
 
@@ -38,16 +33,21 @@ public class MapSelectionActivity extends AppCompatActivity {
         map2Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                MeetingPoints map2MeetingPoints = new MeetingPoints();
-                Intent startIntent = new Intent(getApplicationContext(), MapsActivity.class);
-                startIntent.putExtra("points", map2MeetingPoints);
-                startIntent.putExtra("title", "Map 2");
-                startActivity(startIntent);
+                mapIntent(new MeetingPoints(), "Map 2");
             }
         });
 
     }
+
+    private void mapIntent(MeetingPoints points, String title) {
+
+        Intent startIntent = new Intent(getApplicationContext(), MapsActivity.class);
+        startIntent.putExtra("points", points);
+        startIntent.putExtra("title", title);
+        startActivity(startIntent);
+
+    }
+
 
     private MeetingPoints map1MeetingPoints() {
 
