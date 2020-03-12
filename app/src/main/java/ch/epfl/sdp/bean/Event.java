@@ -1,7 +1,5 @@
 package ch.epfl.sdp.bean;
 
-import java.sql.Time;
-
 public class Event {
 
     private String name;

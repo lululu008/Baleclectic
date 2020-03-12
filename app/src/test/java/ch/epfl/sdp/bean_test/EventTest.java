@@ -2,10 +2,7 @@ package ch.epfl.sdp.bean_test;
 
 import org.junit.Test;
 
-import java.sql.Time;
-
 import ch.epfl.sdp.bean.Event;
-import ch.epfl.sdp.bean.User;
 
 import static org.junit.Assert.assertEquals;
 
