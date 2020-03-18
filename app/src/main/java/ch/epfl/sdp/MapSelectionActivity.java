@@ -37,6 +37,15 @@ public class MapSelectionActivity extends AppCompatActivity {
             }
         });
 
+        Button basicActivityBtn = (Button)findViewById(R.id.basicActivityBtn);
+        basicActivityBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startIntent = new Intent(getApplicationContext(), BasicActivityTest.class);
+                startActivity(startIntent);
+            }
+        });
+
     }
 
     private void mapIntent(MeetingPoints points, String title) {
