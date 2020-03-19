@@ -1,4 +1,4 @@
-package ch.epfl.sdp;
+package ch.epfl.sdp.timetable;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+import ch.epfl.sdp.R;
+
+public class TimetableAdapter extends RecyclerView.Adapter<TimetableAdapter.MyViewHolder> {
 
     String activitiesName[], activitiesDescription[];
     int imageSet[];
@@ -18,7 +20,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     // Provide a suitable constructor (depends on the kind of dataset)
     // initialize the class inside the activity
-    public MyAdapter(Context ct, String activities_name[], String activities_description[], int artistImage[]) {
+    public TimetableAdapter(Context ct, String activities_name[], String activities_description[], int artistImage[]) {
          context = ct;
          activitiesName = activities_name;
          activitiesDescription = activities_description;

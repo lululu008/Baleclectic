@@ -1,10 +1,14 @@
-package ch.epfl.sdp;
+package ch.epfl.sdp.map;
 
-import androidx.appcompat.widget.Toolbar;
-//import androidx.fragment.app.FragmentActivity;
-
+import android.Manifest;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -15,38 +19,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import android.widget.Toast;
 import java.util.List;
 
-import pub.devrel.easypermissions.AfterPermissionGranted;
+import ch.epfl.sdp.R;
 import pub.devrel.easypermissions.EasyPermissions;
 
 public class MapsActivity extends AppCompatActivity implements OnMyLocationButtonClickListener,
         OnMyLocationClickListener,
         OnMapReadyCallback {
-
-    /**
-     * Request code for location permission request.
-     *
-     * @see #onRequestPermissionsResult(int, String[], int[])
-     */
-    private static final int RC_ACCESS_FINE_LOCATION = 123;
-
-    /**
-     * Flag indicating whether a requested permission has been denied after returning in
-     * {@link #onRequestPermissionsResult(int, String[], int[])}.
-     */
-    private boolean mPermissionDenied = false;
-
 
     private GoogleMap mMap;
     private Intent intent;
@@ -58,13 +38,17 @@ public class MapsActivity extends AppCompatActivity implements OnMyLocationButto
 
         intent = getIntent();
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(myToolbar);
-        getSupportActionBar().setTitle(intent.getStringExtra("title"));
+        initToolbar();
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+    }
+
+    private void initToolbar() {
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setTitle(intent.getStringExtra("title"));
     }
 
 
@@ -117,35 +101,6 @@ public class MapsActivity extends AppCompatActivity implements OnMyLocationButto
                 mMap.setMyLocationEnabled(true);
                 mMap.setOnMyLocationClickListener(this);
             }
-        }
-        else {
-            // Request location if not given
-            requireLocation();
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        // Forward results to EasyPermissions
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-
-        if (hasLocation()) {
-            setLocation();
-        }
-    }
-
-    @AfterPermissionGranted(RC_ACCESS_FINE_LOCATION)
-    private void requireLocation() {
-        String perm = Manifest.permission.ACCESS_FINE_LOCATION;
-        if (hasLocation()) {
-            // Already have permission, do the thing
-
-        } else {
-            // Do not have permissions, request them now
-            EasyPermissions.requestPermissions(this, getString(R.string.location_rationale),
-                    RC_ACCESS_FINE_LOCATION, perm);
         }
     }
 

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    tools:context=".map.MapSelectionActivity" >
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -20,15 +19,26 @@
             android:background="@color/colorPrimaryDark"
             app:popupTheme="@style/PopupOverlay"
             app:titleTextColor="@color/defaultWhite" />
-
     </com.google.android.material.appbar.AppBarLayout>
 
-    <fragment xmlns:map="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    <Button
+        android:id="@+id/updateLocationButton"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".map.MapsActivity"
-        tools:layout="@layout/activity_maps" />
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/darker_gray"
+        android:text="@string/update_location"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="24sp"
+        android:text="@string/no_loc_access"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 </LinearLayout>
+

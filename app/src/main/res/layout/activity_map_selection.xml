@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MapSelectionActivity" >
+    tools:context=".map.MapSelectionActivity" >
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -40,11 +40,11 @@
         android:textSize="24sp" />
 
     <Button
-        android:id="@+id/basicActivityBtn"
+        android:id="@+id/locPermissionBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/holo_orange_dark"
-        android:text="@string/basic_activity"
+        android:text="@string/loc_permission_request"
         android:textColor="#FFFFFF"
         android:textSize="24sp" />
 

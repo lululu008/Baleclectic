@@ -39,5 +39,11 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="location_rationale">Location is needed to find proximity to meeting points</string>
     <string name="basic_activity">Basic activity</string>
+    <string name="loc_permission_request">Allow location access</string>
+    <string name="loc_access_granted">Location access granted</string>
+    <string name="show_map">Show Map</string>
+    <string name="show_distance">Show Distance</string>
+    <string name="update_location">Update Location</string>
+    <string name="no_loc_access">Cannot access location!</string>
 
 </resources>

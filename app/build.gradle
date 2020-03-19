@@ -50,6 +50,9 @@ dependencies {
 
     // For developers using AndroidX in their applications
     implementation 'pub.devrel:easypermissions:3.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+
+    androidTestImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.3'
 
 }
 

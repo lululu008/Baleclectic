@@ -1,0 +1,61 @@
+package ch.epfl.sdp.map;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import ch.epfl.sdp.R;
+
+public class MapHomeActivity extends AppCompatActivity {
+
+    private Intent intent;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_map_home);
+
+        intent = getIntent();
+
+        initToolbar();
+
+        initButtons();
+    }
+
+    private void initToolbar() {
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setTitle(intent.getStringExtra("title") + " Home");
+    }
+
+    private void initButtons() {
+        Button showMapBtn = findViewById(R.id.showMapBtn);
+        showMapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                transferIntent(MapsActivity.class);
+            }
+        });
+
+        Button showDistanceBtn = findViewById(R.id.showDistanceBtn);
+        showDistanceBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                transferIntent(DistanceActivity.class);
+            }
+        });
+    }
+
+    private void transferIntent(Class cls) {
+
+        Intent startIntent = new Intent(getApplicationContext(),  cls);
+        startIntent.putExtra("points", intent.getSerializableExtra("points"));
+        startIntent.putExtra("title", intent.getStringExtra("title"));
+        startActivity(startIntent);
+
+    }
+}

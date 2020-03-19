@@ -1,4 +1,4 @@
-package ch.epfl.sdp;
+package ch.epfl.sdp.timetable;
 
 import android.annotation.SuppressLint;
 import android.graphics.Canvas;

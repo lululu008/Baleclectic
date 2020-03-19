@@ -6,9 +6,9 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
+import ch.epfl.sdp.map.MapSelectionActivity;
+import ch.epfl.sdp.timetable.Timetable;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         mapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(),MapSelectionActivity.class);
+                Intent startIntent = new Intent(getApplicationContext(), MapSelectionActivity.class);
                 startActivity(startIntent);
             }
         });
