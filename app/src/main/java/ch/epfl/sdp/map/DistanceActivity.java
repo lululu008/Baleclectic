@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 import ch.epfl.sdp.Pair;
 import ch.epfl.sdp.R;
@@ -54,6 +55,7 @@ public class DistanceActivity extends AppCompatActivity {
         distanceText = findViewById(R.id.textView);
 
         MeetingPoints meetingPoints = (MeetingPoints) intent.getSerializableExtra("points");
+        assert meetingPoints != null;
         points = meetingPoints.getAll();
         getLocation();
 
@@ -62,7 +64,7 @@ public class DistanceActivity extends AppCompatActivity {
     private void initToolbar() {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setTitle(intent.getStringExtra("title") + " Distance");
+        Objects.requireNonNull(getSupportActionBar()).setTitle(intent.getStringExtra("title") + " Distance");
     }
 
     public void getLocation() {
@@ -93,7 +95,7 @@ public class DistanceActivity extends AppCompatActivity {
         ArrayList<Pair<String, Float>> distances = new ArrayList<>();
 
         for (MeetingPoint p : points) {
-            distances.add(new Pair(p.getName(), p.getDistance(lastLocation)));
+            distances.add(new Pair<>(p.getName(), p.getDistance(lastLocation)));
         }
 
         sortByDistance(distances);
@@ -109,11 +111,7 @@ public class DistanceActivity extends AppCompatActivity {
         Collections.sort(distances, new Comparator<Pair<String, Float>>() {
             @Override
             public int compare(final Pair<String, Float> o1, final Pair<String, Float> o2) {
-                if (o1.getSecond() > o2.getSecond()) {
-                    return 1;
-                } else {
-                    return -1;
-                }
+                return o1.getSecond().compareTo(o2.getSecond());
             }
         });
     }

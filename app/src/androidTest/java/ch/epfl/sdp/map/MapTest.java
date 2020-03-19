@@ -50,16 +50,6 @@ public class MapTest {
                 GeneralLocation.CENTER_LEFT, Press.FINGER);
     }
 
-    private static ViewAction swipeFromBottomToTop() {
-        return new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.BOTTOM_CENTER,
-                GeneralLocation.TOP_CENTER, Press.FINGER);
-    }
-
-    private static ViewAction swipeFromLeftToRight() {
-        return new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER_LEFT,
-                GeneralLocation.CENTER_RIGHT, Press.FINGER);
-    }
-
     //TODO add permission refusal test
 
     @Test
@@ -106,6 +96,7 @@ public class MapTest {
         Espresso.pressBack();
         onView(withId(R.id.mapSelect2Btn)).perform(click());
         onView(withId(R.id.showDistanceBtn)).perform(click());
+        onView(withId(R.id.updateLocationButton)).perform(click());
 
         //TODO assertion checks here
 
