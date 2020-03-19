@@ -33,7 +33,7 @@ public class DistanceActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationClient;
     private Location lastLocation;
     private TextView distanceText;
-    private List<MeetingPoint> points;
+    private DistanceCalculator distanceCalc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,9 @@ public class DistanceActivity extends AppCompatActivity {
 
         MeetingPoints meetingPoints = (MeetingPoints) intent.getSerializableExtra("points");
         assert meetingPoints != null;
-        points = meetingPoints.getAll();
+        List<MeetingPoint> points = meetingPoints.getAll();
+
+        distanceCalc = new DistanceCalculator(points);
         getLocation();
 
     }
@@ -80,7 +82,8 @@ public class DistanceActivity extends AppCompatActivity {
                                 lastLocation = location;
 
                                 //Update distances once new location has been received
-                                updateDistances();
+                                distanceCalc.updateDistances(lastLocation);
+                                distanceText.setText(distanceCalc.toString());
                             }
                         }
                     });
@@ -89,48 +92,6 @@ public class DistanceActivity extends AppCompatActivity {
             Toast.makeText(this, "No location permission", Toast.LENGTH_SHORT).show();
         }
     }
-
-    public void updateDistances() {
-
-        ArrayList<Pair<String, Float>> distances = new ArrayList<>();
-
-        for (MeetingPoint p : points) {
-            distances.add(new Pair<>(p.getName(), p.getDistance(lastLocation)));
-        }
-
-        sortByDistance(distances);
-
-        distanceText.setText(toString(distances));
-
-
-    }
-
-
-
-    private void sortByDistance(ArrayList<Pair<String, Float>> distances) {
-        Collections.sort(distances, new Comparator<Pair<String, Float>>() {
-            @Override
-            public int compare(final Pair<String, Float> o1, final Pair<String, Float> o2) {
-                return o1.getSecond().compareTo(o2.getSecond());
-            }
-        });
-    }
-
-    private String toString(ArrayList<Pair<String, Float>> distances) {
-        StringBuilder sb = new StringBuilder();
-
-        DecimalFormat df = new DecimalFormat();
-        df.setMaximumFractionDigits(0);
-
-        for (Pair<String, Float> p : distances) {
-            sb.append(" ").append(p.getFirst()).append(": ")
-                    .append(df.format(p.getSecond())).append(" m").append("\n");
-        }
-
-        return sb.toString();
-    }
-
-
 
     private boolean hasLocation() {
         return EasyPermissions.hasPermissions(this, Manifest.permission.ACCESS_FINE_LOCATION);

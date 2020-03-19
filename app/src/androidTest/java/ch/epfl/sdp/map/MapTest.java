@@ -106,9 +106,6 @@ public class MapTest {
 
     }
 
-
-
-
     private void clickOkIfNeeded()  {
         if (Build.VERSION.SDK_INT >= 23) {
             UiObject clickOk = mDevice.findObject(new UiSelector().text("OK"));
