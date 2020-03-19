@@ -19,6 +19,9 @@ import androidx.test.uiautomator.UiObject;
 import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -57,23 +60,63 @@ public class MapTest {
                 GeneralLocation.CENTER_RIGHT, Press.FINGER);
     }
 
+    //TODO add permission refusal test
+
     @Test
     public void testCanOpenMap() {
+
+        onView(ViewMatchers.withId(R.id.mapBtn)).perform(click());
+
+        clickOkIfNeeded();
+        allowPermissionsIfNeeded();
+
+        //TODO assertion checks here
+
+        onView(withId(R.id.mapSelect1Btn)).perform(click());
+        onView(withId(R.id.showMapBtn)).perform(click());
+        Espresso.onView(ViewMatchers.withId(R.id.map)).perform(swipeFromRightToLeft());
+
+        //TODO assertion checks here
+
+        Espresso.pressBack();
+        Espresso.pressBack();
+        onView(withId(R.id.mapSelect2Btn)).perform(click());
+        onView(withId(R.id.showMapBtn)).perform(click());
+        Espresso.pressBack();
+        Espresso.pressBack();
+        Espresso.pressBack();
+
+    }
+
+    @Test
+    public void testCanGetLocation() {
+
         onView(ViewMatchers.withId(R.id.mapBtn)).perform(click());
 
         clickOkIfNeeded();
         allowPermissionsIfNeeded();
 
         onView(withId(R.id.mapSelect1Btn)).perform(click());
-        onView(withId(R.id.showMapBtn)).perform(click());
-        Espresso.onView(ViewMatchers.withId(R.id.map)).perform(swipeFromRightToLeft());
+        onView(withId(R.id.showDistanceBtn)).perform(click());
+        onView(withId(R.id.updateLocationButton)).perform(click());
+
+        //TODO assertion checks here
 
         Espresso.pressBack();
         Espresso.pressBack();
         onView(withId(R.id.mapSelect2Btn)).perform(click());
-        onView(withId(R.id.showMapBtn)).perform(click());
+        onView(withId(R.id.showDistanceBtn)).perform(click());
+
+        //TODO assertion checks here
+
+        Espresso.pressBack();
+        Espresso.pressBack();
+        Espresso.pressBack();
 
     }
+
+
+
 
     private void clickOkIfNeeded()  {
         if (Build.VERSION.SDK_INT >= 23) {

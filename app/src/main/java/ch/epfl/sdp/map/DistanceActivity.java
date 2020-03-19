@@ -38,6 +38,7 @@ public class DistanceActivity extends AppCompatActivity {
     private Location lastLocation;
     private TextView distanceText;
     private List<MeetingPoint> points;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
