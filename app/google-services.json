@@ -1,0 +1,64 @@
+{
+  "project_info": {
+    "project_number": "728906908307",
+    "firebase_url": "https://balecle-2ba71.firebaseio.com",
+    "project_id": "balecle-2ba71",
+    "storage_bucket": "balecle-2ba71.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:728906908307:android:903d7c8378b4e8cecdc366",
+        "android_client_info": {
+          "package_name": "ch.epfl.sdp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "728906908307-lq4ds3hn0mdl8g21rsfnrtbv978lr9af.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ch.epfl.sdp",
+            "certificate_hash": "053bae05bb1ab47c6b938e2a0fff69c6e39f241f"
+          }
+        },
+        {
+          "client_id": "728906908307-r2endi4c27ugj5rh5g611qsgn0ks97da.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ch.epfl.sdp",
+            "certificate_hash": "be732d33ae09ba66454256966e8de1c27ae01f28"
+          }
+        },
+        {
+          "client_id": "728906908307-trnrib898h0a8an7d0jnj1sn9tc25rna.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ch.epfl.sdp",
+            "certificate_hash": "c69e359544e00a827b2c3ef1832331270d95377b"
+          }
+        },
+        {
+          "client_id": "728906908307-jnfu1nnk5oeble9maaet24egmhoflehq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaNBTzq-WanKB5dLBvltLDxgIPju9O8Og"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "728906908307-jnfu1nnk5oeble9maaet24egmhoflehq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

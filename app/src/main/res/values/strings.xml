@@ -2,6 +2,7 @@
     <string name="app_name">My Application</string>
     <string name="timetable">Timetable</string>
 
+
     <string-array name="activities_list">
         <item>Artist1</item>
         <item>Artist1</item>
@@ -23,5 +24,6 @@
         <item>performance description</item>
         <item>performance description</item>
     </string-array>
+
 
 </resources>
