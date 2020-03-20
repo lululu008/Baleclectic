@@ -1,8 +1,8 @@
-package ch.epfl.sdp.bean_test;
+package ch.epfl.sdp.userProfileTest;
 
 import org.junit.Test;
 
-import ch.epfl.sdp.bean.Event;
+import ch.epfl.sdp.userProfile.Event;
 
 import static org.junit.Assert.assertEquals;
 

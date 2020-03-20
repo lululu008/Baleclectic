@@ -1,9 +1,9 @@
-package ch.epfl.sdp.bean_test;
+package ch.epfl.sdp.userProfileTest;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import ch.epfl.sdp.bean.User;
+import ch.epfl.sdp.userProfile.User;
 
 public class UserTest {
 
