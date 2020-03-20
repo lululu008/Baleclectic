@@ -22,7 +22,6 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
         TextView textName, textEmail;
         textName = findViewById(R.id.textViewName);
         textEmail = findViewById(R.id.textViewEmail);

@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,15 +27,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button signin_main = (Button)findViewById(R.id.signin_main);
-        signin_main.setOnClickListener(new View.OnClickListener() {
+        Button mapBtn = (Button)findViewById(R.id.mapBtn);
+        mapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(),LoginActivity.class);
+                Intent startIntent = new Intent(getApplicationContext(),MapSelectionActivity.class);
                 startActivity(startIntent);
             }
         });
 
+        // main page login button
+        Button mainloginBtn = (Button)findViewById(R.id.mainloginBtn);
+        mainloginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startIntent = new Intent(getApplicationContext(), mainLoginActivity.class);
+                startActivity(startIntent);
+            }
+        });
    }
 }
 

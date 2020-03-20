@@ -26,7 +26,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         createSignInIntent();
     }
-
     public void createSignInIntent() {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         List<AuthUI.IdpConfig> providers = Arrays.asList(
