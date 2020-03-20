@@ -9,7 +9,7 @@ public class User {
     private String scheduleId;
     private ArrayList<User> friends = new ArrayList<User>();
 
-    public User(String name){
+    public User(String userName, int gender, String dateDD, String dateMM, String name){
         this.name = name;
     }
 

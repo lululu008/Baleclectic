@@ -9,8 +9,8 @@ public class UserTest {
 
     @Test
     public void testGetterAndSetter() {
-        User user = new User("John");
-        User friend = new User("Tom");
+        User user = new User(userName, gender, dateDD, dateMM, "John");
+        User friend = new User(userName, gender, dateDD, dateMM, "Tom");
         user.addFriends(friend);
         user.setEmail("123@gmail.com");
         user.setScheduleId("a1b2c3");

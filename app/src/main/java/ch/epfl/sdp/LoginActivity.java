@@ -19,6 +19,7 @@ import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 123;
+    //FirebaseAuth auth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void createSignInIntent() {
-        FirebaseAuth auth = FirebaseAuth.getInstance();
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.GoogleBuilder().build(),
                 new AuthUI.IdpConfig.EmailBuilder().build());
@@ -49,8 +49,12 @@ public class LoginActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                Toast.makeText(this, "Signed in", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+                if (user == null){
+                    Intent i = new Intent(getApplicationContext(), CreateUserProfile.class);
+                    startActivity(i);
+                }
+                //Toast.makeText(this, "Signed in", Toast.LENGTH_SHORT).show();
+                //startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
             } else {
                 Toast.makeText(this, ""+response.getError().getMessage(),Toast.LENGTH_SHORT).show();
             }

@@ -16,9 +16,10 @@ public class CloudFireStore {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
-        User newUser = new User(user.getDisplayName());
+        User newUser = new User(userName, gender, dateDD, dateMM, user.getDisplayName());
         newUser.setEmail(user.getEmail());
         newUser.setScheduleId("a1");
+
 
         DocumentReference newUserRef = db.collection("users").document("test");
 

@@ -18,7 +18,7 @@ public class MainEventTest {
     @Test
     public void testGetterAndSetter() throws ParseException {
 
-        User creator = new User("John");
+        User creator = new User(userName, gender, dateDD, dateMM, "John");
         Event event = new Event("sing");
         String sDate="10/03/2020";
         Date date =new SimpleDateFormat("dd/MM/yyyy").parse(sDate);
