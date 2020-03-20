@@ -51,6 +51,8 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
+    //firebase admin sdk
+    implementation 'com.google.firebase:firebase-admin:6.12.2'
 }
 
 
