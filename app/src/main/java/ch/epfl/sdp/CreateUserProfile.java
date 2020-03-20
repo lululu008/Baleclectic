@@ -1,5 +1,6 @@
 package ch.epfl.sdp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -22,6 +23,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import ch.epfl.sdp.bean.User;
 
 public class CreateUserProfile extends AppCompatActivity {
@@ -62,7 +68,11 @@ public class CreateUserProfile extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registerUser();
+                try {
+                    registerUser();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -81,28 +91,30 @@ public class CreateUserProfile extends AppCompatActivity {
         });
     }
 
-    public void registerUser(){
+    public void registerUser() throws ParseException {
         userName = user_name.getText().toString().trim();
         dateDD = date_day.getText().toString().trim();
         dateMM = date_month.getText().toString().trim();
         dateYY = date_year.getText().toString().trim();
+        String date_full = dateDD + "/" +dateMM + "/" + dateYY;
+        @SuppressLint("SimpleDateFormat") final Date birthday =new SimpleDateFormat("dd/MM/yyyy").parse(date_full);
 
         if (userName.isEmpty()){
             user_name.setError("User name required");
             user_name.requestFocus();
             return;
         }
-        if (dateDD.isEmpty() || dateDD.length()!=2){
+        if (dateDD.length() != 2){
             date_day.setTextColor(Color.RED);
             date_day.requestFocus();
             return;
         }
-        if (dateMM.isEmpty()||dateMM.length()!=2){
+        if (dateMM.length() != 2){
             date_month.setTextColor(Color.RED);
             date_month.requestFocus();
             return;
         }
-        if (dateYY.isEmpty()||dateYY.length()!=4){
+        if (dateYY.length() != 4){
             date_year.setTextColor(Color.RED);
             date_year.requestFocus();
             return;
@@ -118,8 +130,8 @@ public class CreateUserProfile extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                             User user = new User(userName, gender, dateDD, dateMM, dateYY);
-                            FirebaseDatabase.getInstance().getReference('users').child(
+                            User user = new User(userName, gender, birthday);
+                            FirebaseDatabase.getInstance().getReference("users").child(
                                     FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

@@ -1,16 +1,40 @@
 package ch.epfl.sdp.bean;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class User {
 
     private String name;
     private String email;
     private String scheduleId;
+    private int gender;
+    private Date birthday;
     private ArrayList<User> friends = new ArrayList<User>();
 
-    public User(String userName, int gender, String dateDD, String dateMM, String name){
-        this.name = name;
+    public User(String userName, int gender, Date birthday) {
+        this.name = userName;
+        this.gender = gender;
+        this.birthday = birthday;
+    }
+
+    public boolean isMale() {
+        if(gender == 1)
+            return true;
+        else
+            return false;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public void addFriends(User friend) {

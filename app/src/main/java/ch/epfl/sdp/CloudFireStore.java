@@ -7,33 +7,34 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Date;
+
 import ch.epfl.sdp.bean.User;
 
 public class CloudFireStore {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseUser user = mAuth.getCurrentUser();
 
-    public void addUser(){
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
+    public void addNewUser(String userName, int gender, Date birthday){
 
-        User newUser = new User(userName, gender, dateDD, dateMM, user.getDisplayName());
+        User newUser = new User(userName, gender, birthday);
         newUser.setEmail(user.getEmail());
-        newUser.setScheduleId("a1");
+        newUser.setScheduleId("na");
 
-
-        DocumentReference newUserRef = db.collection("users").document("test");
+        DocumentReference newUserRef = db.collection("users").document(user.getDisplayName());
 
         newUserRef.set(newUser);
     }
 
     public void updateUser(){
-        DocumentReference newUserRef = db.collection("users").document("test");
+        DocumentReference newUserRef = db.collection("users").document(user.getDisplayName());
 
         newUserRef.update("email", "123456@gamil.com");
     }
 
     public void getUser(){
-        DocumentReference newUserRef = db.collection("users").document("test");
+        DocumentReference newUserRef = db.collection("users").document(user.getDisplayName());
 
         newUserRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -44,6 +45,6 @@ public class CloudFireStore {
     }
 
     public void deleteUser(){
-        db.collection("users").document("test").delete();
+        db.collection("users").document(user.getDisplayName()).delete();
     }
 }
