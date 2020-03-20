@@ -1,9 +1,9 @@
-package ch.epfl.sdp.userProfileTest;
+package ch.epfl.sdp.dataModelTest;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import ch.epfl.sdp.userProfile.User;
+import ch.epfl.sdp.dataModel.User;
 
 public class UserTest {
 

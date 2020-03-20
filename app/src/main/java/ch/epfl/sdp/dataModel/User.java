@@ -1,4 +1,4 @@
-package ch.epfl.sdp.userProfile;
+package ch.epfl.sdp.dataModel;
 
 import java.util.ArrayList;
 

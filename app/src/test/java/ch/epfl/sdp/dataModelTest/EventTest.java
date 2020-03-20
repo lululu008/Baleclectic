@@ -1,8 +1,8 @@
-package ch.epfl.sdp.userProfileTest;
+package ch.epfl.sdp.dataModelTest;
 
 import org.junit.Test;
 
-import ch.epfl.sdp.userProfile.Event;
+import ch.epfl.sdp.dataModel.Event;
 
 import static org.junit.Assert.assertEquals;
 

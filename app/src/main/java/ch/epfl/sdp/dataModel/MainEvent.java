@@ -1,4 +1,4 @@
-package ch.epfl.sdp.userProfile;
+package ch.epfl.sdp.dataModel;
 
 import android.graphics.Picture;
 
@@ -10,10 +10,10 @@ public class MainEvent {
     private String name;
     private String description;
     private String id;
-//    private Latlng location;
-//    private MeetingPoints meetingPoints;
+//  private Latlng location;
+//  private MeetingPoints meetingPoints;
     private User creator;
-    private Picture profile;
+//  private Picture profile;
     private ArrayList<Event> events = new ArrayList<Event>();
     private boolean is_open;
     private Date date;
@@ -56,14 +56,6 @@ public class MainEvent {
         this.date = date;
     }
 
-    public Picture getProfile() {
-        return profile;
-    }
-
-    public void setProfile(Picture profile) {
-        this.profile = profile;
-    }
-
     public User getCreator() {
         return creator;
     }
@@ -102,5 +94,11 @@ public class MainEvent {
 //
 //    public void setMeetingPoints(MeetingPoints meetingPoints) {
 //        this.meetingPoints = meetingPoints;
+//    }
+//    public Picture getProfile() {
+//        return profile;
+//    }
+//    public void setProfile(Picture profile) {
+//        this.profile = profile;
 //    }
 }
