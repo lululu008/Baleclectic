@@ -75,6 +75,8 @@ dependencies {
 //    testImplementation group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
 //    testImplementation group: 'org.powermock', name: 'powermock-mockito-release-full', version: '1.6.4', ext: 'pom'
 //    implementation 'org.powermock:powermock-mockito-release-full:1.6.4'
+    //CLoudFireSTore
+    implementation 'com.google.firebase:firebase-firestore:21.4.1'
 }
 
 
