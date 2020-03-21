@@ -37,7 +37,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // main page login button
+        loginBtn();
+
+   }
+
+    private void loginBtn() {
         Button mainloginBtn = (Button)findViewById((R.id.mainloginBtn));
         mainloginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(startIntent);
             }
         });
-   }
+    }
 }
 
 
