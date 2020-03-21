@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // main page login button
-        Button mainloginBtn = (Button)findViewById(R.id.mainloginBtn);
+        Button mainloginBtn = (Button)findViewById((R.id.mainloginBtn));
         mainloginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -21,6 +21,12 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
+import static org.junit.Assert.assertNotNull;
+import android.app.Activity;
+import android.app.Instrumentation;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
@@ -43,6 +49,10 @@ public class MainActivityTest {
                 GeneralLocation.CENTER_RIGHT, Press.FINGER);
     }
 
+    Instrumentation.ActivityMonitor monitor_login = getInstrumentation().addMonitor(mainLoginActivity.class.getName(),null,false);
+    Instrumentation.ActivityMonitor monitor_timetable = getInstrumentation().addMonitor(Timetable.class.getName(),null,false);
+    Instrumentation.ActivityMonitor monitor_map = getInstrumentation().addMonitor(MapSelectionActivity.class.getName(),null,false);
+
     @Test
     public void testCanGreetUsers() {
         // onView(withId(R.id.mainName)).perform(typeText("from my unit test")).perform(closeSoftKeyboard());
@@ -51,5 +61,28 @@ public class MainActivityTest {
         Espresso.onView(ViewMatchers.withId(R.id.recyclerView)).perform(swipeFromBottomToTop());
         Espresso.onView(ViewMatchers.withId(R.id.recyclerView)).perform(swipeFromLeftToRight());
         // onView(withId(R.id.greetingMessage)).check(matches(withText("Hello from my unit test!")));
+        Espresso.pressBack();
+
+        //test timetable Button
+        assertNotNull(mActivityRule.getActivity().findViewById(R.id.timetableBtn));
+        onView(withId(R.id.timetableBtn)).perform(click());
+        Activity Timetable = getInstrumentation().waitForMonitorWithTimeout(monitor_timetable, 5000);
+        assertNotNull(Timetable);
+        Espresso.pressBack();
+
+        //test map Button
+        assertNotNull(mActivityRule.getActivity().findViewById(R.id.mapBtn));
+        onView(withId(R.id.mapBtn)).perform(click());
+        Activity MapsSelection = getInstrumentation().waitForMonitorWithTimeout(monitor_map, 5000);
+        assertNotNull(MapsSelection);
+        Espresso.pressBack();
+
+        //test mainlogin Button
+        assertNotNull(mActivityRule.getActivity().findViewById(R.id.mainloginBtn));
+        onView(withId(R.id.mainloginBtn)).perform(click());
+        Activity mainloginActivity = getInstrumentation().waitForMonitorWithTimeout(monitor_login, 5000);
+        assertNotNull(mainloginActivity);
+        Espresso.pressBack();
     }
+
 }
