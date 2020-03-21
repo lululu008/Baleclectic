@@ -1,5 +1,9 @@
 package ch.epfl.sdp;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import org.junit.runner.RunWith;
+
 import android.app.Activity;
 import android.app.Instrumentation;
 
@@ -20,8 +24,6 @@ import org.mockito.MockitoAnnotations;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import ch.epfl.sdp.dataModel.User;
-
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -29,34 +31,25 @@ import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentat
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(AndroidJUnit4.class)
-public class ProfileTest {
-    @Mock
-    private ArrayList mockList;
-    private FirebaseAuth mockedAuth;
-
+public class LoginTest{
     @Before
-    public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
+    public void setup(){
+
     }
 
     @Rule
-    public final ActivityTestRule<ProfileActivity> ProfileActivityRule =
-            new ActivityTestRule<>(ProfileActivity.class);
-
-    Instrumentation.ActivityMonitor monitor_signout = getInstrumentation().addMonitor(MainActivity.class.getName(),null,false);
+    public final ActivityTestRule<LoginActivity> LoginActivityRule =
+            new ActivityTestRule<>(LoginActivity.class);
 
     @Test
-    public void test_profile(){
-        assertNotNull(ProfileActivityRule.getActivity().findViewById(R.id.sign_out_button));
-        onView(withId(R.id.sign_out_button)).perform(click());
-        Activity MainActivity = getInstrumentation().waitForMonitorWithTimeout(monitor_signout, 5000);
-        assertNotNull(MainActivity);
+    public void test_login(){
+            assertEquals(4, 2 + 2);
 
-//        User user = new User("John");
-//        user.setEmail("123@gmail.com");
     }
+
 }
