@@ -60,25 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                 // Successfully signed in
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 Toast.makeText(this, "Signed in", Toast.LENGTH_SHORT).show();
-
-                DocumentReference docIdRef = db.collection("users").document(user.getEmail());
-                docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                Log.d(TAG, "Document exists!");
-                                startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
-                            } else {
-                                Log.d(TAG, "Document does not exist!");
-                                startActivity(new Intent(getApplicationContext(), CreateUserProfile.class));
-                            }
-                        } else {
-                            Log.d(TAG, "Failed with: ", task.getException());
-                        }
-                    }
-                });
+                checkCreateProfile(user);
                 //if (user == null){
                 //    startActivity(new Intent(getApplicationContext(), CreateUserProfile.class));
                 //}else{
@@ -89,6 +71,27 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(this, ""+response.getError().getMessage(),Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void checkCreateProfile(FirebaseUser user){
+        DocumentReference docIdRef = db.collection("users").document(user.getEmail());
+        docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "Document exists!");
+                        startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+                    } else {
+                        Log.d(TAG, "Document does not exist!");
+                        startActivity(new Intent(getApplicationContext(), CreateUserProfile.class));
+                    }
+                } else {
+                    Log.d(TAG, "Failed with: ", task.getException());
+                }
+            }
+        });
     }
     // [END auth_fui_result]
 }
