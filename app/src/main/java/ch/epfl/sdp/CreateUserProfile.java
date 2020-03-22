@@ -146,7 +146,6 @@ public class CreateUserProfile extends AppCompatActivity {
         boolean correct = true;
         if (userName.isEmpty()){
             user_name.setError("User name required");
-            user_name.requestFocus();
             correct = false;
         }
         if (dateDD.length() != 2){
