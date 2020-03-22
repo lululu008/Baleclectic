@@ -119,7 +119,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="256dp"
                     android:buttonTint="#FFFFFF"
-                    android:onClick="onClick"
                     android:text="Female"
                     android:textColor="#ffffff"
                     android:textSize="15dp"

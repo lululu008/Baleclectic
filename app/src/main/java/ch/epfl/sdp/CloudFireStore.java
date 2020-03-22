@@ -1,6 +1,13 @@
 package ch.epfl.sdp;
 
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -16,11 +23,10 @@ public class CloudFireStore {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseUser user = mAuth.getCurrentUser();
 
-    public void addNewUser(String userName, int gender, Date birthday){
+    public void addNewUser(User newUser){
 
-        User newUser = new User(userName, gender, birthday);
         newUser.setEmail(user.getEmail());
-        newUser.setScheduleId("na");
+        newUser.setScheduleId("NA");
 
         DocumentReference newUserRef = db.collection("users").document(user.getEmail());
 

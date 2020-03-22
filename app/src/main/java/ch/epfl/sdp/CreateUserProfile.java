@@ -54,52 +54,34 @@ public class CreateUserProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createprofile);
         mAuth.getInstance(); //initialize
-        try {
-            retrieveInput();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        setUp();
     }
 
-    public void registerUser(){
+    public void registerUser() throws ParseException {
+        retrieveInput();
         if(!checkInput())
             return;
-        mAuth.signInWithCustomToken(mCustomToken)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            updateUI();
-                            //Log.d(TAG, "signInWithCustomToken:success");
-                            //FirebaseUser user = mAuth.getCurrentUser();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            //Log.w(TAG, "signInWithCustomToken:failure", task.getException());
-                            Toast.makeText(CreateUserProfile.this, "Create Profile failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+        updateInfo();
     }
 
-    private void updateUI(){
+    private void updateInfo(){
         User user = new User(userName, gender, birthday);
-        FirebaseDatabase.getInstance().getReference("users").child(
-                FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
-                }else {
-                    Toast.makeText(CreateUserProfile.this, "Create Profile failed.",Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        CloudFireStore cloudFireStore = new CloudFireStore();
+        cloudFireStore.addNewUser(user);
+        startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
     }
 
+    @SuppressLint("SimpleDateFormat")
     private void retrieveInput() throws ParseException {
+        userName = user_name.getText().toString().trim();
+        dateDD = date_day.getText().toString().trim();
+        dateMM = date_month.getText().toString().trim();
+        dateYY = date_year.getText().toString().trim();
+        String date_full = dateDD + "/" +dateMM + "/" + dateYY;
+        birthday =new SimpleDateFormat("dd/MM/yyyy").parse(date_full);
+    }
+
+    private void setUp(){
         add_photo=findViewById(R.id.add);
         user_name=findViewById(R.id.user_name_edit);
         gender_male=findViewById(R.id.male);
@@ -109,24 +91,20 @@ public class CreateUserProfile extends AppCompatActivity {
         date_year=findViewById(R.id.date_yy);
         register=findViewById(R.id.register_button);
 
-        retrieveButton();
-
-        userName = user_name.getText().toString().trim();
-        dateDD = date_day.getText().toString().trim();
-        dateMM = date_month.getText().toString().trim();
-        dateYY = date_year.getText().toString().trim();
-        String date_full = dateDD + "/" +dateMM + "/" + dateYY;
-        birthday =new SimpleDateFormat("dd/MM/yyyy").parse(date_full);
+        setupButton();
     }
 
-    private void retrieveButton(){
+    private void setupButton(){
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registerUser();
+                try {
+                    registerUser();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         });
-
         gender_male.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -141,13 +119,23 @@ public class CreateUserProfile extends AppCompatActivity {
         });
     }
 
-
     private boolean checkInput(){
         boolean correct = true;
         if (userName.isEmpty()){
             user_name.setError("User name required");
+            user_name.requestFocus();
             correct = false;
         }
+        if(!checkBirthday()) correct = false;
+        if (gender == 10){
+            gender_female.requestFocus();
+            correct = false;
+        }
+        return correct;
+    }
+
+    private boolean checkBirthday(){
+        boolean correct = true;
         if (dateDD.length() != 2){
             date_day.setTextColor(Color.RED);
             date_day.requestFocus();
@@ -161,10 +149,6 @@ public class CreateUserProfile extends AppCompatActivity {
         if (dateYY.length() != 4){
             date_year.setTextColor(Color.RED);
             date_year.requestFocus();
-            correct = false;
-        }
-        if (gender == 10){
-            gender_female.requestFocus();
             correct = false;
         }
         return correct;
