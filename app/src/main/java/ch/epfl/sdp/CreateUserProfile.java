@@ -54,54 +54,16 @@ public class CreateUserProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createprofile);
         mAuth.getInstance(); //initialize
-        retrieveInput();
+        try {
+            retrieveInput();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void retrieveInput(){
-        add_photo=findViewById(R.id.add);
-        user_name=findViewById(R.id.user_name_edit);
-        gender_male=findViewById(R.id.male);
-        gender_female=findViewById(R.id.female);
-        date_day=findViewById(R.id.date_dd);
-        date_month=findViewById(R.id.date_mm);
-        date_year=findViewById(R.id.date_yy);
-        register=findViewById(R.id.register_button);
-
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    registerUser();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        gender_male.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                gender = 1;
-            }
-        });
-        gender_female.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                gender = 0;
-            }
-        });
-    }
-
-    public void registerUser() throws ParseException {
-        userName = user_name.getText().toString().trim();
-        dateDD = date_day.getText().toString().trim();
-        dateMM = date_month.getText().toString().trim();
-        dateYY = date_year.getText().toString().trim();
-        String date_full = dateDD + "/" +dateMM + "/" + dateYY;
-        birthday =new SimpleDateFormat("dd/MM/yyyy").parse(date_full);
-
-        checkInput();
-
+    public void registerUser(){
+        if(!checkInput())
+            return;
         mAuth.signInWithCustomToken(mCustomToken)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -121,33 +83,6 @@ public class CreateUserProfile extends AppCompatActivity {
                 });
     }
 
-    private void checkInput(){
-        if (userName.isEmpty()){
-            user_name.setError("User name required");
-            user_name.requestFocus();
-            return;
-        }
-        if (dateDD.length() != 2){
-            date_day.setTextColor(Color.RED);
-            date_day.requestFocus();
-            return;
-        }
-        if (dateMM.length() != 2){
-            date_month.setTextColor(Color.RED);
-            date_month.requestFocus();
-            return;
-        }
-        if (dateYY.length() != 4){
-            date_year.setTextColor(Color.RED);
-            date_year.requestFocus();
-            return;
-        }
-        if (gender == 10){
-            gender_female.requestFocus();
-            return;
-        }
-    }
-
     private void updateUI(){
         User user = new User(userName, gender, birthday);
         FirebaseDatabase.getInstance().getReference("users").child(
@@ -164,5 +99,75 @@ public class CreateUserProfile extends AppCompatActivity {
         });
     }
 
+    private void retrieveInput() throws ParseException {
+        add_photo=findViewById(R.id.add);
+        user_name=findViewById(R.id.user_name_edit);
+        gender_male=findViewById(R.id.male);
+        gender_female=findViewById(R.id.female);
+        date_day=findViewById(R.id.date_dd);
+        date_month=findViewById(R.id.date_mm);
+        date_year=findViewById(R.id.date_yy);
+        register=findViewById(R.id.register_button);
 
+        retrieveButton();
+
+        userName = user_name.getText().toString().trim();
+        dateDD = date_day.getText().toString().trim();
+        dateMM = date_month.getText().toString().trim();
+        dateYY = date_year.getText().toString().trim();
+        String date_full = dateDD + "/" +dateMM + "/" + dateYY;
+        birthday =new SimpleDateFormat("dd/MM/yyyy").parse(date_full);
+    }
+
+    private void retrieveButton(){
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registerUser();
+            }
+        });
+
+        gender_male.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                gender = 1;
+            }
+        });
+        gender_female.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                gender = 0;
+            }
+        });
+    }
+
+
+    private boolean checkInput(){
+        boolean correct = true;
+        if (userName.isEmpty()){
+            user_name.setError("User name required");
+            user_name.requestFocus();
+            correct = false;
+        }
+        if (dateDD.length() != 2){
+            date_day.setTextColor(Color.RED);
+            date_day.requestFocus();
+            correct = false;
+        }
+        if (dateMM.length() != 2){
+            date_month.setTextColor(Color.RED);
+            date_month.requestFocus();
+            correct = false;
+        }
+        if (dateYY.length() != 4){
+            date_year.setTextColor(Color.RED);
+            date_year.requestFocus();
+            correct = false;
+        }
+        if (gender == 10){
+            gender_female.requestFocus();
+            correct = false;
+        }
+        return correct;
+    }
 }
