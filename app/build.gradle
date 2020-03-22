@@ -55,14 +55,6 @@ dependencies {
     //Mockito framework
     androidTestImplementation "org.mockito:mockito-android:2.25.0"
 
-//    testCompile 'org.powermock:powermock:1.6.6'
-//    testCompile 'org.powermock:powermock-module-junit4:2.0.0'
-//    testCompile 'org.powermock:powermock-api-mockito:1.6.6'
-
-    //testImplementation group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
-    //testImplementation group: 'org.powermock', name: 'powermock-mockito-release-full', version: '1.6.4', ext: 'pom'
-    //implementation 'org.powermock:powermock-mockito-release-full:1.6.4'
-
 }
 
 

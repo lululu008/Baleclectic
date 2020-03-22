@@ -37,9 +37,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        loginBtn();
+        NewFunctions();
 
    }
+
+    private void NewFunctions() {
+        loginBtn();
+    }
 
     private void loginBtn() {
         Button mainloginBtn = (Button)findViewById((R.id.mainloginBtn));

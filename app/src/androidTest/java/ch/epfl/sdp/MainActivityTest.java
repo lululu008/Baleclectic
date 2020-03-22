@@ -62,7 +62,10 @@ public class MainActivityTest {
         Espresso.onView(ViewMatchers.withId(R.id.recyclerView)).perform(swipeFromLeftToRight());
         // onView(withId(R.id.greetingMessage)).check(matches(withText("Hello from my unit test!")));
         Espresso.pressBack();
+    }
 
+    @Test
+    public void testButtons(){
         //test timetable Button
         assertNotNull(mActivityRule.getActivity().findViewById(R.id.timetableBtn));
         onView(withId(R.id.timetableBtn)).perform(click());
