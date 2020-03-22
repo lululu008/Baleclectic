@@ -15,10 +15,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.nio.LongBuffer;
 import java.util.Arrays;
 import java.util.List;
 
@@ -56,23 +59,26 @@ public class LoginActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                db.collection("users").whereEqualTo("email", user.getEmail()).get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        Log.d(TAG, document.getId() + " => " + document.getData());
-                                        startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
-                                    }
-                                } else {
-                                    //Log.d(TAG, "Error getting documents: ", task.getException());
-                                    //Toast.makeText(this, "Signed in", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(getApplicationContext(), CreateUserProfile.class));
+                Toast.makeText(this, "Signed in", Toast.LENGTH_SHORT).show();
 
-                                }
+                DocumentReference docIdRef = db.collection("users").document(user.getEmail());
+                docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                Log.d(TAG, "Document exists!");
+                                startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+                            } else {
+                                Log.d(TAG, "Document does not exist!");
+                                startActivity(new Intent(getApplicationContext(), CreateUserProfile.class));
                             }
-                        });
+                        } else {
+                            Log.d(TAG, "Failed with: ", task.getException());
+                        }
+                    }
+                });
                 //if (user == null){
                 //    startActivity(new Intent(getApplicationContext(), CreateUserProfile.class));
                 //}else{

@@ -22,19 +22,19 @@ public class CloudFireStore {
         newUser.setEmail(user.getEmail());
         newUser.setScheduleId("na");
 
-        DocumentReference newUserRef = db.collection("users").document(user.getDisplayName());
+        DocumentReference newUserRef = db.collection("users").document(user.getEmail());
 
         newUserRef.set(newUser);
     }
 
     public void updateUser(){
-        DocumentReference newUserRef = db.collection("users").document(user.getDisplayName());
+        DocumentReference newUserRef = db.collection("users").document(user.getEmail());
 
         newUserRef.update("email", "123456@gamil.com");
     }
 
     public void getUser(){
-        DocumentReference newUserRef = db.collection("users").document(user.getDisplayName());
+        DocumentReference newUserRef = db.collection("users").document(user.getEmail());
 
         newUserRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -45,6 +45,6 @@ public class CloudFireStore {
     }
 
     public void deleteUser(){
-        db.collection("users").document(user.getDisplayName()).delete();
+        db.collection("users").document(user.getEmail()).delete();
     }
 }
