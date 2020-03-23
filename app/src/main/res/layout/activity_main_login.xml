@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_background"
-    tools:context=".mainLoginActivity">
+    tools:context=".MainLoginActivity">
 
     <Button
         android:id="@+id/signin_main"
         android:layout_width="140dp"
         android:layout_height="45dp"
         android:background="#8A7360"
-        android:text="Sign In"
+        android:text="@string/sign_in"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"

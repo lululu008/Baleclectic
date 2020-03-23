@@ -1,8 +1,6 @@
 package ch.epfl.sdp;
 
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.test.espresso.Espresso;
-import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.action.GeneralLocation;
 import androidx.test.espresso.action.GeneralSwipeAction;
@@ -18,15 +16,11 @@ import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static org.junit.Assert.assertNotNull;
 import android.app.Activity;
 import android.app.Instrumentation;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
@@ -49,7 +43,7 @@ public class MainActivityTest {
                 GeneralLocation.CENTER_RIGHT, Press.FINGER);
     }
 
-    Instrumentation.ActivityMonitor monitor_login = getInstrumentation().addMonitor(mainLoginActivity.class.getName(),null,false);
+    Instrumentation.ActivityMonitor monitor_login = getInstrumentation().addMonitor(MainLoginActivity.class.getName(),null,false);
     Instrumentation.ActivityMonitor monitor_timetable = getInstrumentation().addMonitor(Timetable.class.getName(),null,false);
     Instrumentation.ActivityMonitor monitor_map = getInstrumentation().addMonitor(MapSelectionActivity.class.getName(),null,false);
 

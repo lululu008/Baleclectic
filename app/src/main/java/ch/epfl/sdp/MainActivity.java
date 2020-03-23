@@ -6,9 +6,6 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         mainloginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(), mainLoginActivity.class);
+                Intent startIntent = new Intent(getApplicationContext(), MainLoginActivity.class);
                 startActivity(startIntent);
             }
         });
