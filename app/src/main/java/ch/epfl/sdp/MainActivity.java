@@ -6,11 +6,9 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +33,25 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(startIntent);
             }
         });
+
+        NewFunctions();
+
    }
+
+    private void NewFunctions() {
+        loginBtn();
+    }
+
+    private void loginBtn() {
+        Button mainloginBtn = (Button)findViewById((R.id.mainloginBtn));
+        mainloginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startIntent = new Intent(getApplicationContext(), MainLoginActivity.class);
+                startActivity(startIntent);
+            }
+        });
+    }
 }
 
 

@@ -29,13 +29,29 @@
         app:layout_constraintTop_toBottomOf="@+id/timetableBtn"
         app:layout_constraintVertical_bias="0.054" />
 
+    <Button
+        android:id="@+id/mainloginBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="208dp"
+        android:text="@string/log_in"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.029"
+        app:layout_constraintStart_toStartOf="@+id/mapBtn"
+        app:layout_constraintTop_toBottomOf="@+id/mapBtn"
+        app:layout_constraintVertical_bias="0.054" />
+
     <TextView
         android:id="@+id/mainName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="19dp"
         android:layout_marginBottom="61dp"
-        android:text="TextView"
+        android:text="@string/textview"
         app:layout_constraintBottom_toTopOf="@+id/timetableBtn"
         app:layout_constraintEnd_toEndOf="@+id/timetableBtn" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
