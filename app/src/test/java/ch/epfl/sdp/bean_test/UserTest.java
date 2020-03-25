@@ -3,7 +3,7 @@ package ch.epfl.sdp.bean_test;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import ch.epfl.sdp.bean.User;
+import ch.epfl.sdp.dataModel.User;
 
 public class UserTest {
 

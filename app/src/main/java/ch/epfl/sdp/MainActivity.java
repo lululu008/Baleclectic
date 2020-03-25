@@ -7,8 +7,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,16 +25,32 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button signin_main = (Button)findViewById(R.id.signin_main);
-        signin_main.setOnClickListener(new View.OnClickListener() {
+        Button mapBtn = (Button)findViewById(R.id.mapBtn);
+        mapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(),LoginActivity.class);
+                Intent startIntent = new Intent(getApplicationContext(),MapSelectionActivity.class);
                 startActivity(startIntent);
             }
         });
 
-   }
-}
+        NewFunctions();
 
+    }
+
+    private void NewFunctions() {
+        loginBtn();
+    }
+
+    private void loginBtn() {
+        Button mainloginBtn = (Button)findViewById((R.id.mainloginBtn));
+        mainloginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startIntent = new Intent(getApplicationContext(), MainLoginActivity.class);
+                startActivity(startIntent);
+            }
+        });
+    }
+}
 

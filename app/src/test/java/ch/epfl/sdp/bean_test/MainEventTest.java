@@ -6,9 +6,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import ch.epfl.sdp.bean.Event;
-import ch.epfl.sdp.bean.MainEvent;
-import ch.epfl.sdp.bean.User;
+import ch.epfl.sdp.dataModel.Event;
+import ch.epfl.sdp.dataModel.MainEvent;
+import ch.epfl.sdp.dataModel.User;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

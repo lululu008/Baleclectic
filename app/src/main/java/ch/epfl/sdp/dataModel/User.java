@@ -1,4 +1,4 @@
-package ch.epfl.sdp.bean;
+package ch.epfl.sdp.dataModel;
 
 import java.util.ArrayList;
 import java.util.Date;

@@ -2,7 +2,7 @@ package ch.epfl.sdp.bean_test;
 
 import org.junit.Test;
 
-import ch.epfl.sdp.bean.Event;
+import ch.epfl.sdp.dataModel.Event;
 
 import static org.junit.Assert.assertEquals;
 

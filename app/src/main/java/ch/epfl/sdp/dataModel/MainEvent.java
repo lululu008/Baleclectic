@@ -1,4 +1,4 @@
-package ch.epfl.sdp.bean;
+package ch.epfl.sdp.dataModel;
 
 import android.graphics.Picture;
 

@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="timetable">Timetable</string>
-
+    <string name="map">Map</string>
+    <string name="map_title">Demo Map</string>
 
     <string-array name="activities_list">
         <item>Artist1</item>
@@ -24,6 +25,13 @@
         <item>performance description</item>
         <item>performance description</item>
     </string-array>
-
+    <string name="title_activity_maps">Map</string>
+    <string name="button_map_1">Map 1</string>
+    <string name="button_map_2">Map 2</string>
+    <string name="sign_in">Sign In</string>
+    <string name="log_in">Log In</string>
+    <string name="textview">TextView</string>
+    <string name="successfully_sign_in">Successfully Sign In!</string>
+    <string name="sign_out">Sign Out</string>
 
 </resources>
