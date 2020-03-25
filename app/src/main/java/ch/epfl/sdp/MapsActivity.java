@@ -15,8 +15,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
-//import androidx.fragment.app.FragmentActivity;
-
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;

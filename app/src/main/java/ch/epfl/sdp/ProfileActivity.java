@@ -22,15 +22,16 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
         TextView textName, textEmail;
         textName = findViewById(R.id.textViewName);
         textEmail = findViewById(R.id.textViewEmail);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
-        textName.setText(user.getDisplayName());
-        textEmail.setText(user.getEmail());
+        if (user != null) {
+            textEmail.setText(user.getEmail());
+            textName.setText(user.getDisplayName() );
+        }
 
         Button sign_out = (Button)findViewById(R.id.sign_out_button);
         sign_out.setOnClickListener(new View.OnClickListener() {

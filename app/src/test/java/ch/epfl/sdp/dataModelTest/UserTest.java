@@ -1,4 +1,4 @@
-package ch.epfl.sdp.bean_test;
+package ch.epfl.sdp.dataModelTest;
 
 import org.junit.Test;
 import static org.junit.Assert.*;

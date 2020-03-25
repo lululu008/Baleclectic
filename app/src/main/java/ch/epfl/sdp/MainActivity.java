@@ -35,8 +35,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         NewFunctions();
-
-    }
+   }
 
     private void NewFunctions() {
         loginBtn();
@@ -53,4 +52,5 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
+
 
