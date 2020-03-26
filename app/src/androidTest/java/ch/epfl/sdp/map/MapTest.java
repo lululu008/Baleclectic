@@ -96,32 +96,24 @@ public class MapTest {
     }
 
     private void clickOkIfNeeded()  {
-        UiObject clickOk = mDevice.findObject(new UiSelector().textMatches(".*(?i:ok).*"));
-        if (clickOk.exists()) {
-            try {
-                clickOk.click();
-            } catch (UiObjectNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
+        UiObject uio = mDevice.findObject(new UiSelector().textMatches(".*(?i:ok).*"));
+        clickIfExists(uio);
     }
 
     private void allowLocationPermissionsIfNeeded()  {
-        UiObject allowPermissions = mDevice.findObject(new UiSelector().text("ALLOW"));
-        if (allowPermissions.exists()) {
-            try {
-                allowPermissions.click();
-            } catch (UiObjectNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
+        UiObject uio = mDevice.findObject(new UiSelector().text("ALLOW"));
+        clickIfExists(uio);
     }
 
     private void allowLocationOnlyPermissionsIfNeeded()  {
-        UiObject allowPermissions = mDevice.findObject(new UiSelector().textContains("Allow only while using the app"));
-        if (allowPermissions.exists()) {
+        UiObject uio = mDevice.findObject(new UiSelector().textContains("Allow only while using the app"));
+        clickIfExists(uio);
+    }
+
+    private void clickIfExists(UiObject uio) {
+        if (uio.exists()) {
             try {
-                allowPermissions.click();
+                uio.click();
             } catch (UiObjectNotFoundException e) {
                 e.printStackTrace();
             }
