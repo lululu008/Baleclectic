@@ -1,8 +1,5 @@
 package ch.epfl.sdp.map;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +8,8 @@ import android.widget.Button;
 
 import java.util.Objects;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import ch.epfl.sdp.R;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
@@ -77,13 +76,14 @@ public class MapSelectionActivity extends AppCompatActivity {
             }
         });
 
-        Button mockMapBtn = findViewById(R.id.mockMapSelectBtn);
+        Button mockMapBtn = findViewById(R.id.chooseMeetingPointBtn);
         mockMapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mapIntent(map1MeetingPoints(), "Mock Map", true);
             }
         });
+
     }
 
     private void mapIntent(MeetingPoints points, String title, boolean mock) {

@@ -48,6 +48,14 @@ public class MapHomeActivity extends AppCompatActivity {
                 transferIntent(DistanceActivity.class);
             }
         });
+
+        Button showList = findViewById(R.id.findMyFriends);
+        showList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                transferIntent(MapMeetingPointsListActivity.class);
+            }
+        });
     }
 
     private void transferIntent(Class cls) {
