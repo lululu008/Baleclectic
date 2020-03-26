@@ -5,16 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MapSelectionActivity" >
+    tools:context=".map.MapSelectionActivity" >
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimaryDark"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:titleTextColor="#FFFFFF" />
+        android:layout_height="wrap_content"
+        android:theme="@style/AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimaryDark"
+            app:popupTheme="@style/PopupOverlay"
+            app:titleTextColor="@color/defaultWhite" />
+    </com.google.android.material.appbar.AppBarLayout>
 
     <Button
         android:id="@+id/mapSelect1Btn"
@@ -35,11 +40,28 @@
         android:textSize="24sp" />
 
     <Button
+<<<<<<< HEAD
         android:id="@+id/chooseMeetingPointBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/holo_blue_dark"
         android:text="@string/button_map_choose"
+=======
+        android:id="@+id/mockMapSelectBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:text="@string/button_mock_map"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/locPermissionBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:text="@string/loc_permission_request"
+>>>>>>> master
         android:textColor="#FFFFFF"
         android:textSize="24sp" />
 

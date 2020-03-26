@@ -22,6 +22,8 @@ import static org.junit.Assert.assertNotNull;
 import android.app.Activity;
 import android.app.Instrumentation;
 
+import ch.epfl.sdp.timetable.Timetable;
+
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
     @Rule
@@ -45,7 +47,6 @@ public class MainActivityTest {
 
     Instrumentation.ActivityMonitor monitor_login = getInstrumentation().addMonitor(MainLoginActivity.class.getName(),null,false);
     Instrumentation.ActivityMonitor monitor_timetable = getInstrumentation().addMonitor(Timetable.class.getName(),null,false);
-    Instrumentation.ActivityMonitor monitor_map = getInstrumentation().addMonitor(MapSelectionActivity.class.getName(),null,false);
 
     @Test
     public void testCanGreetUsers() {
@@ -65,13 +66,6 @@ public class MainActivityTest {
         onView(withId(R.id.timetableBtn)).perform(click());
         Activity Timetable = getInstrumentation().waitForMonitorWithTimeout(monitor_timetable, 5000);
         assertNotNull(Timetable);
-        Espresso.pressBack();
-
-        //test map Button
-        assertNotNull(mActivityRule.getActivity().findViewById(R.id.mapBtn));
-        onView(withId(R.id.mapBtn)).perform(click());
-        Activity MapsSelection = getInstrumentation().waitForMonitorWithTimeout(monitor_map, 5000);
-        assertNotNull(MapsSelection);
         Espresso.pressBack();
 
         //test mainlogin Button

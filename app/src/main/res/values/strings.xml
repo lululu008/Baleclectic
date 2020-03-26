@@ -28,7 +28,18 @@
     <string name="title_activity_maps">Map</string>
     <string name="button_map_1">Map 1</string>
     <string name="button_map_2">Map 2</string>
+<<<<<<< HEAD
     <string name="button_map_choose">Choose your meeting point</string>
+=======
+    <string name="location_rationale">Location is needed to find proximity to meeting points</string>
+    <string name="loc_permission_request">Allow location access</string>
+    <string name="loc_access_granted">Location access granted</string>
+    <string name="show_map">Show Map</string>
+    <string name="show_distance">Show Distance</string>
+    <string name="update_location">Update Location</string>
+    <string name="no_loc_access">Cannot access location!</string>
+    <string name="button_mock_map">Mock Map</string>
+>>>>>>> master
     <string name="sign_in">Sign In</string>
     <string name="log_in">Log In</string>
     <string name="textview">TextView</string>
