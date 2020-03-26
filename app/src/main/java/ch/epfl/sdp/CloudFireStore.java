@@ -12,25 +12,24 @@ import ch.epfl.sdp.dataModel.User;
 public class CloudFireStore {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private FirebaseUser user = mAuth.getCurrentUser();
 
-    public void addNewUser(User newUser){
+    public void addNewUser(User newUser, String address){
 
-        newUser.setEmail(user.getEmail());
+        newUser.setEmail(address);
         newUser.setScheduleId("NA");
 
-        DocumentReference newUserRef = db.collection("users").document(user.getEmail());
+        DocumentReference newUserRef = db.collection("users").document(address);
 
         newUserRef.set(newUser);
     }
 
-    public void updateUser(){
+    public void updateUser(FirebaseUser user){
         DocumentReference newUserRef = db.collection("users").document(user.getEmail());
 
         newUserRef.update("email", "123456@gamil.com");
     }
 
-    public void getUser(){
+    public void getUser(FirebaseUser user){
         DocumentReference newUserRef = db.collection("users").document(user.getEmail());
 
         newUserRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -41,7 +40,7 @@ public class CloudFireStore {
         });
     }
 
-    public void deleteUser(){
-        db.collection("users").document(user.getEmail()).delete();
+    public void deleteUser(String address){
+        db.collection("users").document(address).delete();
     }
 }

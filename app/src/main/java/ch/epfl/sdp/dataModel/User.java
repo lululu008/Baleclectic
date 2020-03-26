@@ -18,6 +18,10 @@ public class User {
         this.birthday = birthday;
     }
 
+    public User(String userName) {
+        this.name = userName;
+    }
+
     public boolean isMale() {
         if(gender == 1)
             return true;

@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -39,6 +40,7 @@ public class CreateUserProfile extends AppCompatActivity {
     Button register;
 
     private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
     //private static final String TAG = "CustomAuthActivity";
     private String mCustomToken;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -48,6 +50,7 @@ public class CreateUserProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createprofile);
         mAuth.getInstance(); //initialize
+        currentUser = mAuth.getCurrentUser();
         setUp();
     }
 
@@ -59,9 +62,10 @@ public class CreateUserProfile extends AppCompatActivity {
     }
 
     private void updateInfo(){
-        User user = new User(userName, gender, birthday);
+        User newUser = new User(userName, gender, birthday);
         CloudFireStore cloudFireStore = new CloudFireStore();
-        cloudFireStore.addNewUser(user);
+        String address = currentUser.getEmail();
+        cloudFireStore.addNewUser(newUser, address);
         startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
     }
 

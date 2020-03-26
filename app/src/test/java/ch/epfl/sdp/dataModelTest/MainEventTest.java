@@ -18,12 +18,8 @@ public class MainEventTest {
     @Test
     public void testGetterAndSetter() throws ParseException {
 
-<<<<<<< HEAD:app/src/test/java/ch/epfl/sdp/bean_test/MainEventTest.java
-        User creator = new User(userName, gender, dateDD, dateMM, "John");
-=======
         User creator = new User("John");
         User newCreator = new User("not John");
->>>>>>> master:app/src/test/java/ch/epfl/sdp/dataModelTest/MainEventTest.java
         Event event = new Event("sing");
         String sDate="10/03/2020";
         Date date =new SimpleDateFormat("dd/MM/yyyy").parse(sDate);
