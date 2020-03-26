@@ -104,7 +104,7 @@ public class MapTest {
     }
 
     private void allowLocationOnlyPermissionsIfNeeded()  {
-        UiObject uio = mDevice.findObject(new UiSelector().textContains("Allow only while using the app"));
+        UiObject uio = mDevice.findObject(new UiSelector().textMatches("Allow only while using the app"));
         clickIfExists(uio);
     }
 
