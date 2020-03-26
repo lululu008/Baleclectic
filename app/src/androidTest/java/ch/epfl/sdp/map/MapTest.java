@@ -1,7 +1,5 @@
 package ch.epfl.sdp.map;
 
-import android.os.Build;
-
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.action.GeneralLocation;
@@ -119,16 +117,4 @@ public class MapTest {
             }
         }
     }
-
-//    private void allowOnlyPermissionsIfNeeded() {
-//        UiObject allowPermissions = mDevice.findObject(new UiSelector().text("Allow only while using the app"));
-//        if (allowPermissions.exists()) {
-//            try {
-//                allowPermissions.click();
-//            } catch (UiObjectNotFoundException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//
-//    }
 }
