@@ -1,4 +1,4 @@
-package ch.epfl.sdp;
+package ch.epfl.sdp.timetable;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+
+import ch.epfl.sdp.R;
 
 public class Timetable extends AppCompatActivity {
 
@@ -27,7 +29,7 @@ public class Timetable extends AppCompatActivity {
 
 
         // initialize the class inside the activity
-        MyAdapter myAdapter = new MyAdapter(this, activities_name, description, images);
+        TimetableAdapter myAdapter = new TimetableAdapter(this, activities_name, description, images);
         //set adapter in ownCreate method
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
