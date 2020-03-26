@@ -10,7 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import ch.epfl.sdp.dataModel.User;
 
 public class CloudFireStore {
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    protected FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     public void addNewUser(User newUser, String address){
@@ -23,14 +23,14 @@ public class CloudFireStore {
         newUserRef.set(newUser);
     }
 
-    public void updateUser(FirebaseUser user){
-        DocumentReference newUserRef = db.collection("users").document(user.getEmail());
+    public void updateUser(String address){
+        DocumentReference newUserRef = db.collection("users").document(address);
 
         newUserRef.update("email", "123456@gamil.com");
     }
 
-    public void getUser(FirebaseUser user){
-        DocumentReference newUserRef = db.collection("users").document(user.getEmail());
+    public void getUser(String address){
+        DocumentReference newUserRef = db.collection("users").document(address);
 
         newUserRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
