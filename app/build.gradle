@@ -19,6 +19,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -28,7 +32,6 @@ android {
             testCoverageEnabled true
         }
     }
-
 }
 
 dependencies {
@@ -37,6 +40,9 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.navigation:navigation-fragment:2.0.0'
+    implementation 'androidx.navigation:navigation-ui:2.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test:rules:1.2.0'
@@ -54,6 +60,12 @@ dependencies {
     testImplementation 'androidx.test:core:1.2.0'
     //Mockito framework
     androidTestImplementation "org.mockito:mockito-android:2.25.0"
+
+    // For developers using AndroidX in their applications
+    implementation 'pub.devrel:easypermissions:3.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+
+    androidTestImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.3'
 
 }
 

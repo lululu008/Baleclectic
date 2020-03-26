@@ -7,6 +7,9 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import ch.epfl.sdp.map.MapSelectionActivity;
+import ch.epfl.sdp.timetable.Timetable;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -29,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         mapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(),MapSelectionActivity.class);
+                Intent startIntent = new Intent(getApplicationContext(), MapSelectionActivity.class);
                 startActivity(startIntent);
             }
         });
@@ -53,5 +56,3 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
-
-

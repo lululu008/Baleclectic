@@ -1,4 +1,6 @@
-package ch.epfl.sdp;
+package ch.epfl.sdp.map;
+
+import android.location.Location;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -19,6 +21,16 @@ public class MeetingPoint implements Serializable {
 
     public LatLng getPos() {
         return new LatLng(lat, lng);
+    }
+
+    public float getDistance(Location loc) {
+
+        Location pointLocation = new Location("");
+        pointLocation.setLatitude(lat);
+        pointLocation.setLongitude(lng);
+
+        return loc.distanceTo(pointLocation);
+
     }
 
     public String getName() {
