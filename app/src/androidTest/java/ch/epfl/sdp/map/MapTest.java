@@ -53,7 +53,8 @@ public class MapTest {
         onView(ViewMatchers.withId(R.id.mapBtn)).perform(click());
 
         clickOkIfNeeded();
-        allowPermissionsIfNeeded();
+        allowLocationPermissionsIfNeeded();
+        allowOnlyPermissionsIfNeeded();
 
         onView(withId(R.id.mapSelect1Btn)).perform(click());
         onView(withId(R.id.showMapBtn)).perform(click());
@@ -75,7 +76,8 @@ public class MapTest {
         onView(ViewMatchers.withId(R.id.mapBtn)).perform(click());
 
         clickOkIfNeeded();
-        allowPermissionsIfNeeded();
+        allowLocationPermissionsIfNeeded();
+        allowOnlyPermissionsIfNeeded();
 
         onView(withId(R.id.mockMapSelectBtn)).perform(click());
         onView(withId(R.id.showDistanceBtn)).perform(click());
@@ -94,38 +96,36 @@ public class MapTest {
     }
 
     private void clickOkIfNeeded()  {
-        if (Build.VERSION.SDK_INT >= 23) {
-            UiObject clickOk = mDevice.findObject(new UiSelector().text("OK"));
-            if (clickOk.exists()) {
-                try {
-                    clickOk.click();
-                } catch (UiObjectNotFoundException e) {
-                    e.printStackTrace();
-                }
+        UiObject clickOk = mDevice.findObject(new UiSelector().text("OK"));
+        if (clickOk.exists()) {
+            try {
+                clickOk.click();
+            } catch (UiObjectNotFoundException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    private void allowPermissionsIfNeeded()  {
-        if (Build.VERSION.SDK_INT >= 23) {
-            UiObject allowPermissions = mDevice.findObject(new UiSelector().text("Allow"));
-            if (allowPermissions.exists()) {
-                try {
-                    allowPermissions.click();
-                } catch (UiObjectNotFoundException e) {
-                    e.printStackTrace();
-                }
-            }
-            else {
-                allowPermissions = mDevice.findObject(new UiSelector().text("Allow only while using the app"));
-                if (allowPermissions.exists()) {
-                    try {
-                        allowPermissions.click();
-                    } catch (UiObjectNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                }
+    private void allowLocationPermissionsIfNeeded()  {
+        UiObject allowPermissions = mDevice.findObject(new UiSelector().text("Allow"));
+        if (allowPermissions.exists()) {
+            try {
+                allowPermissions.click();
+            } catch (UiObjectNotFoundException e) {
+                e.printStackTrace();
             }
         }
+    }
+
+    private void allowOnlyPermissionsIfNeeded() {
+        UiObject allowPermissions = mDevice.findObject(new UiSelector().text("Allow only while using the app"));
+        if (allowPermissions.exists()) {
+            try {
+                allowPermissions.click();
+            } catch (UiObjectNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }

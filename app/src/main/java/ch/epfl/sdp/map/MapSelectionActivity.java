@@ -45,6 +45,22 @@ public class MapSelectionActivity extends AppCompatActivity {
     }
 
     private void initButtons() {
+        initMapButtons();
+
+        locPermissionBtn = findViewById(R.id.locPermissionBtn);
+        updateLocationButton(locPermissionBtn);
+
+        locPermissionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!hasLocation()) {
+                    requireLocation();
+                };
+            }
+        });
+    }
+
+    private void initMapButtons() {
         Button map1Btn = findViewById(R.id.mapSelect1Btn);
         map1Btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,18 +82,6 @@ public class MapSelectionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mapIntent(map1MeetingPoints(), "Mock Map", true);
-            }
-        });
-
-        locPermissionBtn = findViewById(R.id.locPermissionBtn);
-        updateLocationButton(locPermissionBtn);
-
-        locPermissionBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!hasLocation()) {
-                    requireLocation();
-                };
             }
         });
     }
