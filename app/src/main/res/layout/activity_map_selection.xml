@@ -40,7 +40,8 @@
         android:textSize="24sp" />
 
     <Button
-        android:id="@+id/chooseMeetingPointBtn"
+
+        android:id="@+id/mockMapSelectBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/holo_blue_dark"
