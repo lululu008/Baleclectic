@@ -54,7 +54,7 @@ public class MapTest {
 
         clickOkIfNeeded();
         allowLocationPermissionsIfNeeded();
-        allowOnlyPermissionsIfNeeded();
+        allowLocationOnlyPermissionsIfNeeded();
 
         onView(withId(R.id.mapSelect1Btn)).perform(click());
         onView(withId(R.id.showMapBtn)).perform(click());
@@ -77,7 +77,7 @@ public class MapTest {
 
         clickOkIfNeeded();
         allowLocationPermissionsIfNeeded();
-        allowOnlyPermissionsIfNeeded();
+        allowLocationOnlyPermissionsIfNeeded();
 
         onView(withId(R.id.mockMapSelectBtn)).perform(click());
         onView(withId(R.id.showDistanceBtn)).perform(click());
@@ -96,7 +96,7 @@ public class MapTest {
     }
 
     private void clickOkIfNeeded()  {
-        UiObject clickOk = mDevice.findObject(new UiSelector().text("OK"));
+        UiObject clickOk = mDevice.findObject(new UiSelector().textMatches(".*(?i:ok).*"));
         if (clickOk.exists()) {
             try {
                 clickOk.click();
@@ -107,7 +107,7 @@ public class MapTest {
     }
 
     private void allowLocationPermissionsIfNeeded()  {
-        UiObject allowPermissions = mDevice.findObject(new UiSelector().text("Allow"));
+        UiObject allowPermissions = mDevice.findObject(new UiSelector().text("ALLOW"));
         if (allowPermissions.exists()) {
             try {
                 allowPermissions.click();
@@ -117,8 +117,8 @@ public class MapTest {
         }
     }
 
-    private void allowOnlyPermissionsIfNeeded() {
-        UiObject allowPermissions = mDevice.findObject(new UiSelector().text("Allow only while using the app"));
+    private void allowLocationOnlyPermissionsIfNeeded()  {
+        UiObject allowPermissions = mDevice.findObject(new UiSelector().textContains("Allow only while using the app"));
         if (allowPermissions.exists()) {
             try {
                 allowPermissions.click();
@@ -126,6 +126,17 @@ public class MapTest {
                 e.printStackTrace();
             }
         }
-
     }
+
+//    private void allowOnlyPermissionsIfNeeded() {
+//        UiObject allowPermissions = mDevice.findObject(new UiSelector().text("Allow only while using the app"));
+//        if (allowPermissions.exists()) {
+//            try {
+//                allowPermissions.click();
+//            } catch (UiObjectNotFoundException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//    }
 }
