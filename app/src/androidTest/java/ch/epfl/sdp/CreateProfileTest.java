@@ -1,5 +1,7 @@
 package ch.epfl.sdp;
 
+import android.content.Intent;
+
 import androidx.test.rule.ActivityTestRule;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -14,6 +16,8 @@ import org.mockito.Mock;
 import org.mockito.android.internal.creation.AndroidByteBuddyMockMaker;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import ch.epfl.sdp.dataModel.User;
+
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
@@ -24,6 +28,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(MockitoJUnitRunner.class)
 public class CreateProfileTest {
     private static final int RC_SIGN_IN = 123;
+    private CloudFireStore cloudFireStore = new CloudFireStore();
 
     @Mock
     FirebaseFirestore db = org.mockito.Mockito.mock(com.google.firebase.firestore.FirebaseFirestore.class);
@@ -49,4 +54,5 @@ public class CreateProfileTest {
         onView(withId(R.id.register_button)).perform(click());
 
     }
+
 }

@@ -50,7 +50,6 @@ public class CreateUserProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createprofile);
         mAuth.getInstance(); //initialize
-        currentUser = mAuth.getCurrentUser();
         setUp();
     }
 
@@ -64,13 +63,14 @@ public class CreateUserProfile extends AppCompatActivity {
     private void updateInfo(){
         User newUser = new User(userName, gender, birthday);
         CloudFireStore cloudFireStore = new CloudFireStore();
+        currentUser = mAuth.getCurrentUser();
         String address = currentUser.getEmail();
         cloudFireStore.addNewUser(newUser, address);
         startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
     }
 
     @SuppressLint("SimpleDateFormat")
-    private void retrieveInput() throws ParseException {
+    protected void retrieveInput() throws ParseException {
         userName = user_name.getText().toString().trim();
         dateDD = date_day.getText().toString().trim();
         dateMM = date_month.getText().toString().trim();
@@ -117,7 +117,7 @@ public class CreateUserProfile extends AppCompatActivity {
         });
     }
 
-    private boolean checkInput(){
+    protected boolean checkInput(){
         boolean correct = true;
         if (userName.isEmpty()){
             user_name.setError("User name required");
