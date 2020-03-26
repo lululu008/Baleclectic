@@ -1,17 +1,63 @@
 package ch.epfl.sdp;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+import java.util.List;
 
+// adapter provides a binding from an app-specific data set to views
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.PerformanceViewHolder> {
+    public List<Performance> performances;
+
+    // take a view/row as a parameter
+    // find all the child views by Id
+    // attach child views to each row
+    public class PerformanceViewHolder extends RecyclerView.ViewHolder {
+        private TextView artist, date, stage;
+
+        public PerformanceViewHolder (View itemView) {
+            super(itemView);
+            artist = (TextView) itemView.findViewById(R.id.artist);
+            date = (TextView) itemView.findViewById(R.id.date);
+            stage = (TextView) itemView.findViewById(R.id.stage);
+        }
+    }
+
+    public MyAdapter(List<Performance> performances) {
+        this.performances = performances;
+    }
+
+    // create the total numbers of visible ViewHolders
+    // attach ViewHolders to each row
+    @NonNull
+    @Override
+    public PerformanceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item, parent, false);
+
+        return new PerformanceViewHolder(itemView);
+    }
+
+    // bind data from the ArrayList to all the child views
+    @Override
+    public void onBindViewHolder(PerformanceViewHolder holder, int position) {
+        Performance performance = performances.get(position);
+        holder.artist.setText(performance.getArtist());
+        holder.date.setText(performance.getDate());
+        holder.stage.setText(performance.getStage());
+    }
+
+    @Override
+    public int getItemCount() {
+        return performances.size();
+    }
+
+
+    /*
     String activitiesName[], activitiesDescription[];
     int imageSet[];
     Context context;
@@ -29,8 +75,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //Inflate a new view
-        View view =  LayoutInflater.from(context).inflate(R.layout.card_item, parent, false);
-        return new MyViewHolder(view);
+        View itemView =  LayoutInflater.from(context).inflate(R.layout.card_item, parent, false);
+        return new MyViewHolder(itemView);
     }
 
     // Replace the contents of a view
@@ -42,7 +88,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.artist_image.setImageResource(imageSet[position]);
     }
 
-    // pass number of items in the array
+    // return number of items in the data set held by the adapter
     @Override
     public int getItemCount() {
         return imageSet.length;
@@ -64,5 +110,5 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         }
     }
 
-
+*/
 }

@@ -26,15 +26,12 @@ class SwipeController extends Callback {
     private boolean swipeBack = false;
     private ButtonsState buttonShowedState = ButtonsState.GONE;
     private static final float buttonWidth = 300;
+    private RecyclerView.ViewHolder currentItemViewHolder = null;
+    private RectF buttonInstance = null;
+    private SwipeControllerActions buttonsActions = null;
 
-    @Override
-    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-    }
-
-
-    @Override
-    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-        return false;
+    public SwipeController (SwipeControllerActions buttonsActions) {
+        this.buttonsActions = buttonsActions;
     }
 
     //enable swipe
@@ -43,28 +40,50 @@ class SwipeController extends Callback {
         return makeMovementFlags(0,ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT);
     }
 
-    //swipe back
+    @Override
+    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+        return false;
+    }
+
+    @Override
+    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+    }
+
+    // convert a set of flags to absolute directions
     public int convertToAbsoluteDirection(int flags, int layoutDirection) {
         if (swipeBack) {
-            swipeBack = false;
+            swipeBack = buttonShowedState != ButtonsState.GONE;
             return 0;
         }
         return super.convertToAbsoluteDirection(flags, layoutDirection);
     }
 
     @Override
+    // dX: horizontal displacement caused by user's action
     public void onChildDraw(Canvas c,
                             RecyclerView recyclerView,
                             RecyclerView.ViewHolder viewHolder,
                             float dX, float dY,
-                            int actionState, boolean isCurrentlyActive) {
-
+                            int actionState, boolean isCurrentlyActive)
+    {
         if (actionState == ACTION_STATE_SWIPE) {
+            if (buttonShowedState != ButtonsState.GONE) {
+                if (buttonShowedState == ButtonsState.LEFT_VISIBLE)
+                    dX = Math.max(dX, buttonWidth);
+                if (buttonShowedState == ButtonsState.RIGHT_VISIBLE)
+                    dX = Math.min(dX, -buttonWidth);
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            }
+        }
+        else {
             setTouchListener(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
         }
-        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
 
-        drawButtons(c, viewHolder);
+        if (buttonShowedState == ButtonsState.GONE) {
+            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+        }
+        currentItemViewHolder = viewHolder;
     }
 
     //check how much has been swiped
@@ -73,8 +92,8 @@ class SwipeController extends Callback {
                                   final RecyclerView recyclerView,
                                   final RecyclerView.ViewHolder viewHolder,
                                   final float dX, final float dY,
-                                  final int actionState, final boolean isCurrentlyActive) {
-
+                                  final int actionState, final boolean isCurrentlyActive)
+    {
         recyclerView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -129,7 +148,17 @@ class SwipeController extends Callback {
                     });
                     setItemsClickable(recyclerView, true);
                     swipeBack = false;
+
+                    if (buttonsActions != null && buttonInstance != null && buttonInstance.contains(event.getX(), event.getY())) {
+                        if(buttonShowedState == ButtonsState.LEFT_VISIBLE) {
+                            buttonsActions.onLeftClicked(viewHolder.getAdapterPosition());
+                        }
+                        else if (buttonShowedState == ButtonsState.RIGHT_VISIBLE) {
+                            buttonsActions.onRightClicked(viewHolder.getAdapterPosition());
+                        }
+                    }
                     buttonShowedState = ButtonsState.GONE;
+                    currentItemViewHolder = null;
                 }
                 return false;
             }
@@ -154,20 +183,21 @@ class SwipeController extends Callback {
         RectF leftButton = new RectF(itemView.getLeft(), itemView.getTop(), itemView.getLeft() + buttonWidthWithoutPadding, itemView.getBottom());
         p.setColor(Color.BLUE);
         c.drawRoundRect(leftButton, corners, corners, p);
-        drawText("EDIT", c, leftButton, p);
+        drawText("NOTIFY", c, leftButton, p);
 
         RectF rightButton = new RectF(itemView.getRight() - buttonWidthWithoutPadding, itemView.getTop(), itemView.getRight(), itemView.getBottom());
         p.setColor(Color.RED);
         c.drawRoundRect(rightButton, corners, corners, p);
         drawText("DELETE", c, rightButton, p);
 
-        //buttonInstance = null;
-        //if (buttonShowedState == ButtonsState.LEFT_VISIBLE) {
-        //    buttonInstance = leftButton;
-        //}
-        //else if (buttonShowedState == ButtonsState.RIGHT_VISIBLE) {
-        //buttonInstance = rightButton;
-        //}
+        buttonInstance = null;
+        if (buttonShowedState == ButtonsState.LEFT_VISIBLE) {
+            buttonInstance = leftButton;
+        } else if (buttonShowedState == ButtonsState.RIGHT_VISIBLE) {
+            buttonInstance = rightButton;
+        }
+
+
     }
 
     private void drawText(String text, Canvas c, RectF button, Paint p) {
@@ -177,6 +207,14 @@ class SwipeController extends Callback {
         p.setTextSize(textSize);
 
         float textWidth = p.measureText(text);
-        c.drawText(text, button.centerX()-(textWidth/2), button.centerY()+(textSize/2), p);
+        c.drawText(text, button.centerX() - (textWidth / 2), button.centerY() + (textSize / 2), p);
     }
+
+    public void onDraw(Canvas c) {
+        if (currentItemViewHolder != null) {
+            drawButtons(c, currentItemViewHolder);
+        }
+    }
+
+
 }
