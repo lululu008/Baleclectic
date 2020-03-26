@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'jacoco'
-
+apply plugin: 'com.google.gms.google-services'
 jacoco {
     toolVersion = "0.8.4"
 }
@@ -50,6 +50,16 @@ dependencies {
     //RecyclerView
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+    //firebase
+    implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
+    implementation 'com.google.firebase:firebase-auth:19.2.0'
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation 'com.firebase:firebase-client-android:2.5.0'
+    implementation 'com.google.firebase:firebase-database:19.2.1'
+    //test
+    testImplementation 'androidx.test:core:1.2.0'
+    //Mockito framework
+    androidTestImplementation "org.mockito:mockito-android:2.25.0"
 
     // For developers using AndroidX in their applications
     implementation 'pub.devrel:easypermissions:3.0.0'

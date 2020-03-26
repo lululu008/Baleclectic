@@ -28,17 +28,7 @@
     <string name="title_activity_maps">Map</string>
     <string name="button_map_1">Map 1</string>
     <string name="button_map_2">Map 2</string>
-    <string name="title_activity_basic_test">BasicActivityTest</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="location_rationale">Location is needed to find proximity to meeting points</string>
-    <string name="basic_activity">Basic activity</string>
     <string name="loc_permission_request">Allow location access</string>
     <string name="loc_access_granted">Location access granted</string>
     <string name="show_map">Show Map</string>
@@ -46,5 +36,10 @@
     <string name="update_location">Update Location</string>
     <string name="no_loc_access">Cannot access location!</string>
     <string name="button_mock_map">Mock Map</string>
+    <string name="sign_in">Sign In</string>
+    <string name="log_in">Log In</string>
+    <string name="textview">TextView</string>
+    <string name="successfully_sign_in">Successfully Sign In!</string>
+    <string name="sign_out">Sign Out</string>
 
 </resources>

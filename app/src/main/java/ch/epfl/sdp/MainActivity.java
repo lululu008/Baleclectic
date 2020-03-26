@@ -12,6 +12,7 @@ import ch.epfl.sdp.timetable.Timetable;
 
 public class MainActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +36,23 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(startIntent);
             }
         });
+
+        NewFunctions();
+
    }
+
+    private void NewFunctions() {
+        loginBtn();
+    }
+
+    private void loginBtn() {
+        Button mainloginBtn = (Button)findViewById((R.id.mainloginBtn));
+        mainloginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startIntent = new Intent(getApplicationContext(), MainLoginActivity.class);
+                startActivity(startIntent);
+            }
+        });
+    }
 }
-
-
