@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import ch.epfl.sdp.Pair;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -15,7 +17,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class DistanceCalculatorTest {
     @Test
-    public void basicTest() {
+    public void emptyStringIsGiven() {
 
         ArrayList<MeetingPoint> l = new ArrayList<>();
 
@@ -28,9 +30,25 @@ public class DistanceCalculatorTest {
 
         DistanceCalculator distCalc = new DistanceCalculator(l);
         assertEquals(distCalc.toString(), "");
-
-
     }
 
-    //TODO create mock location and add more tests
+    @Test
+    public void sortByDistanceSortsArrayCorrectly() {
+
+        Pair<String, Float> mp1 = new Pair<>("mp1", 0.0f);
+        Pair<String, Float> mp2 = new Pair<>("mp2", 1.0f);
+        Pair<String, Float> mp3 = new Pair("mp3", 2.5f);
+
+        ArrayList<Pair<String, Float>> mp = new ArrayList<>();
+        mp.add(mp2);
+        mp.add(mp3);
+        mp.add(mp1);
+
+        DistanceCalculator.sortByDistance(mp);
+
+        assertEquals(mp1, mp.get(0));
+        assertEquals(mp2, mp.get(1));
+        assertEquals(mp3, mp.get(2));
+
+    }
 }

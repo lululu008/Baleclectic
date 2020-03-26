@@ -20,7 +20,11 @@ public class DistanceCalculator {
         distances = new ArrayList<>();
 
     }
-    public void updateDistances(Location loc) {
+    public void updateDistances(double lat, double lng) {
+
+        Location loc = new Location("");
+        loc.setLatitude(lat);
+        loc.setLongitude(lng);
 
         distances = new ArrayList<>();
 
@@ -31,7 +35,7 @@ public class DistanceCalculator {
         sortByDistance(distances);
     }
 
-    private void sortByDistance(ArrayList<Pair<String, Float>> distances) {
+    public static void sortByDistance(ArrayList<Pair<String, Float>> distances) {
         Collections.sort(distances, new Comparator<Pair<String, Float>>() {
             @Override
             public int compare(final Pair<String, Float> o1, final Pair<String, Float> o2) {

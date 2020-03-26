@@ -26,7 +26,9 @@ public class DistanceActivity extends AppCompatActivity {
 
     private Intent intent;
     private FusedLocationProviderClient fusedLocationClient;
-    private Location lastLocation;
+    private boolean isMock;
+    private double mockLat = 0.0;
+    private double mockLng = 0.0;
     private TextView distanceText;
     private DistanceCalculator distanceCalc;
 
@@ -37,6 +39,9 @@ public class DistanceActivity extends AppCompatActivity {
 
         intent = getIntent();
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+        mockCheck();
+
         initToolbar();
 
         Button updateLocBtn = findViewById(R.id.updateLocationButton);
@@ -64,28 +69,45 @@ public class DistanceActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setTitle(intent.getStringExtra("title") + " Distance");
     }
 
+    private void mockCheck() {
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            if (extras.containsKey("isMock")) {
+                isMock = extras.getBoolean("isMock");
+            }
+            else {
+                isMock = false;
+            }
+        }
+    }
+
     public void getLocation() {
-
-        if (hasLocation()) {
-            fusedLocationClient.getLastLocation()
-                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                        @Override
-                        public void onSuccess(Location location) {
-                            // Got last known location. In some rare situations this can be null.
-                            if (location != null) {
-                                // Logic to handle location object
-                                lastLocation = location;
-
-                                //Update distances once new location has been received
-                                distanceCalc.updateDistances(lastLocation);
-                                distanceText.setText(distanceCalc.toString());
+        if (!isMock) {
+            if (hasLocation()) {
+                fusedLocationClient.getLastLocation()
+                        .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                            @Override
+                            public void onSuccess(Location location) {
+                                // Got last known location. In some rare situations this can be null.
+                                if (location != null) {
+                                    // Logic to handle location object and update distances
+                                    distanceCalc.updateDistances(location.getLatitude(), location.getLongitude());
+                                    distanceText.setText(distanceCalc.toString());
+                                }
                             }
-                        }
-                    });
+                        });
+            } else {
+                Toast.makeText(this, "No location permission", Toast.LENGTH_SHORT).show();
+            }
         }
         else {
-            Toast.makeText(this, "No location permission", Toast.LENGTH_SHORT).show();
+            // If mock, set latitude and longitude to 0.0 all the time, then update distances
+            mockLat += 0.1 ;
+            mockLng += 0.1;
+            distanceCalc.updateDistances(mockLat, mockLng);
+            distanceText.setText(distanceCalc.toString());
         }
+
     }
 
     private boolean hasLocation() {

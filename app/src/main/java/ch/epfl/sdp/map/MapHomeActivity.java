@@ -53,9 +53,16 @@ public class MapHomeActivity extends AppCompatActivity {
     private void transferIntent(Class cls) {
 
         Intent startIntent = new Intent(getApplicationContext(),  cls);
-        startIntent.putExtra("points", intent.getSerializableExtra("points"));
-        startIntent.putExtra("title", intent.getStringExtra("title"));
-        startActivity(startIntent);
+
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            startIntent.putExtra("points", extras.getSerializable("points"));
+            startIntent.putExtra("title", extras.getString("title"));
+            if (extras.containsKey("isMock")) {
+                startIntent.putExtra("isMock", extras.getBoolean("isMock"));
+            }
+            startActivity(startIntent);
+        }
 
     }
 }

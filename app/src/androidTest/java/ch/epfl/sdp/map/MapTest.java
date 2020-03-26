@@ -2,9 +2,7 @@ package ch.epfl.sdp.map;
 
 import android.os.Build;
 
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.test.espresso.Espresso;
-import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.action.GeneralLocation;
 import androidx.test.espresso.action.GeneralSwipeAction;
@@ -19,9 +17,6 @@ import androidx.test.uiautomator.UiObject;
 import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,9 +26,11 @@ import ch.epfl.sdp.R;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withSubstring;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.not;
 
 @RunWith(AndroidJUnit4.class)
 public class MapTest {
@@ -50,8 +47,6 @@ public class MapTest {
                 GeneralLocation.CENTER_LEFT, Press.FINGER);
     }
 
-    //TODO add permission refusal test
-
     @Test
     public void testCanOpenMap() {
 
@@ -60,13 +55,9 @@ public class MapTest {
         clickOkIfNeeded();
         allowPermissionsIfNeeded();
 
-        //TODO assertion checks here
-
         onView(withId(R.id.mapSelect1Btn)).perform(click());
         onView(withId(R.id.showMapBtn)).perform(click());
         Espresso.onView(ViewMatchers.withId(R.id.map)).perform(swipeFromRightToLeft());
-
-        //TODO assertion checks here
 
         Espresso.pressBack();
         Espresso.pressBack();
@@ -86,19 +77,15 @@ public class MapTest {
         clickOkIfNeeded();
         allowPermissionsIfNeeded();
 
-        onView(withId(R.id.mapSelect1Btn)).perform(click());
+        onView(withId(R.id.mockMapSelectBtn)).perform(click());
         onView(withId(R.id.showDistanceBtn)).perform(click());
         onView(withId(R.id.updateLocationButton)).perform(click());
 
-        //TODO assertion checks here
+        String empty = "";
+        String rlc = "Rolex Learning Center";
 
-        Espresso.pressBack();
-        Espresso.pressBack();
-        onView(withId(R.id.mapSelect2Btn)).perform(click());
-        onView(withId(R.id.showDistanceBtn)).perform(click());
-        onView(withId(R.id.updateLocationButton)).perform(click());
-
-        //TODO assertion checks here
+        onView(withId(R.id.textView)).check(matches(not(withText(empty))));
+        onView(withId(R.id.textView)).check(matches(withSubstring(rlc)));
 
         Espresso.pressBack();
         Espresso.pressBack();
