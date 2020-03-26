@@ -34,5 +34,14 @@
         android:textColor="#FFFFFF"
         android:textSize="24sp" />
 
+    <Button
+        android:id="@+id/chooseMeetingPointBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:text="@string/button_map_choose"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
+
 </LinearLayout>
 

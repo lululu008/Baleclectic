@@ -3,6 +3,9 @@ package ch.epfl.sdp;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
+import ch.epfl.sdp.dataModel.User;
 
 public class MeetingPoint implements Serializable {
 
@@ -10,6 +13,7 @@ public class MeetingPoint implements Serializable {
     private double lat;
     private double lng;
     private String name;
+    private ArrayList<User> meetingUsers = new ArrayList<User>();
 
     public MeetingPoint(double lat, double lng, String name) {
         this.lat = lat;
@@ -23,5 +27,13 @@ public class MeetingPoint implements Serializable {
 
     public String getName() {
         return name;
+    }
+
+    public ArrayList<User> getMeetingUsers(){
+        return meetingUsers;
+    }
+
+    public void addMeetingUser(User user){
+        this.meetingUsers.add(user);
     }
 }

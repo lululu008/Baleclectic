@@ -8,17 +8,20 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.*;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMarkerClickListener, OnMapReadyCallback {
 
     private GoogleMap mMap;
     private Intent intent;
+    private Marker marker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +61,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (!points.isEmpty()) {
 
             for (MeetingPoint p: points) {
-                mMap.addMarker(new MarkerOptions().position(p.getPos()).title(p.getName()));
+                marker = mMap.addMarker(new MarkerOptions().position(p.getPos()).title(p.getName()));
+                mMap.setOnMarkerClickListener(this);
             }
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(points.get(0).getPos(), 15));
         }
@@ -67,5 +71,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         }
+    }
+
+    @Override
+    public boolean onMarkerClick(final Marker marker) {
+
+        
+
+
+        // Return false to indicate that we have not consumed the event and that we wish
+        // for the default behavior to occur (which is for the camera to move such that the
+        // marker is centered and for the marker's info window to open, if it has one).
+        return false;
     }
 }

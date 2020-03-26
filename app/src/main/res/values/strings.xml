@@ -28,6 +28,7 @@
     <string name="title_activity_maps">Map</string>
     <string name="button_map_1">Map 1</string>
     <string name="button_map_2">Map 2</string>
+    <string name="button_map_choose">Choose your meeting point</string>
     <string name="sign_in">Sign In</string>
     <string name="log_in">Log In</string>
     <string name="textview">TextView</string>
