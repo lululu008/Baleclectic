@@ -44,7 +44,6 @@ public class LocationTest {
     @Test
     public void testCanGetDistance() {
 
-
         ActivityScenario<DistanceActivity> scenario = activityScenarioRule.getScenario();
         scenario.onActivity(new ActivityScenario.ActivityAction<DistanceActivity>() {
                                 @Override

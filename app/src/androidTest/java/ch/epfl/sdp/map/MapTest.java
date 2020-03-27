@@ -64,20 +64,6 @@ public class MapTest {
 
     }
 
-    @Test
-    public void testCanOpenDistance() {
-
-        onView(ViewMatchers.withId(R.id.mapBtn)).perform(click());
-
-        clickOkIfNeeded();
-        allowLocationPermissionsIfNeeded();
-        allowLocationOnlyPermissionsIfNeeded();
-
-        onView(withId(R.id.mapSelect1Btn)).perform(click());
-        onView(withId(R.id.showDistanceBtn)).perform(click());
-
-    }
-
     private void clickOkIfNeeded()  {
         UiObject uio = mDevice.findObject(new UiSelector().textMatches(".*(?i:ok).*"));
         clickIfExists(uio);
