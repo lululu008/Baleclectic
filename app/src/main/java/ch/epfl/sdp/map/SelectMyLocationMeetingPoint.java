@@ -15,33 +15,34 @@ import ch.epfl.sdp.R;
 
 public class SelectMyLocationMeetingPoint extends AppCompatActivity {
 
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseUser mUser = mAuth.getCurrentUser();
+    private MeetingPoints meetingPoints;
+    private MeetingPoint selectMPs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_my_location_meeting_point);
-
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser getCurrentUser = mAuth.getCurrentUser();
-
 
         initButtons();
 
     }
 
     private void initButtons() {
-        MeetingPoints selectMPs;
+
+        String mEmail = mUser.getEmail();
 
         Button MP1 = findViewById(R.id.myListMP1);
         MP1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                selectMPs = MapSelectionActivity.map1MeetingPoints();
-
-
-
-                //Intent startIntent = new Intent(getApplicationContext(), MeetingPointFriendList.class);
-                //startActivity(startIntent);
+                selectMPs = meetingPoints.get(0);
+                //How to add myself into meetpoint? mUser is Firebase class but the parameter of addMeetingUser method should be User class
+                selectMPs.addMeetingUser(mUser);
+                Intent startIntent = new Intent(getApplicationContext(), MeetingPointFriendList.class);
+                startActivity(startIntent);
             }
         });
 

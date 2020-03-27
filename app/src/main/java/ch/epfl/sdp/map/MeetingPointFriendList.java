@@ -20,17 +20,18 @@ public class MeetingPointFriendList extends AppCompatActivity {
         RecyclerView recyclerView;
 
         int checkMeetingPoint = MapMeetingPointsListActivity.getSelectMeetingPoint();
-        if (checkMeetingPoint == 1) {
+        if (checkMeetingPoint == 0) {
             meetingPoint = new MeetingPoint(46.5186, 6.5659, "Place Cosandey");
-        } else if (checkMeetingPoint == 2) {
+        } else if (checkMeetingPoint == 1) {
             meetingPoint = new MeetingPoint(46.5199, 6.5661, "Esplanade");
-        } else if (checkMeetingPoint == 3) {
+        } else if (checkMeetingPoint == 2) {
             meetingPoint = new MeetingPoint(46.5194, 6.5688, "Avenue Piccard");
         } else {
             meetingPoint = new MeetingPoint(46.5184, 6.5681, "Rolex Learning Center");
         }
 
         recyclerView = findViewById(R.id.recyclerView);
+
         ShowFriendRecyclerViewAdaptor myAdapter = new ShowFriendRecyclerViewAdaptor(this, meetingPoint);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

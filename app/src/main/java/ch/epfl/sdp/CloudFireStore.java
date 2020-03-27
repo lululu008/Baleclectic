@@ -13,6 +13,7 @@ public class CloudFireStore {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseUser user = mAuth.getCurrentUser();
+    private User mUser;
 
     public void addNewUser(User newUser){
 
@@ -30,15 +31,18 @@ public class CloudFireStore {
         newUserRef.update("email", "123456@gamil.com");
     }
 
-    public void getUser(){
+    public User getUser(){
+
         DocumentReference newUserRef = db.collection("users").document(user.getEmail());
 
         newUserRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                User user = documentSnapshot.toObject(User.class);
+                mUser = documentSnapshot.toObject(User.class);
             }
         });
+
+        return mUser;
     }
 
     public void deleteUser(){

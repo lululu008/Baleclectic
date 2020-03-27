@@ -26,7 +26,7 @@ public class MapMeetingPointsListActivity extends AppCompatActivity {
         MP1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectMeetingPoint = 1;
+                setSelectMeetingPoint(0);
                 Intent startIntent = new Intent(getApplicationContext(), MeetingPointFriendList.class);
                 startActivity(startIntent);
             }
@@ -36,7 +36,7 @@ public class MapMeetingPointsListActivity extends AppCompatActivity {
         MP1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectMeetingPoint = 2;
+                setSelectMeetingPoint(1);
                 Intent startIntent = new Intent(getApplicationContext(), MeetingPointFriendList.class);
                 startActivity(startIntent);
             }
@@ -46,7 +46,7 @@ public class MapMeetingPointsListActivity extends AppCompatActivity {
         MP1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectMeetingPoint = 3;
+                setSelectMeetingPoint(3);
                 Intent startIntent = new Intent(getApplicationContext(), MeetingPointFriendList.class);
                 startActivity(startIntent);
             }
@@ -56,11 +56,16 @@ public class MapMeetingPointsListActivity extends AppCompatActivity {
         MP1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectMeetingPoint = 4;
+                setSelectMeetingPoint(4);
                 Intent startIntent = new Intent(getApplicationContext(), MeetingPointFriendList.class);
                 startActivity(startIntent);
             }
         });
+    }
+
+    public static int setSelectMeetingPoint(int index) {
+        selectMeetingPoint = index;
+        return index;
     }
 
     public static int getSelectMeetingPoint() { return selectMeetingPoint; }

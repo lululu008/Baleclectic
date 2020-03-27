@@ -97,7 +97,7 @@ public class MapSelectionActivity extends AppCompatActivity {
 
     }
 
-    private MeetingPoints map1MeetingPoints() {
+    public MeetingPoints map1MeetingPoints() {
 
         MeetingPoints points = new MeetingPoints();
 

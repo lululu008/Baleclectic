@@ -6,41 +6,54 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import ch.epfl.sdp.CloudFireStore;
 import ch.epfl.sdp.R;
 import ch.epfl.sdp.dataModel.User;
 import ch.epfl.sdp.map.MeetingPoint;
 
 public class ShowFriendRecyclerViewAdaptor extends RecyclerView.Adapter<ShowFriendRecyclerViewAdaptor.MyViewHolder> {
 
-        private MeetingPoint meetingPoint;
-        private String friendList[];
-        Context context;
+    //using ArrayList or String []
+    private ArrayList<String> friendList = new ArrayList<>();
+    private Context context;
+    private ArrayList<User> meetingUsers;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseUser mUser = mAuth.getCurrentUser();
+    //from Firebase user.getEmail() to User class user
+    private String mEmail = mUser.getEmail();
+    private User user = CloudFireStore.getUser();
+    private ArrayList<User> mFriends = user.getFriends();
 
-        public ShowFriendRecyclerViewAdaptor(Context ct,MeetingPoint meetingPoint){
+
+
+    public ShowFriendRecyclerViewAdaptor(Context ct, MeetingPoint meetingPoint){
             context=ct;
-            friendList = getFriendList(meetingPoint);
+            getFriendList(meetingPoint);
         }
 
-        public String[] getFriendList(MeetingPoint meetingPoint){
 
-            ArrayList<User> meetingUsers = meetingPoint.getMeetingUsers();
-            friendList = new String[meetingUsers.size()];
+        public void getFriendList(MeetingPoint meetingPoint) {
 
-            //getName()fromeachuser
-            for(User user:meetingUsers){
-                //if this user is in my friendslist
-                if(meetingUsers.equals(this.getFriends())){
-                //append user's name to the friendList
-                    friendList.append(user.getName());
+            meetingUsers = meetingPoint.getMeetingUsers();
+
+            //getName()from each user
+            for (User user : meetingUsers) {
+                for (User matchFriends : mFriends) {
+                    //if this user is in my friendslist
+                    if (user.equals(matchFriends)) {
+                        friendList.add(user.getName());
+                    }
                 }
             }
-
-            return friendList;
         }
+
 
         public static class MyViewHolder extends RecyclerView.ViewHolder{
         //each data item is just a string in this case
@@ -51,19 +64,19 @@ public class ShowFriendRecyclerViewAdaptor extends RecyclerView.Adapter<ShowFrie
             }
         }
 
-    @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent,int viewType){
-        TextView v=(TextView)LayoutInflater.from(parent.getContext())
-        .inflate(R.layout.activity_show_friends,parent,false);
-        MyViewHolder vh = new MyViewHolder(v);
-        return vh;
-        }
+        @Override
+        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent,int viewType){
+            View v = LayoutInflater.from(parent.getContext())
+            .inflate(R.layout.show_friend_textview,parent,false);
+            MyViewHolder vh = new MyViewHolder(v);
+            return vh;
+            }
 
-    public void onBindViewHolder(@NonNull MyViewHolder holder,int position){
-        holder.friendName.setText(friendList[position]); }
+        public void onBindViewHolder(@NonNull MyViewHolder holder,int position){
+            holder.friendName.setText(friendList.get(position)); }
 
-    @Override
-    public int getItemCount(){
-        return friendList.length;
+        @Override
+        public int getItemCount(){
+            return friendList.size();
         }
 }
