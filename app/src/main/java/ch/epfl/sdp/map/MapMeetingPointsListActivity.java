@@ -6,11 +6,13 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import ch.epfl.sdp.MainLoginActivity;
+
 import ch.epfl.sdp.R;
+
 
 public class MapMeetingPointsListActivity extends AppCompatActivity {
 
+    private static int selectMeetingPoint = 0;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +26,7 @@ public class MapMeetingPointsListActivity extends AppCompatActivity {
         MP1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selectMeetingPoint = 1;
                 Intent startIntent = new Intent(getApplicationContext(), MeetingPointFriendList.class);
                 startActivity(startIntent);
             }
@@ -33,6 +36,7 @@ public class MapMeetingPointsListActivity extends AppCompatActivity {
         MP1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selectMeetingPoint = 2;
                 Intent startIntent = new Intent(getApplicationContext(), MeetingPointFriendList.class);
                 startActivity(startIntent);
             }
@@ -42,6 +46,7 @@ public class MapMeetingPointsListActivity extends AppCompatActivity {
         MP1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selectMeetingPoint = 3;
                 Intent startIntent = new Intent(getApplicationContext(), MeetingPointFriendList.class);
                 startActivity(startIntent);
             }
@@ -51,11 +56,14 @@ public class MapMeetingPointsListActivity extends AppCompatActivity {
         MP1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selectMeetingPoint = 4;
                 Intent startIntent = new Intent(getApplicationContext(), MeetingPointFriendList.class);
                 startActivity(startIntent);
             }
         });
     }
+
+    public static int getSelectMeetingPoint() { return selectMeetingPoint; }
 
 }
 

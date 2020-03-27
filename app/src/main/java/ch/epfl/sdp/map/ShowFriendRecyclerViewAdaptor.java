@@ -1,7 +1,5 @@
 package ch.epfl.sdp.map;
 
-packagech.epfl.sdp;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +14,7 @@ import ch.epfl.sdp.R;
 import ch.epfl.sdp.dataModel.User;
 import ch.epfl.sdp.map.MeetingPoint;
 
-public class ShowFriendRecyclerViewAdaptor extends RecyclerView.Adapter<ShowFriendRecyclerViewAdaptor.MyViewHolder>{
+public class ShowFriendRecyclerViewAdaptor extends RecyclerView.Adapter<ShowFriendRecyclerViewAdaptor.MyViewHolder> {
 
         private MeetingPoint meetingPoint;
         private String friendList[];
@@ -27,7 +25,7 @@ public class ShowFriendRecyclerViewAdaptor extends RecyclerView.Adapter<ShowFrie
             friendList = getFriendList(meetingPoint);
         }
 
-        public String[]getFriendList(MeetingPoint meetingPoint){
+        public String[] getFriendList(MeetingPoint meetingPoint){
 
             ArrayList<User> meetingUsers = meetingPoint.getMeetingUsers();
             friendList = new String[meetingUsers.size()];
@@ -45,7 +43,7 @@ public class ShowFriendRecyclerViewAdaptor extends RecyclerView.Adapter<ShowFrie
         }
 
         public static class MyViewHolder extends RecyclerView.ViewHolder{
-        //eachdataitemisjustastringinthiscase
+        //each data item is just a string in this case
             TextView friendName;
             public MyViewHolder(View itemView){
                 super(itemView);

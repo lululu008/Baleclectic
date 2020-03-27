@@ -28,13 +28,9 @@
     <string name="title_activity_maps">Map</string>
     <string name="button_map_1">Map 1</string>
     <string name="button_map_2">Map 2</string>
-<<<<<<< HEAD
-    <string name="button_map_choose">Choose your meeting point</string>
-
-=======
 
     <string name="button_map_choose">Choose your meeting point</string>
->>>>>>> 904210889014928f1c7d4d346e58a0290fd8c2dc
+
     <string name="location_rationale">Location is needed to find proximity to meeting points</string>
     <string name="loc_permission_request">Allow location access</string>
     <string name="loc_access_granted">Location access granted</string>
@@ -43,14 +39,17 @@
     <string name="update_location">Update Location</string>
     <string name="no_loc_access">Cannot access location!</string>
     <string name="button_mock_map">Mock Map</string>
-<<<<<<< HEAD
 
-=======
->>>>>>> 904210889014928f1c7d4d346e58a0290fd8c2dc
     <string name="sign_in">Sign In</string>
     <string name="log_in">Log In</string>
     <string name="textview">TextView</string>
     <string name="successfully_sign_in">Successfully Sign In!</string>
     <string name="sign_out">Sign Out</string>
+    <string name="findMyFriends">Find My Friends</string>
+    <string name="my_location_meetingPoint">MY LOCATION</string>
+    <string name="myListMP1">MEETINGPOINT 1</string>
+    <string name="myListMP2">MEETINGPOINT 2</string>
+    <string name="myListMP3">MEETINGPOINT 3</string>
+    <string name="myListMP4">MEETINGPOINT 4</string>
 
 </resources>

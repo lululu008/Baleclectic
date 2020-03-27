@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.Objects;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import java.util.Objects;
+
 import ch.epfl.sdp.R;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
@@ -76,7 +77,7 @@ public class MapSelectionActivity extends AppCompatActivity {
             }
         });
 
-        Button mockMapBtn = findViewById(R.id.chooseMeetingPointBtn);
+        Button mockMapBtn = findViewById(R.id.mockMapSelectBtn);
         mockMapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

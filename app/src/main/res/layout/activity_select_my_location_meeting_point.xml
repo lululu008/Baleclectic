@@ -22,40 +22,35 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <Button
-        android:id="@+id/showMapBtn"
+        android:id="@+id/myListMP1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/holo_red_dark"
-        android:text="@string/show_map"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp" />
+        android:padding="20dp"
+        android:text="@string/myListMP1"
+        android:textSize="20sp" />
 
     <Button
-        android:id="@+id/showDistanceBtn"
+        android:id="@+id/myListMP2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/holo_red_dark"
-        android:text="@string/show_distance"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp" />
+        android:padding="20dp"
+        android:text="@string/myListMP2"
+        android:textSize="20sp" />
 
     <Button
-        android:id="@+id/my_location_meetingPoint"
+        android:id="@+id/myListMP3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/holo_red_dark"
-        android:text="@string/my_location_meetingPoint"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp" />
+        android:padding="20dp"
+        android:text="@string/myListMP3"
+        android:textSize="20sp" />
 
     <Button
-        android:id="@+id/findMyFriends"
+        android:id="@+id/myListMP4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/holo_red_dark"
-        android:text="@string/findMyFriends"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp" />
+        android:padding="20dp"
+        android:text="@string/myListMP4"
+        android:textSize="20sp" />
 
 </LinearLayout>
-

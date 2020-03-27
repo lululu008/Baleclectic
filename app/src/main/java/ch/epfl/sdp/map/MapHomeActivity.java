@@ -49,6 +49,14 @@ public class MapHomeActivity extends AppCompatActivity {
             }
         });
 
+        Button showMyLocation = findViewById(R.id.my_location_meetingPoint);
+        showMyLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                transferIntent(SelectMyLocationMeetingPoint.class);
+            }
+        });
+
         Button showList = findViewById(R.id.findMyFriends);
         showList.setOnClickListener(new View.OnClickListener() {
             @Override
