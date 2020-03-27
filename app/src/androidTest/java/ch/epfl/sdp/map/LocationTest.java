@@ -32,6 +32,7 @@ public class LocationTest {
         intent = new Intent(ApplicationProvider.getApplicationContext(), DistanceActivity.class);
         intent.putExtra("points", mp);
         intent.putExtra("title", "Mock Distance");
+        intent.putExtra("isMock", true);
     }
 
     UiDevice mDevice = UiDevice
@@ -54,7 +55,6 @@ public class LocationTest {
                                 }
                             });
 
-
         onView(withId(R.id.updateLocationButton)).perform(click());
 
         String empty = "";
@@ -63,5 +63,8 @@ public class LocationTest {
         onView(withId(R.id.textView)).check(matches(not(withText(empty))));
         onView(withId(R.id.textView)).check(matches(withSubstring(rlc)));
 
+        onView(withId(R.id.updateLocationButton)).perform(click());
+
+        onView(withId(R.id.updateLocationButton)).perform(click());
     }
 }

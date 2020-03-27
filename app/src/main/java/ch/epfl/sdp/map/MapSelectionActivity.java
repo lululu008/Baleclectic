@@ -76,14 +76,6 @@ public class MapSelectionActivity extends AppCompatActivity {
                 mapIntent(new MeetingPoints(), "Map 2");
             }
         });
-
-        Button mockMapBtn = findViewById(R.id.mockMapSelectBtn);
-        mockMapBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mapIntent(map1MeetingPoints(), "Mock Map");
-            }
-        });
     }
 
     private void mapIntent(MeetingPoints points, String title) {

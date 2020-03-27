@@ -23,14 +23,11 @@ public class MeetingPoint implements Serializable {
         return new LatLng(lat, lng);
     }
 
-    public float getDistance(Location loc) {
+    public float getDistance(double otherLat, double otherLng) {
 
-        Location pointLocation = new Location("");
-        pointLocation.setLatitude(lat);
-        pointLocation.setLongitude(lng);
-
-        return loc.distanceTo(pointLocation);
-
+        float[] results = new float[1];
+        Location.distanceBetween(lat, lng, otherLat, otherLng, results);
+        return results[0];
     }
 
     public String getName() {

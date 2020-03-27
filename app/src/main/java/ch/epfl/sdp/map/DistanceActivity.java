@@ -33,9 +33,8 @@ public class DistanceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_distance);
 
         intent = getIntent();
-        locationProvider = new GPSLocation(this);
-        locationNecessary = true;
 
+        initProvider();
         initToolbar();
 
         Button updateLocBtn = findViewById(R.id.updateLocationButton);
@@ -55,6 +54,19 @@ public class DistanceActivity extends AppCompatActivity {
         distanceCalc = new DistanceCalculator(points);
         getLocation();
 
+    }
+
+    private void initProvider() {
+        Bundle extras = intent.getExtras();
+        if (extras != null && extras.containsKey("isMock") || extras.getBoolean("isMock")) {
+            locationProvider = new MockLocation(this);
+            locationNecessary = false;
+
+        }
+        else {
+            locationProvider = new GPSLocation(this);
+            locationNecessary = true;
+        }
     }
 
     private void initToolbar() {

@@ -22,14 +22,10 @@ public class DistanceCalculator {
     }
     public void updateDistances(double lat, double lng) {
 
-        Location loc = new Location("");
-        loc.setLatitude(lat);
-        loc.setLongitude(lng);
-
         distances = new ArrayList<>();
 
         for (MeetingPoint p : points) {
-            distances.add(new Pair<>(p.getName(), p.getDistance(loc)));
+            distances.add(new Pair<>(p.getName(), p.getDistance(lat, lng)));
         }
 
         sortByDistance(distances);

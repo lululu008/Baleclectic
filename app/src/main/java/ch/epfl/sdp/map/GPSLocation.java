@@ -53,7 +53,7 @@ public class GPSLocation implements LocationProvider {
 
     @Override
     public double getLongitude() {
-        return userLocation.getLatitude();
+        return userLocation.getLongitude();
     }
 
     private boolean hasLocation() {
