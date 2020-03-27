@@ -24,11 +24,7 @@ import ch.epfl.sdp.R;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withSubstring;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.not;
 
 @RunWith(AndroidJUnit4.class)
 public class MapTest {
@@ -69,7 +65,7 @@ public class MapTest {
     }
 
     @Test
-    public void testCanGetLocation() {
+    public void testCanOpenDistance() {
 
         onView(ViewMatchers.withId(R.id.mapBtn)).perform(click());
 
@@ -77,19 +73,8 @@ public class MapTest {
         allowLocationPermissionsIfNeeded();
         allowLocationOnlyPermissionsIfNeeded();
 
-        onView(withId(R.id.mockMapSelectBtn)).perform(click());
+        onView(withId(R.id.mapSelect1Btn)).perform(click());
         onView(withId(R.id.showDistanceBtn)).perform(click());
-        onView(withId(R.id.updateLocationButton)).perform(click());
-
-        String empty = "";
-        String rlc = "Rolex Learning Center";
-
-        onView(withId(R.id.textView)).check(matches(not(withText(empty))));
-        onView(withId(R.id.textView)).check(matches(withSubstring(rlc)));
-
-        Espresso.pressBack();
-        Espresso.pressBack();
-        Espresso.pressBack();
 
     }
 

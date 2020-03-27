@@ -1,8 +1,9 @@
 package ch.epfl.sdp.map;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,10 +12,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.List;
 import java.util.Objects;
@@ -25,12 +22,10 @@ import pub.devrel.easypermissions.EasyPermissions;
 public class DistanceActivity extends AppCompatActivity {
 
     private Intent intent;
-    private FusedLocationProviderClient fusedLocationClient;
-    private boolean isMock;
-    private double mockLat = 0.0;
-    private double mockLng = 0.0;
+    private boolean locationNecessary;
     private TextView distanceText;
     private DistanceCalculator distanceCalc;
+    private LocationProvider locationProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +33,8 @@ public class DistanceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_distance);
 
         intent = getIntent();
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-
-        mockCheck();
+        locationProvider = new GPSLocation(this);
+        locationNecessary = true;
 
         initToolbar();
 
@@ -69,48 +63,42 @@ public class DistanceActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setTitle(intent.getStringExtra("title") + " Distance");
     }
 
-    private void mockCheck() {
-        Bundle extras = intent.getExtras();
-        if (extras != null) {
-            if (extras.containsKey("isMock")) {
-                isMock = extras.getBoolean("isMock");
-            }
-            else {
-                isMock = false;
-            }
-        }
+    public void setLocationProvider(LocationProvider newProvider) {
+        locationProvider = newProvider;
     }
 
-    public void getLocation() {
-        if (!isMock) {
-            if (hasLocation()) {
-                fusedLocationClient.getLastLocation()
-                        .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                            @Override
-                            public void onSuccess(Location location) {
-                                // Got last known location. In some rare situations this can be null.
-                                if (location != null) {
-                                    // Logic to handle location object and update distances
-                                    distanceCalc.updateDistances(location.getLatitude(), location.getLongitude());
-                                    distanceText.setText(distanceCalc.toString());
-                                }
-                            }
-                        });
-            } else {
-                Toast.makeText(this, "No location permission", Toast.LENGTH_SHORT).show();
-            }
+    public void setLocationNecessary(boolean necessary) {
+        locationNecessary = necessary;
+    }
+
+    private void getLocation() {
+        if (hasLocation() || (!locationNecessary)) {
+            new LocationUpdateTask().execute();
         }
         else {
-            // If mock, set latitude and longitude to 0.0 all the time, then update distances
-            mockLat += 0.1 ;
-            mockLng += 0.1;
-            distanceCalc.updateDistances(mockLat, mockLng);
-            distanceText.setText(distanceCalc.toString());
+            Toast.makeText(this, "No location permission", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     private boolean hasLocation() {
         return EasyPermissions.hasPermissions(this, Manifest.permission.ACCESS_FINE_LOCATION);
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private class LocationUpdateTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            locationProvider.updateLocation();
+            //Use another thread to wait until location is available
+            while(!locationProvider.isInit());
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            distanceCalc.updateDistances(locationProvider.getLatitude(), locationProvider.getLongitude());
+            distanceText.setText(distanceCalc.toString());
+        }
     }
 }

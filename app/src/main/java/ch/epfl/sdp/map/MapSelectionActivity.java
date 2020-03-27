@@ -65,7 +65,7 @@ public class MapSelectionActivity extends AppCompatActivity {
         map1Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mapIntent(map1MeetingPoints(), "Map 1", false);
+                mapIntent(map1MeetingPoints(), "Map 1");
             }
         });
 
@@ -73,7 +73,7 @@ public class MapSelectionActivity extends AppCompatActivity {
         map2Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mapIntent(new MeetingPoints(), "Map 2", false);
+                mapIntent(new MeetingPoints(), "Map 2");
             }
         });
 
@@ -81,22 +81,21 @@ public class MapSelectionActivity extends AppCompatActivity {
         mockMapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mapIntent(map1MeetingPoints(), "Mock Map", true);
+                mapIntent(map1MeetingPoints(), "Mock Map");
             }
         });
     }
 
-    private void mapIntent(MeetingPoints points, String title, boolean mock) {
+    private void mapIntent(MeetingPoints points, String title) {
 
         Intent startIntent = new Intent(getApplicationContext(), MapHomeActivity.class);
         startIntent.putExtra("points", points);
         startIntent.putExtra("title", title);
-        startIntent.putExtra("isMock", mock);
         startActivity(startIntent);
 
     }
 
-    private MeetingPoints map1MeetingPoints() {
+    public static MeetingPoints map1MeetingPoints() {
 
         MeetingPoints points = new MeetingPoints();
 

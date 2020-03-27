@@ -52,6 +52,12 @@ public class MapHomeActivity extends AppCompatActivity {
 
     private void transferIntent(Class cls) {
 
+        Intent startIntent = getIntent(cls);
+        startActivity(startIntent);
+
+    }
+
+    private Intent getIntent(Class cls) {
         Intent startIntent = new Intent(getApplicationContext(),  cls);
 
         Bundle extras = intent.getExtras();
@@ -61,8 +67,7 @@ public class MapHomeActivity extends AppCompatActivity {
             if (extras.containsKey("isMock")) {
                 startIntent.putExtra("isMock", extras.getBoolean("isMock"));
             }
-            startActivity(startIntent);
         }
-
+        return startIntent;
     }
 }
