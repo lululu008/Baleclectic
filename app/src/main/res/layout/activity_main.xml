@@ -53,5 +53,8 @@
         app:layout_constraintBottom_toTopOf="@+id/timetableBtn"
         app:layout_constraintEnd_toEndOf="@+id/timetableBtn" />
 
+    <include
+        android:id="@+id/toolbar_mainActivity"
+        layout="@layout/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
