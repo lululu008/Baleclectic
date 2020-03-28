@@ -25,10 +25,13 @@ import ch.epfl.sdp.dataModel.User;
 
 public class CreateUserProfile extends AppCompatActivity {
 
+    private Intent intent;
     public String dateDD,dateMM,dateYY;
     public String userName;
     public Date birthday;
     public int gender = 10;
+    public boolean correct = true;
+    private CloudStoreInterface cloudStore;
 
     ImageButton add_photo;
     EditText user_name;
@@ -39,44 +42,42 @@ public class CreateUserProfile extends AppCompatActivity {
     EditText date_year;
     Button register;
 
-    private FirebaseAuth mAuth;
-    private FirebaseUser currentUser;
-    //private static final String TAG = "CustomAuthActivity";
-    private String mCustomToken;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    DocumentReference newUserRef = db.collection("users").document("test");
-
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createprofile);
-        mAuth.getInstance(); //initialize
+        intent = getIntent();
         setUp();
     }
 
+    @SuppressLint("SimpleDateFormat")
     public void registerUser() throws ParseException {
         retrieveInput();
-        if(!checkInput())
-            return;
+        checkInput();
+        if(!correct) return;
+        String date_full = dateDD + "/" +dateMM + "/" + dateYY;
+        birthday =new SimpleDateFormat("dd/MM/yyyy").parse(date_full);
         updateInfo();
     }
 
     private void updateInfo(){
         User newUser = new User(userName, gender, birthday);
-        CloudFireStore cloudFireStore = new CloudFireStore();
-        currentUser = mAuth.getCurrentUser();
-        String address = currentUser.getEmail();
-        cloudFireStore.addNewUser(newUser, address);
+        Bundle extras = intent.getExtras();
+        if (extras != null && extras.containsKey("isMock") || extras.getBoolean("isMock")) {
+            cloudStore = new mockCloudStore();
+        }
+        else {
+            cloudStore = new CloudFireStore();
+        }
+        cloudStore.addNewUser(newUser);
         startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
     }
 
-    @SuppressLint("SimpleDateFormat")
-    protected void retrieveInput() throws ParseException {
+    private void retrieveInput(){
+        correct = true;
         userName = user_name.getText().toString().trim();
         dateDD = date_day.getText().toString().trim();
         dateMM = date_month.getText().toString().trim();
         dateYY = date_year.getText().toString().trim();
-        String date_full = dateDD + "/" +dateMM + "/" + dateYY;
-        birthday =new SimpleDateFormat("dd/MM/yyyy").parse(date_full);
     }
 
     private void setUp(){
@@ -117,38 +118,38 @@ public class CreateUserProfile extends AppCompatActivity {
         });
     }
 
-    protected boolean checkInput(){
-        boolean correct = true;
+    private void checkInput(){
         if (userName.isEmpty()){
             user_name.setError("User name required");
             user_name.requestFocus();
             correct = false;
         }
-        if(!checkBirthday()) correct = false;
+        checkBirthday();
         if (gender == 10){
             gender_female.requestFocus();
+            gender_female.setError("Gender required");
             correct = false;
         }
-        return correct;
     }
 
-    private boolean checkBirthday(){
-        boolean correct = true;
+    private void checkBirthday(){
         if (dateDD.length() != 2){
             date_day.setTextColor(Color.RED);
+            date_day.setError("Incorrect date");
             date_day.requestFocus();
             correct = false;
         }
         if (dateMM.length() != 2){
             date_month.setTextColor(Color.RED);
+            date_month.setError("Incorrect date");
             date_month.requestFocus();
             correct = false;
         }
         if (dateYY.length() != 4){
             date_year.setTextColor(Color.RED);
+            date_year.setError("Incorrect date");
             date_year.requestFocus();
             correct = false;
         }
-        return correct;
     }
 }

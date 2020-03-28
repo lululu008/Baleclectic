@@ -14,9 +14,6 @@ import org.mockito.Mock;
 import org.mockito.android.internal.creation.AndroidByteBuddyMockMaker;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
