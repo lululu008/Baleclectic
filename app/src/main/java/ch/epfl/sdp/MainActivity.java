@@ -9,14 +9,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import ch.epfl.sdp.map.MapSelectionActivity;
 import ch.epfl.sdp.timetable.Timetable;
 
 public class MainActivity extends AppCompatActivity {
-
+    private DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +65,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_topright, menu);
+        return true;
+    }
+
     private void toolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar_mainActivity);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Home Page");
         toolbar.setSubtitle("SubTitle");
         //set the logo on top
@@ -90,13 +100,21 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        //for navigation bar
+        drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,
+                R.string.navigation_draw_open,R.string.navigation_draw_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-        return true;
+    public void onBackPressed(){
+        if (drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
-
 }
