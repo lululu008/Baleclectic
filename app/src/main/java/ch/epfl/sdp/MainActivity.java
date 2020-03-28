@@ -5,20 +5,21 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import ch.epfl.sdp.map.MapSelectionActivity;
+import com.google.android.material.navigation.NavigationView;
+
+import ch.epfl.sdp.fragments_drawer.Example2Fragment;
 import ch.epfl.sdp.timetable.Timetable;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
 
     @Override
@@ -26,44 +27,44 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // timetable button
-        Button timetableBtn = (Button)findViewById(R.id.timetableBtn);
-        timetableBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(), Timetable.class);
-                startActivity(startIntent);
-            }
-        });
-
-        Button mapBtn = (Button)findViewById(R.id.mapBtn);
-        mapBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(), MapSelectionActivity.class);
-                startActivity(startIntent);
-            }
-        });
+//        // timetable button
+//        Button timetableBtn = (Button)findViewById(R.id.timetableBtn);
+//        timetableBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent startIntent = new Intent(getApplicationContext(), Timetable.class);
+//                startActivity(startIntent);
+//            }
+//        });
+//
+//        Button mapBtn = (Button)findViewById(R.id.mapBtn);
+//        mapBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent startIntent = new Intent(getApplicationContext(), MapSelectionActivity.class);
+//                startActivity(startIntent);
+//            }
+//        });
 
         NewFunctions();
 
    }
 
     private void NewFunctions() {
-        loginBtn();
+//        loginBtn();
         toolbar();
     }
 
-    private void loginBtn() {
-        Button mainloginBtn = (Button)findViewById((R.id.mainloginBtn));
-        mainloginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(), MainLoginActivity.class);
-                startActivity(startIntent);
-            }
-        });
-    }
+//    private void loginBtn() {
+//        Button mainloginBtn = (Button)findViewById((R.id.mainloginBtn));
+//        mainloginBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent startIntent = new Intent(getApplicationContext(), MainLoginActivity.class);
+//                startActivity(startIntent);
+//            }
+//        });
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -103,10 +104,34 @@ public class MainActivity extends AppCompatActivity {
 
         //for navigation bar
         drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,
                 R.string.navigation_draw_open,R.string.navigation_draw_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.nav_timetable:
+                Intent startIntent = new Intent(getApplicationContext(), Timetable.class);
+                startActivity(startIntent);
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new ExampleFragment()).commit();
+                break;
+            case R.id.nav_map:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Example2Fragment()).commit();
+                break;
+            case R.id.nav_signin:
+                Intent startIntent3 = new Intent(getApplicationContext(), MainLoginActivity.class);
+                startActivity(startIntent3);
+                break;
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     @Override
