@@ -31,14 +31,15 @@ public class MainLoginActivity extends AppCompatActivity {
 
     private void main_login_toolbar() {
         Toolbar logtool = findViewById(R.id.toolbar);
+        logtool.setTitle("Sign In");
 
         setSupportActionBar(logtool);
+
 
         //set press back button
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         //set titles
-        logtool.setTitle("Sign In");
         logtool.setSubtitle("Sign in with Google or email");
     }
 }

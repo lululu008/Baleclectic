@@ -95,9 +95,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     case R.id.action_settings:
                         Toast.makeText(MainActivity.this, "Settings !", Toast.LENGTH_SHORT).show();
                         break;
-                    case R.id.action_about:
-                        Toast.makeText(MainActivity.this, "About !", Toast.LENGTH_SHORT).show();
-                        break;
                 }
                 return true;
             }

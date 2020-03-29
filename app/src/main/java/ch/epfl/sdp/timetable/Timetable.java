@@ -45,17 +45,17 @@ public class Timetable extends AppCompatActivity {
         timetable_toolbar();
     }
 
-    private void timetable_toolbar() {
+    public void timetable_toolbar() {
         Toolbar ttool = findViewById(R.id.toolbar);
-        //add toolbar
-        setSupportActionBar(ttool);
+        //set titles
+        ttool.setTitle("Timetable");
+        ttool.setSubtitle("View timetable here");
 
+        setSupportActionBar(ttool);
         //set press back button
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        //set titles
-        ttool.setTitle("Timetable");
-        ttool.setSubtitle("View timetable here");
+
     }
 }

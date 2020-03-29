@@ -51,5 +51,7 @@
     <string name="Timetable" />
     <string name="Map" />
     <string name="SignIn" />
+    <string name="TOAST_notifications">Notifications !</string>
+    <string name="TOAST_settings">Settings !</string>
 
 </resources>
