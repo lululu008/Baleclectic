@@ -1,13 +1,13 @@
 package ch.epfl.sdp.map;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import java.util.Objects;
 
@@ -39,9 +39,15 @@ public class MapSelectionActivity extends AppCompatActivity {
     }
 
     private void initToolbar() {
-        Toolbar myToolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(myToolbar);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("Map Selection");
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Map Selection");
+        toolbar.setSubtitle("Please select a map");
+
+        setSupportActionBar(toolbar);
+
+        //set press back button
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     private void initButtons() {

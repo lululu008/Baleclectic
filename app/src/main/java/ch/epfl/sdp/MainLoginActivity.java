@@ -1,11 +1,14 @@
 package ch.epfl.sdp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import java.util.Objects;
 
 public class MainLoginActivity extends AppCompatActivity {
 
@@ -22,5 +25,19 @@ public class MainLoginActivity extends AppCompatActivity {
                 startActivity(startIntent);
             }
         });
+
+        toolbar();
+    }
+
+    private void toolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Sign In");
+        toolbar.setSubtitle("Sign in with Google or email");
+
+        setSupportActionBar(toolbar);
+
+        //set press back button
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 }
