@@ -61,7 +61,6 @@ public class NavigationTest {
     @Test
     public void clickOnNavigationDrawer_2(){
         //Profile
-        pressBack();
         Intents.init();
         // Open Drawer to click on navigation.
         onView(withId(R.id.drawer_layout))
@@ -73,6 +72,5 @@ public class NavigationTest {
         // Check that you Activity was opened.
         intended(hasComponent(ProfileActivity.class.getName()));
         Intents.release();
-        pressBack();
     }
 }
