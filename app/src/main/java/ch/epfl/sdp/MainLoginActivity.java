@@ -30,11 +30,11 @@ public class MainLoginActivity extends AppCompatActivity {
     }
 
     private void main_login_toolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Sign In");
-        toolbar.setSubtitle("Sign in with Google or email");
+        Toolbar logtool = findViewById(R.id.toolbar);
+        logtool.setTitle("Sign In");
+        logtool.setSubtitle("Sign in with Google or email");
 
-        setSupportActionBar(toolbar);
+        setSupportActionBar(logtool);
 
         //set press back button
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
