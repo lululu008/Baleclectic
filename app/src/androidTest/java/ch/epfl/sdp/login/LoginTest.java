@@ -1,10 +1,13 @@
 package ch.epfl.sdp.login;
 
 import android.content.Intent;
+import android.os.Bundle;
 
 import org.junit.runner.RunWith;
 
+import androidx.test.core.app.ActivityScenario;
 import androidx.test.core.app.ApplicationProvider;
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.rule.ActivityTestRule;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,8 +28,9 @@ public class LoginTest{
     private static Intent intent;
     static {
         intent = new Intent(ApplicationProvider.getApplicationContext(), LoginActivity.class);
-        intent.putExtra("title", "Mock Login");
-        intent.putExtra("isMock", true);
+        Bundle extras = new Bundle();
+        extras.putBoolean("isMock", true);
+        intent.putExtras(extras);
     }
 
     @Mock
@@ -40,8 +44,8 @@ public class LoginTest{
     }
 
     @Rule
-    public final ActivityTestRule<LoginActivity> LoginActivityRule =
-            new ActivityTestRule<>(LoginActivity.class);
+    public final ActivityScenarioRule<LoginActivity> LoginActivityRule =
+            new ActivityScenarioRule<>(intent);
 
     @Test
     public void test_login(){

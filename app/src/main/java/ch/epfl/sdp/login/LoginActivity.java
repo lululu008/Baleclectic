@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initFirebaseAndCLoud(){
         Bundle extras = intent.getExtras();
-        if (extras != null && extras.containsKey("isMock")) {
+        if (extras != null && extras.getBoolean("isMock")) {
             firebase = new MockFirebase();
             cloudStore = new mockCloudStore();
         }
