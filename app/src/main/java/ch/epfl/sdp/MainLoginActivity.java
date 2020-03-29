@@ -26,10 +26,10 @@ public class MainLoginActivity extends AppCompatActivity {
             }
         });
 
-        toolbar();
+        main_login_toolbar();
     }
 
-    private void toolbar() {
+    private void main_login_toolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Sign In");
         toolbar.setSubtitle("Sign in with Google or email");

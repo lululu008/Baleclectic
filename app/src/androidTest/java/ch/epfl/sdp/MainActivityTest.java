@@ -146,6 +146,7 @@ public class MainActivityTest {
                 .check(matches(isClosed(Gravity.LEFT))); // Left Drawer should be closed.
     }
 
+
 //    @Test
 //    public void testButtons(){
 //        //test timetable Button

@@ -84,9 +84,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setLogo((R.mipmap.ic_launcher));
 
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.mipmap.ic_menu);
-
-        //actions of popup menu
+        navigationDrawer();
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -104,8 +102,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 return true;
             }
         });
+    }
 
-        //for navigation bar
+    private void navigationDrawer() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.mipmap.ic_menu);
+        //drawer
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);

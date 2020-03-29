@@ -42,10 +42,10 @@ public class Timetable extends AppCompatActivity {
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeController);
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
-        toolbar();
+        timetable_toolbar();
     }
 
-    private void toolbar() {
+    private void timetable_toolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Timetable");
         toolbar.setSubtitle("View timetable here");

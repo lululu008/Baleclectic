@@ -44,10 +44,10 @@ public class ProfileActivity extends AppCompatActivity {
                 signOut();
             }
         });
-        toolbar();
+        profile_toolbar();
     }
 
-    private void toolbar() {
+    private void profile_toolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Profile");
         toolbar.setSubtitle("View your profile");
