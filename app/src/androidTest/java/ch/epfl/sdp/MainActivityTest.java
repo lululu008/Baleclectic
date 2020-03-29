@@ -56,10 +56,6 @@ public class MainActivityTest {
 //        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
 //        onView(withText("About"))
 //                .perform(click());
-////        onView(withId(R.id.action_about))
-////                .perform(click());
-////        onView(withId(R.id.action_settings))
-////                .perform(click());
     }
 
 
