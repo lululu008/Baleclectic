@@ -1,5 +1,8 @@
 package ch.epfl.sdp.dataModel;
 
+import android.annotation.SuppressLint;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -23,18 +26,16 @@ public class User {
     }
 
     public boolean isMale() {
-        if(gender == 1)
-            return true;
-        else
-            return false;
+        return gender == 1;
     }
 
     public void setGender(int gender) {
         this.gender = gender;
     }
 
-    public Date getBirthday() {
-        return birthday;
+    @SuppressLint("SimpleDateFormat")
+    public String getBirthday() {
+        return new SimpleDateFormat("dd/MM/yyyy").format(birthday);
     }
 
     public void setBirthday(Date birthday) {

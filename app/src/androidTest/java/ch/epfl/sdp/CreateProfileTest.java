@@ -36,7 +36,9 @@ public class CreateProfileTest {
         onView(withId(R.id.user_name_edit)).perform(typeText("John")).perform(closeSoftKeyboard());
         onView(withId(R.id.register_button)).perform(click());
         onView(withId(R.id.female)).perform(click());
+        onView(withId(R.id.male)).perform(click());
         onView(withId(R.id.register_button)).perform(click());
+
 
     }
 
