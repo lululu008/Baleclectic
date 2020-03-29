@@ -2,7 +2,7 @@ package ch.epfl.sdp;
 
 import ch.epfl.sdp.dataModel.User;
 
-public class MockCloudStore implements CloudStoreInterface {
+public class mockCloudStore implements CloudStoreInterface {
     @Override
     public void addNewUser(User newUser) {
 

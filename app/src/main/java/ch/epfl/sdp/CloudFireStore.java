@@ -13,9 +13,10 @@ public class CloudFireStore implements CloudStoreInterface{
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseUser currentUser = mAuth.getCurrentUser();
-    private String address = currentUser.getEmail();
+
 
     public void addNewUser(User newUser){
+        String address = currentUser.getEmail();
         newUser.setEmail(address);
         DocumentReference newUserRef = db.collection("users").document(address);
         newUserRef.set(newUser);

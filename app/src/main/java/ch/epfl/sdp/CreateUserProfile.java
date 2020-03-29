@@ -10,11 +10,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.ParseException;
@@ -25,7 +20,6 @@ import ch.epfl.sdp.dataModel.User;
 
 public class CreateUserProfile extends AppCompatActivity {
 
-    private Intent intent;
     public String dateDD,dateMM,dateYY;
     public String userName;
     public Date birthday;
@@ -45,8 +39,9 @@ public class CreateUserProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createprofile);
-        intent = getIntent();
         setUp();
+        CloudFireStore cloudFireStore = new CloudFireStore();
+        setCloudStore(cloudFireStore);
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -61,13 +56,6 @@ public class CreateUserProfile extends AppCompatActivity {
 
     private void updateInfo(){
         User newUser = new User(userName, gender, birthday);
-        Bundle extras = intent.getExtras();
-        if (  /*not sure*/         ) {
-            cloudStore = new MockCloudStore();
-        }
-        else {
-            cloudStore = new CloudFireStore();
-        }
         cloudStore.addNewUser(newUser);
         startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
     }
@@ -134,26 +122,24 @@ public class CreateUserProfile extends AppCompatActivity {
 
     private void checkBirthday(){
         if (dateDD.length() != 2){
-            date_day.setTextColor(Color.RED);
-            date_day.setError("Incorrect date");
-            date_day.requestFocus();
-            correct = false;
+            setDateError(date_day);
         }
         if (dateMM.length() != 2){
-            date_month.setTextColor(Color.RED);
-            date_month.setError("Incorrect date");
-            date_month.requestFocus();
-            correct = false;
+            setDateError(date_month);
         }
         if (dateYY.length() != 4){
-            date_year.setTextColor(Color.RED);
-            date_year.setError("Incorrect date");
-            date_year.requestFocus();
-            correct = false;
+            setDateError(date_year);
         }
     }
 
     public void setCloudStore(CloudStoreInterface cloudStore){
         this.cloudStore = cloudStore;
+    }
+
+    private void setDateError(EditText errorField){
+        errorField.setTextColor(Color.RED);
+        errorField.setError("Incorrect date");
+        errorField.requestFocus();
+        correct = false;
     }
 }
