@@ -1,4 +1,4 @@
-package ch.epfl.sdp;
+package ch.epfl.sdp.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +16,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import ch.epfl.sdp.MainActivity;
+import ch.epfl.sdp.R;
+
 public class ProfileActivity extends AppCompatActivity {
 
     @Override
@@ -25,19 +28,16 @@ public class ProfileActivity extends AppCompatActivity {
         TextView textName, textEmail;
         textName = findViewById(R.id.textViewName);
         textEmail = findViewById(R.id.textViewEmail);
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
+        FirebaseInterface firebase = new Firebase();
 
-        if (user != null) {
-            textEmail.setText(user.getEmail());
-            textName.setText(user.getDisplayName() );
-        }
+        textEmail.setText(firebase.getUserEmail());
+        textName.setText(firebase.getUserName() );
 
         Button sign_out = (Button)findViewById(R.id.sign_out_button);
         sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent startIntent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(startIntent);
                 signOut();
             }
@@ -55,8 +55,5 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                 });
         // [END auth_fui_delete]
-
     }
-
-
 }

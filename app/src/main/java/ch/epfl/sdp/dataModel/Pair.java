@@ -1,4 +1,4 @@
-package ch.epfl.sdp;
+package ch.epfl.sdp.dataModel;
 
 public class Pair<T, U> {
     private final T t;

@@ -22,6 +22,7 @@ import static org.junit.Assert.assertNotNull;
 import android.app.Activity;
 import android.app.Instrumentation;
 
+import ch.epfl.sdp.login.MainLoginActivity;
 import ch.epfl.sdp.timetable.Timetable;
 
 @RunWith(AndroidJUnit4.class)

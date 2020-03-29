@@ -1,4 +1,4 @@
-package ch.epfl.sdp;
+package ch.epfl.sdp.cloud;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -16,6 +16,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import ch.epfl.sdp.login.ProfileActivity;
+import ch.epfl.sdp.R;
 import ch.epfl.sdp.dataModel.User;
 
 public class CreateUserProfile extends AppCompatActivity {
@@ -57,7 +59,7 @@ public class CreateUserProfile extends AppCompatActivity {
     private void updateInfo(){
         User newUser = new User(userName, gender, birthday);
         cloudStore.addNewUser(newUser);
-        startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
     }
 
     private void retrieveInput(){

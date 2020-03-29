@@ -47,10 +47,10 @@
         <activity android:name=".map.MapHomeActivity" />
         <activity android:name=".map.DistanceActivity" />
 
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainLoginActivity" />
-        <activity android:name=".CreateUserProfile"/>
+        <activity android:name=".login.ProfileActivity" />
+        <activity android:name=".login.LoginActivity" />
+        <activity android:name=".login.MainLoginActivity" />
+        <activity android:name=".cloud.CreateUserProfile"/>
 
     </application>
 

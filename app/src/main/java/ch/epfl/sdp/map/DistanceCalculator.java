@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import ch.epfl.sdp.Pair;
+import ch.epfl.sdp.dataModel.Pair;
 
 public class DistanceCalculator {
 

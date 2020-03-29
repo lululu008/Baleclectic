@@ -1,5 +1,6 @@
-package ch.epfl.sdp;
+package ch.epfl.sdp.cloud;
 
+import ch.epfl.sdp.cloud.CloudStoreInterface;
 import ch.epfl.sdp.dataModel.User;
 
 public class mockCloudStore implements CloudStoreInterface {
@@ -14,5 +15,10 @@ public class mockCloudStore implements CloudStoreInterface {
     @Override
     public void getUser(String address) {
 
+    }
+
+    @Override
+    public Boolean checkCreateProfile() {
+        return true;
     }
 }

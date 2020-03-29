@@ -1,13 +1,16 @@
-package ch.epfl.sdp;
+package ch.epfl.sdp.cloud;
 
 import android.content.Intent;
 
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.core.app.ApplicationProvider;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import org.junit.Rule;
 import org.junit.Test;
+
+import ch.epfl.sdp.R;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -35,7 +38,7 @@ public class CreateProfileTest {
             }
         });
 
-        onView(withId(R.id.register_button)).perform(click());
+        onView(ViewMatchers.withId(R.id.register_button)).perform(click());
         onView(withId(R.id.date_yy)).perform(typeText("1999")).perform(closeSoftKeyboard());
         onView(withId(R.id.register_button)).perform(click());
         onView(withId(R.id.date_mm)).perform(typeText("01")).perform(closeSoftKeyboard());
