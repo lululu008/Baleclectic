@@ -18,7 +18,6 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.DrawerMatchers.isClosed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
-
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
     @Rule
@@ -62,6 +61,8 @@ public class MainActivityTest {
 ////        onView(withId(R.id.action_settings))
 ////                .perform(click());
     }
+
+
 //    @Test
 //    public void testButtons(){
 //        //test timetable Button

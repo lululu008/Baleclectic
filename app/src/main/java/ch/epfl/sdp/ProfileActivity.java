@@ -49,13 +49,12 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void profile_toolbar() {
         Toolbar ptool = findViewById(R.id.toolbar);
-        ptool.setTitle("Profile");
-        ptool.setSubtitle("View your profile");
+
         //set the logo on top
         //toolbar.setLogo((R.mipmap.ic_launcher));
-
+        ptool.setTitle("Profile");
         setSupportActionBar(ptool);
-
+        ptool.setSubtitle("View your profile");
         //set press back button
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
