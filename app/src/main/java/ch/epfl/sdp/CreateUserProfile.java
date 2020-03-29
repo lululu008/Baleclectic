@@ -62,8 +62,8 @@ public class CreateUserProfile extends AppCompatActivity {
     private void updateInfo(){
         User newUser = new User(userName, gender, birthday);
         Bundle extras = intent.getExtras();
-        if (extras != null && extras.containsKey("isMock") || extras.getBoolean("isMock")) {
-            cloudStore = new mockCloudStore();
+        if (  /*not sure*/         ) {
+            cloudStore = new MockCloudStore();
         }
         else {
             cloudStore = new CloudFireStore();
@@ -151,5 +151,9 @@ public class CreateUserProfile extends AppCompatActivity {
             date_year.requestFocus();
             correct = false;
         }
+    }
+
+    public void setCloudStore(CloudStoreInterface cloudStore){
+        this.cloudStore = cloudStore;
     }
 }
