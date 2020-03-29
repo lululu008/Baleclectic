@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,47 +27,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // timetable button
-        Button timetableBtn = (Button)findViewById(R.id.timetableBtn);
-        timetableBtn.setVisibility(View.INVISIBLE);
-        timetableBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(), Timetable.class);
-                startActivity(startIntent);
-            }
-        });
-
-        Button mapBtn = (Button)findViewById(R.id.mapBtn);
-        mapBtn.setVisibility(View.INVISIBLE);
-        mapBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(), MapSelectionActivity.class);
-                startActivity(startIntent);
-            }
-        });
+//        // timetable button
+//        Button timetableBtn = (Button)findViewById(R.id.timetableBtn);
+//        timetableBtn.setVisibility(View.INVISIBLE);
+//        timetableBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent startIntent = new Intent(getApplicationContext(), Timetable.class);
+//                startActivity(startIntent);
+//            }
+//        });
+//
+//        Button mapBtn = (Button)findViewById(R.id.mapBtn);
+//        mapBtn.setVisibility(View.INVISIBLE);
+//        mapBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent startIntent = new Intent(getApplicationContext(), MapSelectionActivity.class);
+//                startActivity(startIntent);
+//            }
+//        });
 
         NewFunctions();
 
    }
 
     private void NewFunctions() {
-        loginBtn();
+//        loginBtn();
         toolbar();
     }
 
-    private void loginBtn() {
-        Button mainloginBtn = (Button)findViewById((R.id.mainloginBtn));
-        mainloginBtn.setVisibility(View.INVISIBLE);
-        mainloginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(), MainLoginActivity.class);
-                startActivity(startIntent);
-            }
-        });
-    }
+//    private void loginBtn() {
+//        Button mainloginBtn = (Button)findViewById((R.id.mainloginBtn));
+//        mainloginBtn.setVisibility(View.INVISIBLE);
+//        mainloginBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent startIntent = new Intent(getApplicationContext(), MainLoginActivity.class);
+//                startActivity(startIntent);
+//            }
+//        });
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -80,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void toolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Home Page");
+        toolbar.setTitle("Home");
         toolbar.setSubtitle("Select activities on the left");
         //set the logo on top
         toolbar.setLogo((R.mipmap.ic_launcher));

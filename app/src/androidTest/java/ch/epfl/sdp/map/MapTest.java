@@ -1,11 +1,15 @@
 package ch.epfl.sdp.map;
 
+import android.view.Gravity;
+
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.action.GeneralLocation;
 import androidx.test.espresso.action.GeneralSwipeAction;
 import androidx.test.espresso.action.Press;
 import androidx.test.espresso.action.Swipe;
+import androidx.test.espresso.contrib.DrawerActions;
+import androidx.test.espresso.contrib.NavigationViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -25,6 +29,7 @@ import ch.epfl.sdp.R;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.contrib.DrawerMatchers.isClosed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withSubstring;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
@@ -48,7 +53,13 @@ public class MapTest {
     @Test
     public void testCanOpenMap() {
 
-        onView(ViewMatchers.withId(R.id.mapBtn)).perform(click());
+        // Open Drawer to click on navigation.
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
+                .perform(DrawerActions.open()); // Open Drawer
+        // Start the screen of your activity.
+        onView(withId(R.id.nav_view))
+                .perform(NavigationViewActions.navigateTo(R.id.nav_map));
 
         clickOkIfNeeded();
         allowLocationPermissionsIfNeeded();
@@ -71,7 +82,13 @@ public class MapTest {
     @Test
     public void testCanGetLocation() {
 
-        onView(ViewMatchers.withId(R.id.mapBtn)).perform(click());
+        // Open Drawer to click on navigation.
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
+                .perform(DrawerActions.open()); // Open Drawer
+        // Start the screen of your activity.
+        onView(withId(R.id.nav_view))
+                .perform(NavigationViewActions.navigateTo(R.id.nav_map));
 
         clickOkIfNeeded();
         allowLocationPermissionsIfNeeded();

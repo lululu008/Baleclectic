@@ -38,7 +38,7 @@ public class MainLoginTest {
     @Test
     public void test_signin(){
         assertNotNull(mainLoginActivityRule.getActivity().findViewById(R.id.signin_main));
-        onView(withText("Sign In")).check(ViewAssertions.matches(isDisplayed()));
+        onView(withText("SIGN IN")).check(ViewAssertions.matches(isDisplayed()));
         onView(withId(R.id.signin_main)).perform(click());
 
     }
