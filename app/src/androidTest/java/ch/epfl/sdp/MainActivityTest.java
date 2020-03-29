@@ -54,14 +54,14 @@ public class MainActivityTest {
                 check(matches(isDisplayed()));
     }
 
-    @Test
-    public void check_settings(){
-        onView(withId(R.id.action_settings))
-                .perform(click());
-        onView(withText(R.string.TOAST_settings)).
-                inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView()))).
-                check(matches(isDisplayed()));
-    }
+//    @Test
+//    public void check_settings(){
+//        onView(withId(R.id.action_settings))
+//                .perform(click());
+//        onView(withText(R.string.TOAST_settings)).
+//                inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView()))).
+//                check(matches(isDisplayed()));
+//    }
 
 //    @Test
 //    public void testButtons(){

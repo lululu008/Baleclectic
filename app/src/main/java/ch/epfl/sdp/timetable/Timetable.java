@@ -47,13 +47,14 @@ public class Timetable extends AppCompatActivity {
 
     public void timetable_toolbar() {
         Toolbar ttool = findViewById(R.id.toolbar);
+
         //set titles
         ttool.setTitle("Timetable");
-        ttool.setSubtitle("View timetable here");
 
         setSupportActionBar(ttool);
         //set press back button
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        ttool.setSubtitle("View timetable here");
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
