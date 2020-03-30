@@ -69,14 +69,4 @@ public class MainActivityTest {
 //                check(matches(isDisplayed()));
 //    }
 
-//    @Test
-//    public void testButtons(){
-//        //test timetable Button
-//        assertNotNull(mActivityRule.getActivity().findViewById(R.id.timetableBtn));
-//        onView(withId(R.id.timetableBtn)).perform(click());
-//        Activity Timetable = getInstrumentation().waitForMonitorWithTimeout(monitor_timetable, 5000);
-//        assertNotNull(Timetable);
-//        Espresso.pressBack();
-//    }
-
 }

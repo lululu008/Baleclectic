@@ -27,47 +27,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        // timetable button
-//        Button timetableBtn = (Button)findViewById(R.id.timetableBtn);
-//        timetableBtn.setVisibility(View.INVISIBLE);
-//        timetableBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent startIntent = new Intent(getApplicationContext(), Timetable.class);
-//                startActivity(startIntent);
-//            }
-//        });
-//
-//        Button mapBtn = (Button)findViewById(R.id.mapBtn);
-//        mapBtn.setVisibility(View.INVISIBLE);
-//        mapBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent startIntent = new Intent(getApplicationContext(), MapSelectionActivity.class);
-//                startActivity(startIntent);
-//            }
-//        });
-
         NewFunctions();
 
    }
 
     private void NewFunctions() {
-//        loginBtn();
         toolbar();
     }
-
-//    private void loginBtn() {
-//        Button mainloginBtn = (Button)findViewById((R.id.mainloginBtn));
-//        mainloginBtn.setVisibility(View.INVISIBLE);
-//        mainloginBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent startIntent = new Intent(getApplicationContext(), MainLoginActivity.class);
-//                startActivity(startIntent);
-//            }
-//        });
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -80,9 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Home");
         toolbar.setSubtitle("Select activities on the left");
-        //set the logo on top
         toolbar.setLogo((R.mipmap.ic_launcher));
-
         setSupportActionBar(toolbar);
         navigationDrawer();
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {

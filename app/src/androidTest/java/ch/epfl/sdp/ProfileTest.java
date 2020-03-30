@@ -46,8 +46,5 @@ public class ProfileTest {
         onView(withId(R.id.sign_out_button)).perform(click());
         Activity MainActivity = getInstrumentation().waitForMonitorWithTimeout(monitor_signout, 5000);
         assertNotNull(MainActivity);
-
-//        User user = new User("John");
-//        user.setEmail("123@gmail.com");
     }
 }
