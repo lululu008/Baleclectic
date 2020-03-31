@@ -8,13 +8,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -42,6 +44,20 @@ public class ProfileActivity extends AppCompatActivity {
                 signOut();
             }
         });
+        profile_toolbar();
+    }
+
+    private void profile_toolbar() {
+        Toolbar ptool = findViewById(R.id.toolbar);
+
+        //set the logo on top
+        //toolbar.setLogo((R.mipmap.ic_launcher));
+        ptool.setTitle("Profile");
+        setSupportActionBar(ptool);
+        ptool.setSubtitle("View your profile");
+        //set press back button
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     public void signOut() {

@@ -1,12 +1,9 @@
 package ch.epfl.sdp;
 
-import androidx.test.espresso.Espresso;
-import androidx.test.espresso.ViewAction;
-import androidx.test.espresso.action.GeneralLocation;
-import androidx.test.espresso.action.GeneralSwipeAction;
-import androidx.test.espresso.action.Press;
-import androidx.test.espresso.action.Swipe;
-import androidx.test.espresso.matcher.ViewMatchers;
+import android.view.Gravity;
+
+import androidx.test.espresso.contrib.DrawerActions;
+import androidx.test.espresso.contrib.NavigationViewActions;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 
@@ -15,14 +12,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.contrib.DrawerMatchers.isClosed;
+import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
-import static org.junit.Assert.assertNotNull;
-import android.app.Activity;
-import android.app.Instrumentation;
-
-import ch.epfl.sdp.timetable.Timetable;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.not;
 
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
@@ -30,50 +28,45 @@ public class MainActivityTest {
     public final ActivityTestRule<MainActivity> mActivityRule =
             new ActivityTestRule<>(MainActivity.class);
 
-    private static ViewAction swipeFromRightToLeft() {
-        return new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER_RIGHT,
-                GeneralLocation.CENTER_LEFT, Press.FINGER);
-    }
-
-    private static ViewAction swipeFromBottomToTop() {
-        return new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.BOTTOM_CENTER,
-                GeneralLocation.TOP_CENTER, Press.FINGER);
-    }
-
-    private static ViewAction swipeFromLeftToRight() {
-        return new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER_LEFT,
-                GeneralLocation.CENTER_RIGHT, Press.FINGER);
-    }
-
-    Instrumentation.ActivityMonitor monitor_login = getInstrumentation().addMonitor(MainLoginActivity.class.getName(),null,false);
-    Instrumentation.ActivityMonitor monitor_timetable = getInstrumentation().addMonitor(Timetable.class.getName(),null,false);
-
     @Test
-    public void testCanGreetUsers() {
-        // onView(withId(R.id.mainName)).perform(typeText("from my unit test")).perform(closeSoftKeyboard());
-        onView(withId(R.id.timetableBtn)).perform(click());
-        Espresso.onView(ViewMatchers.withId(R.id.recyclerView)).perform(swipeFromRightToLeft());
-        Espresso.onView(ViewMatchers.withId(R.id.recyclerView)).perform(swipeFromBottomToTop());
-        Espresso.onView(ViewMatchers.withId(R.id.recyclerView)).perform(swipeFromLeftToRight());
-        // onView(withId(R.id.greetingMessage)).check(matches(withText("Hello from my unit test!")));
-        Espresso.pressBack();
+    public void clickOnHomePage() {
+        //Home page click
+        // Open Drawer to click on navigation.
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
+                .perform(DrawerActions.open()); // Open Drawer
+        // Start the screen of your activity.
+        onView(withId(R.id.nav_view))
+                .perform(NavigationViewActions.navigateTo(R.id.nav_home));
     }
 
     @Test
-    public void testButtons(){
-        //test timetable Button
-        assertNotNull(mActivityRule.getActivity().findViewById(R.id.timetableBtn));
-        onView(withId(R.id.timetableBtn)).perform(click());
-        Activity Timetable = getInstrumentation().waitForMonitorWithTimeout(monitor_timetable, 5000);
-        assertNotNull(Timetable);
-        Espresso.pressBack();
-
-        //test mainlogin Button
-        assertNotNull(mActivityRule.getActivity().findViewById(R.id.mainloginBtn));
-        onView(withId(R.id.mainloginBtn)).perform(click());
-        Activity mainloginActivity = getInstrumentation().waitForMonitorWithTimeout(monitor_login, 5000);
-        assertNotNull(mainloginActivity);
-        Espresso.pressBack();
+    public void check_onBackPressed() {
+        // Open Drawer
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
+                .perform(DrawerActions.open()); // Open Drawer
+        pressBack();
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT))); // Left Drawer should be closed.
     }
+
+    @Test
+    public void check_notifications(){
+        onView(withId(R.id.action_notifications))
+                .perform(click());
+        onView(withText(R.string.TOAST_notifications)).
+                inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView()))).
+                check(matches(isDisplayed()));
+    }
+
+//    @Test
+//    public void check_settings(){
+//        onView(withId(R.id.action_settings))
+//                .perform(click());
+//        onView(withText(R.string.TOAST_settings)).
+//                inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView()))).
+//                check(matches(isDisplayed()));
+//    }
 
 }

@@ -22,4 +22,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.693" />
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <!-- only leave the following if converted to fragment
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/***"
+        android:name="ch.epfl.sdp.fragments_drawer.***"/>
+    -->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

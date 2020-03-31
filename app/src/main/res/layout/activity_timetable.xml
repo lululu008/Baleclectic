@@ -14,4 +14,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- only leave following if converted to fragment
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_timetable"
+        android:name="ch.epfl.sdp.timetable.***"/>
+     -->
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

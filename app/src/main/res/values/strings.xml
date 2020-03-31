@@ -3,6 +3,8 @@
     <string name="timetable">Timetable</string>
     <string name="map">Map</string>
     <string name="map_title">Demo Map</string>
+    <string name="navigation_draw_open">Open navigation drawer</string>
+    <string name="navigation_draw_close">Close navigation drawer</string>
 
     <string-array name="activities_list">
         <item>Artist1</item>
@@ -41,5 +43,15 @@
     <string name="textview">TextView</string>
     <string name="successfully_sign_in">Successfully Sign In!</string>
     <string name="sign_out">Sign Out</string>
+    <string name="notifications">notifications</string>
+    <string name="action_settings" />
+    <string name="Settings" />
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="Timetable" />
+    <string name="Map" />
+    <string name="SignIn" />
+    <string name="TOAST_notifications">Notifications !</string>
+    <string name="TOAST_settings">Settings !</string>
 
 </resources>

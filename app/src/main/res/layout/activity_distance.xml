@@ -7,19 +7,9 @@
     android:orientation="vertical"
     tools:context=".map.MapSelectionActivity" >
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppBarOverlay">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimaryDark"
-            app:popupTheme="@style/PopupOverlay"
-            app:titleTextColor="@color/defaultWhite" />
-    </com.google.android.material.appbar.AppBarLayout>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
     <Button
         android:id="@+id/updateLocationButton"

@@ -1,11 +1,14 @@
 package ch.epfl.sdp.timetable;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
+import java.util.Objects;
 
 import ch.epfl.sdp.R;
 
@@ -38,5 +41,22 @@ public class Timetable extends AppCompatActivity {
         SwipeController swipeController = new SwipeController();
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeController);
         itemTouchHelper.attachToRecyclerView(recyclerView);
+
+        timetable_toolbar();
+    }
+
+    public void timetable_toolbar() {
+        Toolbar ttool = findViewById(R.id.toolbar);
+
+        //set titles
+        ttool.setTitle("Timetable");
+
+        setSupportActionBar(ttool);
+        //set press back button
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        ttool.setSubtitle("View timetable here");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
     }
 }

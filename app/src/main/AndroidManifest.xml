@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".map.MapSelectionActivity" />
+        <activity
+            android:name=".map.MapSelectionActivity"
+            android:parentActivityName=".MainActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -31,8 +33,11 @@
 
         <activity
             android:name=".map.MapsActivity"
-            android:label="@string/title_activity_maps" />
-        <activity android:name=".timetable.Timetable" />
+            android:label="@string/title_activity_maps"
+            android:parentActivityName=".map.MapSelectionActivity"/>
+        <activity
+            android:name=".timetable.Timetable"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,11 +46,17 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".map.MapHomeActivity" />
-        <activity android:name=".map.DistanceActivity" />
-        <activity android:name=".ProfileActivity" />
+        <activity android:name=".map.MapHomeActivity"
+            android:parentActivityName=".map.MapSelectionActivity"/>
+        <activity android:name=".map.DistanceActivity"
+            android:parentActivityName=".map.MapSelectionActivity"/>
+        <activity
+            android:name=".ProfileActivity"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MainLoginActivity" />
+        <activity
+            android:name=".MainLoginActivity"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>
