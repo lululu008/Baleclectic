@@ -41,5 +41,6 @@
     <string name="textview">TextView</string>
     <string name="successfully_sign_in">Successfully Sign In!</string>
     <string name="sign_out">Sign Out</string>
+    <string name="distance_init">Click on \"Update Location\" to get started</string>
 
 </resources>

@@ -1,14 +1,6 @@
 package ch.epfl.sdp.map;
 
-import android.Manifest;
 import android.app.Activity;
-import android.location.Location;
-
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
-
-import pub.devrel.easypermissions.EasyPermissions;
 
 public class MockLocation implements LocationProvider {
 

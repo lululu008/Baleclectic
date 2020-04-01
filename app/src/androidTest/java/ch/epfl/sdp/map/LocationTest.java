@@ -32,7 +32,7 @@ public class LocationTest {
         intent = new Intent(ApplicationProvider.getApplicationContext(), DistanceActivity.class);
         intent.putExtra("points", mp);
         intent.putExtra("title", "Mock Distance");
-        intent.putExtra("isMock", true);
+
     }
 
     UiDevice mDevice = UiDevice

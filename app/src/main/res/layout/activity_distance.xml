@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:lineSpacingExtra="24sp"
-        android:text="@string/no_loc_access"
+        android:text="@string/distance_init"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
