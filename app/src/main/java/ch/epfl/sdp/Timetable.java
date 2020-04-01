@@ -48,7 +48,6 @@ public class Timetable extends AppCompatActivity {
         } catch (IOException e) {
 
         }
-
         mAdapter = new MyAdapter(performances);
     }
 
@@ -57,56 +56,9 @@ public class Timetable extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(mAdapter);
+
+        ItemTouchHelper.Callback callback = new SwipeController(mAdapter);
+        ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(recyclerView);
     }
-
-    /*
-    RecyclerView recyclerView;
-    private MyAdapter mAdapter;
-    SwipeController swipeController = null;
-
-    String[] activities_name;
-    String[] description;
-    int[] images = {R.drawable.ac_dc,R.drawable.green_day, R.drawable.guns_and_roses, R.drawable.kiss,
-    R.drawable.metallica, R.drawable.ministry, R.drawable.rh, R.drawable.sex_pistoles};
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timetable);
-
-        setupRecyclerView();
-
-        activities_name = getResources().getStringArray(R.array.activities_list);
-        description = getResources().getStringArray(R.array.activities_description);
-
-        // initialize the class inside the activity
-        mAdapter = new MyAdapter(this, activities_name, description, images);
-    }
-
-    private void setupRecyclerView() {
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(mAdapter);
-
-        // !!!
-        swipeController = new SwipeController(new SwipeControllerActions() {
-            @Override
-            public void onRightClicked(int position) {
-                mAdapter.players.remove(position);
-                mAdapter.notifyItemRemoved(position);
-                mAdapter.notifyItemRangeChanged(position, mAdapter.getItemCount());
-            }
-        });
-
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeController);
-        itemTouchHelper.attachToRecyclerView(recyclerView);
-
-        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
-            @Override
-            public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-                swipeController.onDraw(c);
-            }
-        });
-    }
-    */
 }

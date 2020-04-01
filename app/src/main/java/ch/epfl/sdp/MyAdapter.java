@@ -6,13 +6,38 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 // adapter provides a binding from an app-specific data set to views
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.PerformanceViewHolder> {
+// adapter takes out the data from data set and pass it to the Layout Manager
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.PerformanceViewHolder> implements ItemTouchHelperAdapter {
     public List<Performance> performances;
+
+    // ??? boolean
+    @Override
+    public void onItemMove(int fromPosition, int toPosition) {
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(performances, i, i+1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(performances, i, i-1);
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition);
+    }
+
+    @Override
+    public void onItemDismiss(int position) {
+        performances.remove(position);
+        notifyItemRemoved(position);
+    }
 
     // take a view/row as a parameter
     // find all the child views by Id
@@ -58,19 +83,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.PerformanceViewHol
 
 
     /*
-    String activitiesName[], activitiesDescription[];
-    int imageSet[];
-    Context context;
-
-    // Provide a suitable constructor (depends on the kind of dataset)
-    // initialize the class inside the activity
-    public MyAdapter(Context ct, String activities_name[], String activities_description[], int artistImage[]) {
-         context = ct;
-         activitiesName = activities_name;
-         activitiesDescription = activities_description;
-         imageSet = artistImage;
-    }
-
     // create ViewHolder object whenever the RecyclerView needs a new one
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
