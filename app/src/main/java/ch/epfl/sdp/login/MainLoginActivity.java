@@ -1,4 +1,4 @@
-package ch.epfl.sdp;
+package ch.epfl.sdp.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import ch.epfl.sdp.R;
+
 
 public class MainLoginActivity extends AppCompatActivity {
 
@@ -18,7 +21,7 @@ public class MainLoginActivity extends AppCompatActivity {
         signin_main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startIntent = new Intent(getApplicationContext(),LoginActivity.class);
+                Intent startIntent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(startIntent);
             }
         });

@@ -56,7 +56,7 @@ public class DistanceActivity extends AppCompatActivity {
 
         MeetingPoints meetingPoints = (MeetingPoints) intent.getSerializableExtra("points");
         assert meetingPoints != null;
-        List<MeetingPoint> points = meetingPoints.getAll();
+        List<MeetingPoint> points = meetingPoints.getPoints();
 
         distanceCalc = new DistanceCalculator(points);
         getLocation();

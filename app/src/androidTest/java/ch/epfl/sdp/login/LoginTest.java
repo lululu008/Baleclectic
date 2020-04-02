@@ -1,7 +1,13 @@
-package ch.epfl.sdp;
+package ch.epfl.sdp.login;
+
+import android.content.Intent;
+import android.os.Bundle;
 
 import org.junit.runner.RunWith;
 
+import androidx.test.core.app.ActivityScenario;
+import androidx.test.core.app.ApplicationProvider;
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.rule.ActivityTestRule;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,6 +25,13 @@ import static org.junit.Assert.assertEquals;
 @RunWith(MockitoJUnitRunner.class)
 public class LoginTest{
     private static final int RC_SIGN_IN = 123;
+    private static Intent intent;
+    static {
+        intent = new Intent(ApplicationProvider.getApplicationContext(), LoginActivity.class);
+        Bundle extras = new Bundle();
+        extras.putBoolean("isMock", true);
+        intent.putExtras(extras);
+    }
 
     @Mock
     FirebaseAuth mockAuth = org.mockito.Mockito.mock(com.google.firebase.auth.FirebaseAuth.class);
@@ -31,8 +44,8 @@ public class LoginTest{
     }
 
     @Rule
-    public final ActivityTestRule<LoginActivity> LoginActivityRule =
-            new ActivityTestRule<>(LoginActivity.class);
+    public final ActivityScenarioRule<LoginActivity> LoginActivityRule =
+            new ActivityScenarioRule<>(intent);
 
     @Test
     public void test_login(){

@@ -1,4 +1,4 @@
-package ch.epfl.sdp;
+package ch.epfl.sdp.login;
 
 import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -12,6 +12,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
+
+import ch.epfl.sdp.R;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;

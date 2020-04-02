@@ -1,29 +1,32 @@
 package ch.epfl.sdp.dataModel;
 
-import android.graphics.Picture;
-
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
+import java.util.UUID;
+
+import ch.epfl.sdp.map.MeetingPoints;
 
 public class MainEvent {
 
     private String name;
     private String description;
     private String id;
-//  private Latlng location;
-//  private MeetingPoints meetingPoints;
-    private User creator;
-//  private Picture profile;
+    private double lat;
+    private double lng;
+    private MeetingPoints meetingPoints;
+    private String creatorId;
     private ArrayList<Event> events = new ArrayList<Event>();
-    private boolean is_open;
+    private boolean open;
     private Date date;
 
-    public MainEvent(String id, String name, User creator){
-        this.id = id;
-        this.name = name;
-        this.creator = creator;
-    }
+    public MainEvent() {}
 
+    public MainEvent(String name, User creator){
+        this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.creatorId = creator.getEmail();
+    }
     public String getName() {
         return name;
     }
@@ -41,11 +44,11 @@ public class MainEvent {
     }
 
     public boolean isOpen() {
-        return is_open;
+        return open;
     }
 
-    public void setOpen(boolean is_open) {
-        this.is_open = is_open;
+    public void setOpen(boolean open) {
+        this.open = open;
     }
 
     public Date getDate() {
@@ -56,12 +59,12 @@ public class MainEvent {
         this.date = date;
     }
 
-    public User getCreator() {
-        return creator;
+    public String getCreatorId() {
+        return creatorId;
     }
 
-    public void setCreator(User creator) {
-        this.creator = creator;
+    public void setCreatorId(String creatorId) {
+        this.creatorId = creatorId;
     }
 
     public String getDescription() {
@@ -76,29 +79,41 @@ public class MainEvent {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public double getLat() {
+        return lat;
     }
 
-//    public Latlng getLocation() {
-//        return location;
-//    }
-//
-//    public void setLocation(Latlng location) {
-//        this.location = location;
-//    }
-//
-//    public MeetingPoints getMeetingPoints() {
-//        return meetingPoints;
-//    }
-//
-//    public void setMeetingPoints(MeetingPoints meetingPoints) {
-//        this.meetingPoints = meetingPoints;
-//    }
-//    public Picture getProfile() {
-//        return profile;
-//    }
-//    public void setProfile(Picture profile) {
-//        this.profile = profile;
-//    }
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
+
+    public MeetingPoints getMeetingPoints() {
+        return meetingPoints;
+    }
+
+    public void setMeetingPoints(MeetingPoints meetingPoints) {
+        this.meetingPoints = meetingPoints;
+    }
+
+    public void setEvents(ArrayList<Event> events) {
+        this.events = events;
+    }
+
+    public Map toMap() {
+        //TODO
+        return null;
+    }
+
+    public void setFromMap(Map m) {
+        //TODO
+
+    }
 }

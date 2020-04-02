@@ -1,12 +1,10 @@
 package ch.epfl.sdp.map;
 
-import android.location.Location;
-
 import org.junit.Test;
 
 import java.util.ArrayList;
 
-import ch.epfl.sdp.Pair;
+import ch.epfl.sdp.dataModel.Pair;
 
 import static org.junit.Assert.assertEquals;
 

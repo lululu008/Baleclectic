@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import ch.epfl.sdp.login.MainLoginActivity;
 import ch.epfl.sdp.map.MapSelectionActivity;
 import ch.epfl.sdp.timetable.Timetable;
 
@@ -38,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         NewFunctions();
-
    }
 
     private void NewFunctions() {

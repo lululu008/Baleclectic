@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ch.epfl.sdp">
     <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality.
-    -->
+             The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+             Google Maps Android API v2, but you must specify either coarse or fine
+             location permissions for the 'MyLocation' functionality.
+        -->
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -16,7 +17,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
         <activity android:name=".map.MapSelectionActivity" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -28,7 +31,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
         <activity
             android:name=".map.MapsActivity"
             android:label="@string/title_activity_maps" />
@@ -41,11 +43,15 @@
             </intent-filter>
         </activity>
 
+
         <activity android:name=".map.MapHomeActivity" />
         <activity android:name=".map.DistanceActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainLoginActivity" />
+
+        <activity android:name=".login.ProfileActivity" />
+        <activity android:name=".login.LoginActivity" />
+        <activity android:name=".login.MainLoginActivity" />
+        <activity android:name=".cloud.CreateUserProfile"/>
+
     </application>
 
 </manifest>
