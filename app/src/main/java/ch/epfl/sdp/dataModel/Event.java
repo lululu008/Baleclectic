@@ -1,11 +1,15 @@
 package ch.epfl.sdp.dataModel;
 
+import java.util.Map;
+
 public class Event {
 
     private String name;
     private String startTime;
     private String endTime;
     private String description;
+
+    public Event() {}
 
     public Event(String name){
         this.name = name;
@@ -18,7 +22,6 @@ public class Event {
     public void setName(String name) {
         this.name = name;
     }
-
 
     public String getStartTime() {
         return startTime;
@@ -43,4 +46,14 @@ public class Event {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Map toMap() {
+        //TODO
+        return null;
+    }
+
+    public void setFromMap() {
+        //TODO
+    }
+
 }

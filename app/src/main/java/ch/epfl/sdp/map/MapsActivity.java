@@ -76,7 +76,7 @@ public class MapsActivity extends AppCompatActivity implements OnMyLocationButto
     public void showMeetingPoints() {
 
         MeetingPoints meetingPoints = (MeetingPoints) intent.getSerializableExtra("points");
-        List<MeetingPoint> points = meetingPoints.getAll();
+        List<MeetingPoint> points = meetingPoints.getPoints();
 
         if (!points.isEmpty()) {
 

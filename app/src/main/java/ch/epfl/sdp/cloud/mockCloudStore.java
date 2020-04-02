@@ -13,8 +13,8 @@ public class mockCloudStore implements CloudStoreInterface {
     }
 
     @Override
-    public void getUser(String address) {
-
+    public User getUser(String address) {
+        return new User();
     }
 
     @Override

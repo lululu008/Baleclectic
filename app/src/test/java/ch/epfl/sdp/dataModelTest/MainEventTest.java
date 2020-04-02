@@ -23,8 +23,8 @@ public class MainEventTest {
         Event event = new Event("sing");
         String sDate="10/03/2020";
         Date date =new SimpleDateFormat("dd/MM/yyyy").parse(sDate);
-        MainEvent mainEvent = new MainEvent("123", "Baleclectic", creator);
-        mainEvent.setCreator(newCreator);
+        MainEvent mainEvent = new MainEvent("Baleclectic", creator);
+        mainEvent.setCreatorId(newCreator.getEmail());
         mainEvent.setId("456");
         mainEvent.setDate(date);
         mainEvent.setDescription("Have fun");
@@ -33,7 +33,7 @@ public class MainEventTest {
 
         assertEquals("Baleclectic", mainEvent.getName());
         assertEquals("456", mainEvent.getId());
-        assertEquals("not John", mainEvent.getCreator().getName());
+        assertEquals("not John", mainEvent.getCreatorId().getName());
         assertEquals(date, mainEvent.getDate());
         assertEquals("Have fun", mainEvent.getDescription());
         assertTrue(mainEvent.isOpen());

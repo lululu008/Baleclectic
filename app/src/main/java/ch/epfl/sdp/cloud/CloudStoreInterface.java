@@ -5,7 +5,7 @@ import ch.epfl.sdp.dataModel.User;
 public interface CloudStoreInterface {
 
     public void addNewUser(User newUser);
-    public void getUser(String address);
+    public User getUser(String address);
     public Boolean checkCreateProfile();
 
 }

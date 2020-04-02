@@ -6,33 +6,36 @@ import java.util.List;
 
 public class MeetingPoints implements Serializable {
 
-    private ArrayList<MeetingPoint> pointsList;
+    private ArrayList<MeetingPoint> points;
 
     public MeetingPoints() {
-        pointsList =  new ArrayList<>();
+        points =  new ArrayList<>();
     }
-    public MeetingPoints(List<MeetingPoint> pointsList) {
+    public MeetingPoints(List<MeetingPoint> points) {
 
-        this.pointsList = new ArrayList<>(pointsList);
+        this.points = new ArrayList<>(points);
 
     }
 
     public MeetingPoints add(MeetingPoint point) {
-        pointsList.add(point);
+        points.add(point);
 
         return this;
     }
 
     public MeetingPoint get(int index) {
-        return pointsList.get(index);
-    }
-
-    public List<MeetingPoint> getAll() {
-        return new ArrayList<>(pointsList);
+        return points.get(index);
     }
 
     public int getSize() {
-        return pointsList.size();
+        return points.size();
     }
 
+    public ArrayList<MeetingPoint> getPoints() {
+        return new ArrayList<>(points);
+    }
+
+    public void setPoints(ArrayList<MeetingPoint> points) {
+        this.points = points;
+    }
 }

@@ -9,6 +9,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Map;
+
 import ch.epfl.sdp.dataModel.MainEvent;
 import ch.epfl.sdp.login.Firebase;
 import ch.epfl.sdp.login.FirebaseInterface;
@@ -22,18 +24,26 @@ public class CloudFireStore implements CloudStoreInterface{
     public void addNewUser(User newUser){
         String address = firebase.getUserEmail();
         newUser.setEmail(address);
+
+        Map<String, Object> m = newUser.toMap();
+
         DocumentReference newUserRef = db.collection("users").document(address);
-        newUserRef.set(newUser);
+        newUserRef.set(m);
     }
 
-    public void getUser(String address){
+    public User getUser(String address){
         DocumentReference newUserRef = db.collection("users").document(address);
         newUserRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                documentSnapshot.getData();
+
                 User user = documentSnapshot.toObject(User.class);
             }
         });
+
+        return null;
     }
 
     public Boolean checkCreateProfile(){
@@ -53,6 +63,12 @@ public class CloudFireStore implements CloudStoreInterface{
     public void addNewMainEvent(MainEvent mainEvent) {
         db.collection("mainEvents").add(mainEvent);
     }
+
+    private void UserSnapshotToUserMap(Map m) {
+
+    }
+
+
 
 
 }

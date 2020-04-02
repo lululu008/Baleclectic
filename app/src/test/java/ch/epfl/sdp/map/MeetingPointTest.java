@@ -32,6 +32,6 @@ public class MeetingPointTest {
 
         assertEquals(p1, meetingPoints.get(0));
         assertEquals(l.size(), meetingPoints.getSize());
-        assertEquals(l, meetingPoints.getAll());
+        assertEquals(l, meetingPoints.getPoints());
     }
 }
