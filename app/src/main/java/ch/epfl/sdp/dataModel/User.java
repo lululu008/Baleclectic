@@ -15,6 +15,8 @@ public class User {
     private Date birthday;
     private ArrayList<User> friends = new ArrayList<User>();
 
+    public User() {}
+
     public User(String userName, int gender, Date birthday) {
         this.name = userName;
         this.gender = gender;

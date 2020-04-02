@@ -10,13 +10,15 @@ public class MainEvent {
     private String name;
     private String description;
     private String id;
-//  private Latlng location;
+//    private Latlng location;
 //  private MeetingPoints meetingPoints;
     private User creator;
 //  private Picture profile;
     private ArrayList<Event> events = new ArrayList<Event>();
     private boolean is_open;
     private Date date;
+
+    public MainEvent() {}
 
     public MainEvent(String id, String name, User creator){
         this.id = id;

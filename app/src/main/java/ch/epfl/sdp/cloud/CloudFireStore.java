@@ -9,6 +9,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import ch.epfl.sdp.dataModel.MainEvent;
 import ch.epfl.sdp.login.Firebase;
 import ch.epfl.sdp.login.FirebaseInterface;
 import ch.epfl.sdp.dataModel.User;
@@ -48,4 +49,10 @@ public class CloudFireStore implements CloudStoreInterface{
         });
         return result;
     }
+
+    public void addNewMainEvent(MainEvent mainEvent) {
+        db.collection("mainEvents").add(mainEvent);
+    }
+
+
 }
